@@ -1,4 +1,4 @@
-.topArtists-wrapper{
+.topSongs-wrapper{
     display:flex;
     flex-direction: column;
     width:50%;
@@ -11,37 +11,44 @@
     padding-bottom:32px;
 }
 
-.topArtists-h2{
+.topSongs-h2{
     font-size: 32px;
     margin-left:38px;
 }
 
 
 
-.topArtists-ul{
+.topSongs-ul{
     list-style: none;
     display:flex;
     flex-direction: column;
-    gap:24px;
+    gap:0px;
     flex-wrap:wrap;
     width:650px;
     height:450px;
 }
 
-.topArtists-li{
+.topSongs-li{
     display:flex;
     justify-content: start;
     align-items: center;
     gap:30px;
 }
 
-.topArtists-img{
-    border-radius: 100px;
+.topSongs-img{
+    
     width:60px;
     height:60px;
 }
 
-.topArtists-name{
+.topSongs-name{
     font-size:18px;
     font-weight:bold;
+    margin-bottom: -10px;
+}
+
+.song-info{
+    max-width:150px;
+    display:flex;
+    flex-direction:column;
 }

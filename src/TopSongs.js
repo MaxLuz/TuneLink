@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./styles/TopSongs.css";
 
 const TopSongs = ({ token }) => {
   const [tracks, setTracks] = useState([]);
@@ -24,13 +25,21 @@ const TopSongs = ({ token }) => {
   }, [token]);
 
   return (
-    <div>
-      <h2>Your Top 10 Songs</h2>
-      <ul>
+    <div className="topSongs-wrapper">
+      <h2 className="topSongs-h2">Your Top 10 Songs</h2>
+      <ul className="topSongs-ul">
         {tracks.map((track) => (
-          <li key={track.id}>
-            <p>{track.name}</p>
-            <p>{track.artists[0].name}</p>
+          <li className="topSongs-li" key={track.id}>
+            <img
+              className="topSongs-img"
+              src={track.album.images[0].url}
+              alt={track.name}
+              width="100"
+            />
+            <div className="song-info">
+              <p className="topSongs-name">{track.name}</p>
+              <p>{track.artists[0].name}</p>
+            </div>
           </li>
         ))}
       </ul>

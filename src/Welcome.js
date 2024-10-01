@@ -22,7 +22,7 @@ const Welcome = ({ token, spotuser, setSpotuser }) => {
     }
   }, [token]);
 
-  return <h1 className="welcome-h1">Welcome, {spotuser} </h1>;
+  return <h1 className="welcome-h1">Welcome, {spotuser}! </h1>;
 };
 
 export default Welcome;
