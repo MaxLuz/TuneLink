@@ -1,0 +1,47 @@
+.topArtists-wrapper{
+    display:flex;
+    flex-direction: column;
+    width:50%;
+    background-color: #8FBC8F;
+    padding-top:32px;
+    padding-left:24px;
+    border-radius: 12px;
+    gap:0px;
+    height:fit-content;
+    padding-bottom:32px;
+}
+
+.topArtists-h2{
+    font-size: 32px;
+    margin-left:38px;
+}
+
+
+
+.topArtists-ul{
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    gap:24px;
+    flex-wrap:wrap;
+    width:650px;
+    height:400px;
+}
+
+.topArtists-li{
+    display:flex;
+    justify-content: start;
+    align-items: center;
+    gap:30px;
+}
+
+.topArtists-img{
+    border-radius: 100px;
+    width:60px;
+    height:60px;
+}
+
+.topArtists-name{
+    font-size:18px;
+    font-weight:bold;
+}

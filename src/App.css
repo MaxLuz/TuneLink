@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
 .App{
     display:flex;
     width: 100%;
@@ -18,9 +21,12 @@
 
 .data-components{
     display:flex;
+    width: 100%;
+    justify-content: center;
+    gap: 50px;
 }
 
-body { margin: 0; padding: 0; }
+body { margin: 0; padding: 0px; font-family: 'Roboto', sans-serif; }
 
 .isAuthenticated{
     display:flex;
@@ -28,4 +34,5 @@ body { margin: 0; padding: 0; }
     justify-content: center;
     align-items: center;
     width:100%;
+    max-width: 1440px;
 }
