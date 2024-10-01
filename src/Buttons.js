@@ -10,13 +10,13 @@ const Buttons = ({ timeframe, setTimeframe }) => {
 
   return (
     <div className="buttons-container">
-      <button autoFocus value="long_term" onClick={handleTimeframe}>
+      <button value="long_term" onClick={handleTimeframe}>
         Past Year
       </button>
       <button value="medium_term" onClick={handleTimeframe}>
         Past 6 Months
       </button>
-      <button value="short_term" onClick={handleTimeframe}>
+      <button autoFocus value="short_term" onClick={handleTimeframe}>
         Past Month
       </button>
     </div>

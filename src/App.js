@@ -11,7 +11,7 @@ import Buttons from "./Buttons";
 function App() {
   const [token, setToken] = useState(localStorage.getItem("spotifyAuthToken"));
   const [spotuser, setSpotuser] = useState("not-logged-in");
-  const [timeframe, setTimeframe] = useState("long_term");
+  const [timeframe, setTimeframe] = useState("short_term");
 
   return (
     <div className="App">
