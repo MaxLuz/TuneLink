@@ -30,7 +30,7 @@ const TopSongs = ({ token }) => {
         {tracks.map((track) => (
           <li key={track.id}>
             <p>{track.name}</p>
-            <p>{track.artists.name}</p>
+            <p>{track.artists[0].name}</p>
           </li>
         ))}
       </ul>
