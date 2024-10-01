@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./styles/TopSongs.css";
 
-const TopSongs = ({ token }) => {
+const TopSongs = ({ token, timeframe }) => {
   const [tracks, setTracks] = useState([]);
 
   // fetch top songs when component mounts
@@ -15,6 +15,7 @@ const TopSongs = ({ token }) => {
           },
           params: {
             limit: 10, // Get top 10 tracks
+            time_range: `${timeframe}`,
           },
         })
         .then((response) => {
@@ -22,7 +23,7 @@ const TopSongs = ({ token }) => {
         })
         .catch((error) => console.error("Error fetching top tracks: ", error));
     }
-  }, [token]);
+  }, [token, timeframe]);
 
   return (
     <div className="topSongs-wrapper">

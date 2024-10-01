@@ -6,11 +6,12 @@ import TopArtists from "./TopArtists";
 import Navbar from "./Navbar";
 import TopSongs from "./TopSongs";
 import Welcome from "./Welcome";
-import axios from "axios";
+import Buttons from "./Buttons";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("spotifyAuthToken"));
   const [spotuser, setSpotuser] = useState("not-logged-in");
+  const [timeframe, setTimeframe] = useState("long_term");
 
   return (
     <div className="App">
@@ -35,9 +36,10 @@ function App() {
               spotuser={spotuser}
               setSpotuser={setSpotuser}
             />
+            <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />
             <div className="data-components">
-              <TopArtists token={token} />
-              <TopSongs token={token} />
+              <TopArtists token={token} timeframe={timeframe} />
+              <TopSongs token={token} timeframe={timeframe} />
             </div>
           </div>
         )}

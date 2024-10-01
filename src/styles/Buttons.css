@@ -1,0 +1,29 @@
+.buttons-container{
+    width:100%;
+    display:flex;
+    justify-content: center;
+    padding-bottom:32px;
+    height: 42px;
+    gap:24px;
+}
+
+.buttons-container button{
+    height:100%;
+    padding: 0px 12px;
+    font-size:18px;
+    font-weight: bold;
+    background-color:white;
+    border-radius: 12px;
+    cursor:pointer;
+    transition: background-color 300ms ease, color 300ms ease;
+}
+
+.buttons-container button:hover{
+    background-color:black;
+    color:white;
+}
+
+.buttons-container button:focus{
+    background-color: black;
+    color:white;
+}
