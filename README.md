@@ -5,3 +5,5 @@
 ###### install express in backend folder
 
 ###### set up environment variables in .env file inside backend folder
+
+###### install nodemon in backend folder
