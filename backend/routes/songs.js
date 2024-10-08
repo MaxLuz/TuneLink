@@ -1,5 +1,5 @@
 const express = require("express");
-
+const { createSong } = require("../controllers/songController");
 const router = express.Router();
 
 // GET all songs
@@ -13,9 +13,7 @@ router.get("/:id", (req, res) => {
 });
 
 // POST a new song
-router.post("/", (req, res) => {
-  res.json({ mssg: "POST a new song" });
-});
+router.post("/", createSong);
 
 // DELETE a new song
 router.delete("/:id", (req, res) => {
