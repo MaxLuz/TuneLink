@@ -7,3 +7,5 @@
 ###### set up environment variables in .env file inside backend folder
 
 ###### install nodemon in backend folder
+
+###### install mongoose (mongodb wrapper for strict db)
