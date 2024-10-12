@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import axios from "axios";
-import "./styles/Welcome.css";
+import "../styles/Welcome.css";
 
 const Welcome = ({ token, spotuser, setSpotuser }) => {
   useEffect(() => {

@@ -2,11 +2,13 @@ import "./App.css";
 import React, { useState } from "react";
 import { SpotifyAuth, SpotifyAuthListener } from "react-spotify-auth";
 import "react-spotify-auth/dist/index.css"; // Import the styles for the Spotify login button
-import TopArtists from "./TopArtists";
-import Navbar from "./Navbar";
-import TopSongs from "./TopSongs";
-import Welcome from "./Welcome";
-import Buttons from "./Buttons";
+import TopArtists from "./components/TopArtists";
+import Navbar from "./components/Navbar";
+import TopSongs from "./components/TopSongs";
+import Welcome from "./components/Welcome";
+import Buttons from "./components/Buttons";
+import Home from "./pages/Home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("spotifyAuthToken"));
@@ -15,7 +17,14 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <BrowserRouter>
+        <Navbar />
+        <div className="pages">
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
 
       <div className="main-content">
         {/* Listener to automatically store the token in localStorage */}

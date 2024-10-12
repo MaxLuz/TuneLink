@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/Buttons.css";
+import "../styles/Buttons.css";
 
 const Buttons = ({ timeframe, setTimeframe }) => {
   const handleTimeframe = (event) => {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./styles/TopArtists.css";
+import "../styles/TopArtists.css";
 
 const TopArtists = ({ token, timeframe }) => {
   const [artists, setArtists] = useState([]);
