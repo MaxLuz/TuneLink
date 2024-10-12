@@ -58,6 +58,7 @@ const SongForm = () => {
         value={plays}
       />
       <button>Add Song</button>
+      {error && <div className="error">{error}</div>}
     </form>
   );
 };
