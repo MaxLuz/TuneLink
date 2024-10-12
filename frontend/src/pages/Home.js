@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 // components
 import SongDetails from "../components/SongDetails";
+import SongForm from "../components/SongForm";
 
 const Home = () => {
   const [songs, setSongs] = useState(null);
@@ -23,6 +24,7 @@ const Home = () => {
         {songs &&
           songs.map((song) => <SongDetails key={song._id} song={song} />)}
       </div>
+      <SongForm />
     </div>
   );
 };
