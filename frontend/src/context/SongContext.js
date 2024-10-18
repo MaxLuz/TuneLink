@@ -14,6 +14,10 @@ export const songReducer = (state, action) => {
       return {
         songs: [action.payload, ...state.songs],
       };
+    case "DELETE_SONG":
+      return {
+        songs: state.songs.filter((s) => s._id !== action.payload._id), // filters through songs array to display all except the deleted song
+      };
     default:
       return state;
   }

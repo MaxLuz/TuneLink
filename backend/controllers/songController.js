@@ -54,7 +54,7 @@ const deleteSong = async (req, res) => {
     return res.status(404).json({ error: "No such song" });
   }
 
-  res.status(200).json({ song });
+  res.status(200).json(song);
 };
 
 // update a song
