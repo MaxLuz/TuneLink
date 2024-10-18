@@ -1,7 +1,7 @@
 .topSongs-wrapper{
     display:flex;
     flex-direction: column;
-    
+    width:66%;
     background-color: #8FBC8F;
     padding: 20px;
     border-radius: 12px;
@@ -30,6 +30,9 @@
     justify-content: start;
     align-items: center;
     gap:12px;
+    padding:12px;
+    background-color: rgb(143, 163, 139);
+    border-radius:12px;
 }
 
 .topSongs-img{
