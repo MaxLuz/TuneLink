@@ -20,8 +20,8 @@
 .topArtists-ul{
     list-style: none;
     display:flex;
-    flex-direction: column;
-    gap:24px;
+    justify-content: center;
+    gap:32px;
     flex-wrap:wrap;
 }
 
@@ -29,7 +29,7 @@
     display:flex;
     justify-content: start;
     align-items: center;
-    gap:30px;
+    gap:12px;
 }
 
 .topArtists-img{
