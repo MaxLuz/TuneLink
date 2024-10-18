@@ -1,17 +1,21 @@
 import React from "react";
 import { useState } from "react";
+import { useSongsContext } from "../hooks/useSongContext";
 
 const SongForm = () => {
+  const { dispatch } = useSongsContext();
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
   const [plays, setPlays] = useState("");
   const [error, setError] = useState(null);
 
+  // form gets submitted
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page refresh
 
     const song = { title, artist, plays };
 
+    // fetches song data from database
     const response = await fetch("/api/songs", {
       method: "POST",
       body: JSON.stringify(song),
@@ -24,12 +28,15 @@ const SongForm = () => {
     if (!response.ok) {
       setError(json.error);
     }
+
+    // if we get a good response, add a new song using context dispatch
     if (response.ok) {
       setTitle("");
       setArtist("");
       setPlays("");
       setError(null);
       console.log("New Song added!", json);
+      dispatch({ type: "CREATE_SONG", payload: json });
     }
   };
 
