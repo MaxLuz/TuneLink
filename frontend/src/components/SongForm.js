@@ -15,7 +15,7 @@ const SongForm = () => {
 
     const song = { title, artist, plays };
 
-    // fetches song data from database
+    // adds a song to the database
     const response = await fetch("/api/songs", {
       method: "POST",
       body: JSON.stringify(song),
@@ -29,7 +29,7 @@ const SongForm = () => {
       setError(json.error);
     }
 
-    // if we get a good response, add a new song using context dispatch
+    // if we get a good response, clear the state data for the song for the next song to be added
     if (response.ok) {
       setTitle("");
       setArtist("");
