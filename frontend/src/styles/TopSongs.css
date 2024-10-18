@@ -1,19 +1,18 @@
 .topSongs-wrapper{
     display:flex;
     flex-direction: column;
-    width:50%;
+    
     background-color: #8FBC8F;
-    padding-top:32px;
-    padding-left:24px;
+    padding: 20px;
     border-radius: 12px;
     gap:0px;
     height:fit-content;
-    padding-bottom:32px;
+    justify-content: center;
+    align-items: center;
 }
 
 .topSongs-h2{
     font-size: 32px;
-    margin-left:38px;
 }
 
 
@@ -24,8 +23,6 @@
     flex-direction: column;
     gap:0px;
     flex-wrap:wrap;
-    width:650px;
-    height:450px;
 }
 
 .topSongs-li{
