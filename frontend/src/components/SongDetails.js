@@ -20,7 +20,6 @@ const SongDetails = ({ song }) => {
     <div className="song-details">
       <h4>{song.title}</h4>
       <p>{song.artist}</p>
-      <p>Plays: {song.plays}</p>
       <p>{song.createdAt}</p>
       <button onClick={handleDelete}>Delete</button>
     </div>

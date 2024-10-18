@@ -7,14 +7,14 @@ const SongForm = () => {
   const { dispatch } = useSongsContext();
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
-  const [plays, setPlays] = useState("");
+  // const [plays, setPlays] = useState("");
   const [error, setError] = useState(null);
 
   // form gets submitted
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page refresh
 
-    const song = { title, artist, plays };
+    const song = { title, artist };
 
     // adds a song to the database
     const response = await fetch("/api/songs", {
@@ -34,7 +34,7 @@ const SongForm = () => {
     if (response.ok) {
       setTitle("");
       setArtist("");
-      setPlays("");
+      // setPlays("");
       setError(null);
       console.log("New Song added!", json);
       dispatch({ type: "CREATE_SONG", payload: json });
@@ -59,12 +59,12 @@ const SongForm = () => {
         value={artist}
       />
 
-      <label>Song Plays:</label>
+      {/* <label>Song Plays:</label>
       <input
         type="number"
         onChange={(e) => setPlays(e.target.value)}
         value={plays}
-      />
+      /> */}
       <button>Add Song</button>
       {error && <div className="error">{error}</div>}
     </form>
