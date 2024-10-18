@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSongsContext } from "../hooks/useSongContext";
+import "../styles/songForm.css";
 
 const SongForm = () => {
   const { dispatch } = useSongsContext();

@@ -22,7 +22,7 @@
 .data-components{
     display:flex;
     flex-direction: column;
-    width: 100%;
+    width: 66%;
     justify-content: center;
     gap: 32px;
 }
@@ -34,6 +34,18 @@ body { margin: 0; padding: 0px; font-family: 'Roboto', sans-serif; }
     flex-direction: column;
     justify-content: start;
     align-items: center;
+}
+
+.data-components-wrapper{
+    display:flex;
+    max-width:1440px;
     width:100%;
-    max-width: 1440px;
+    gap: 60px;
+}
+
+.favorite-songs{
+    display:flex;
+    flex-direction:column;
+    width:33%;
+    
 }

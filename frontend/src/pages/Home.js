@@ -59,16 +59,20 @@ const Home = () => {
                 <TopArtists token={token} timeframe={timeframe} />
                 <TopSongs token={token} timeframe={timeframe} />
               </div>
+
+              <div className="favorite-songs">
+                <SongForm />
+                <div className="songs">
+                  {songs &&
+                    songs.map((song) => (
+                      <SongDetails key={song._id} song={song} />
+                    ))}
+                </div>
+              </div>
             </div>
           </div>
         )}
       </div>
-
-      <div className="songs">
-        {songs &&
-          songs.map((song) => <SongDetails key={song._id} song={song} />)}
-      </div>
-      <SongForm />
     </div>
   );
 };
