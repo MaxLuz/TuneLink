@@ -1,6 +1,8 @@
 const Song = require("../models/songModel.js");
 const mongoose = require("mongoose");
 
+// this controller handles the processing for each of the CRUD operations for the favorite songs list.
+
 // get all songs
 const getSongs = async (req, res) => {
   const songs = await Song.find({}).sort({ createdAt: -1 });

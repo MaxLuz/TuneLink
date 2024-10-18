@@ -1,5 +1,7 @@
 import { createContext, useReducer } from "react";
 
+// this file provides context for the application, calling a dispatch method when the state of the application changes.
+
 export const SongContext = createContext();
 
 export const songReducer = (state, action) => {

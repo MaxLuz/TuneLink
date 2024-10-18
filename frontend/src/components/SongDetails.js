@@ -1,5 +1,6 @@
 import React from "react";
 
+// returns the details of the current song for the favorite songs list
 const SongDetails = ({ song }) => {
   return (
     <div className="song-details">

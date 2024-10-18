@@ -1,4 +1,7 @@
 const express = require("express");
+
+// sets routes for each of the CRUD operations for favorite songs list
+
 const {
   createSong,
   getSongs,

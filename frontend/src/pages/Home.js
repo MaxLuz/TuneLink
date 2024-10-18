@@ -7,12 +7,15 @@ import SongForm from "../components/SongForm";
 
 const Home = () => {
   const { songs, dispatch } = useSongsContext();
+
+  // fetches all of the current favorite songs
   useEffect(() => {
     const fetchSongs = async () => {
       const response = await fetch("/api/songs");
       const json = await response.json();
 
       if (response.ok) {
+        // dispatches context for all songs
         dispatch({ type: "SET_SONGS", payload: json });
       }
     };
