@@ -3,8 +3,10 @@
     display:flex;
     justify-content: center;
     align-items: center;
-    background-color: #8FBC8F; 
+    background-color: #323232; 
     height:75px;
+    border-bottom: 2px solid rgb(63, 214, 214);
+    
 }
 
 .nav{
@@ -17,5 +19,6 @@
 .logo{
     font-size: 24px;
     text-decoration:none;
-    color:black;
+    font-family: 'Poppins', sans-serif;
+    color:rgb(63, 214, 214);
 }

@@ -10,6 +10,7 @@ import TopArtists from "../components/TopArtists";
 import TopSongs from "../components/TopSongs";
 import Welcome from "../components/Welcome";
 import Buttons from "../components/Buttons";
+import Hero from "../components/Hero";
 
 const Home = () => {
   const [token, setToken] = useState(localStorage.getItem("spotifyAuthToken"));
@@ -48,6 +49,7 @@ const Home = () => {
         ) : (
           // data displays when user is authenticated
           <div className="isAuthenticated">
+            <Hero />
             <Welcome
               token={token}
               spotuser={spotuser}
