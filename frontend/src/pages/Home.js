@@ -49,12 +49,12 @@ const Home = () => {
         ) : (
           // data displays when user is authenticated
           <div className="isAuthenticated">
-            <Hero />
             <Welcome
               token={token}
               spotuser={spotuser}
               setSpotuser={setSpotuser}
             />
+            <Hero token={token} />
             <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />
             <div className="data-components-wrapper">
               <div className="data-components">
