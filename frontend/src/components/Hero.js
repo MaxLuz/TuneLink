@@ -4,6 +4,7 @@ import "../styles/Hero.css";
 
 const Hero = ({ token }) => {
   const [artist, setArtist] = useState([]);
+  const [track, setTrack] = useState([]);
 
   // Fetch top artists when component mounts
   useEffect(() => {
@@ -25,18 +26,49 @@ const Hero = ({ token }) => {
     }
   }, [token]);
 
+  // fetch top song when component mounts
+  useEffect(() => {
+    if (token) {
+      axios
+        .get("https://api.spotify.com/v1/me/top/tracks", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            limit: 1, // Get track
+            time_range: `short_term`, // timeframe set to short term, song of the month
+          },
+        })
+        .then((response) => {
+          setTrack(response.data.items);
+        })
+        .catch((error) => console.error("Error fetching top tracks: ", error));
+    }
+  }, [token]);
+
   return (
     <div className="hero-container">
-      {artist.map((artist_) => (
-        <li className="topartist-li" key={artist_.id}>
-          <h2 className="hero-artist-title">{artist_.name}</h2>
-          <img
-            className="hero-artist-image"
-            src={artist_.images[0]?.url}
-            alt={artist_.name}
-          />
-        </li>
-      ))}
+      <ul className="topartist-ul">
+        {artist.map((artist_) => (
+          <li className="topartist-li" key={artist_.id}>
+            <h2 className="hero-artist-title">{artist_.name}</h2>
+            <img
+              className="hero-artist-image"
+              src={artist_.images[0]?.url}
+              alt={artist_.name}
+            />
+          </li>
+        ))}
+      </ul>
+
+      <ul className="topsong-ul">
+        {track.map((track_) => (
+          <li className="topsong-li" key={track_.id}>
+            <h2>{track_.name}</h2>
+            <img src={track_.album.images[0].url} alt={track_.name} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

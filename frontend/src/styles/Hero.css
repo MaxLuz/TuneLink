@@ -6,3 +6,12 @@
 .hero-container h1{
     font-size: 64px;
 }
+
+
+.topartist-ul{
+    list-style:none;
+}
+
+.topsong-ul{
+    list-style: none;
+}
