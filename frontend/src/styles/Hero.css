@@ -1,6 +1,9 @@
 .hero-container{
     max-width: 1440px;
     width: 100%;
+    display:flex;
+    justify-content: center;
+    padding-bottom:500px;
 }
 
 .hero-container h1{
@@ -14,4 +17,24 @@
 
 .topsong-ul{
     list-style: none;
+}
+
+.hero-artist-image{
+    width: 250px;
+}
+
+.hero-song-image{
+    width: 250px;
+}
+
+.hero-artist-title{
+ font-size:24px;
+ color:white;
+ text-align: center;
+}
+
+.hero-song-title{
+    font-size:24px;
+    color:white;
+    text-align: center;
 }

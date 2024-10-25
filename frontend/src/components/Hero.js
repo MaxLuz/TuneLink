@@ -51,12 +51,12 @@ const Hero = ({ token }) => {
       <ul className="topartist-ul">
         {artist.map((artist_) => (
           <li className="topartist-li" key={artist_.id}>
-            <h2 className="hero-artist-title">{artist_.name}</h2>
             <img
               className="hero-artist-image"
               src={artist_.images[0]?.url}
               alt={artist_.name}
             />
+            <h2 className="hero-artist-title">{artist_.name}</h2>
           </li>
         ))}
       </ul>
@@ -64,8 +64,12 @@ const Hero = ({ token }) => {
       <ul className="topsong-ul">
         {track.map((track_) => (
           <li className="topsong-li" key={track_.id}>
-            <h2>{track_.name}</h2>
-            <img src={track_.album.images[0].url} alt={track_.name} />
+            <img
+              className="hero-song-image"
+              src={track_.album.images[0].url}
+              alt={track_.name}
+            />
+            <h2 className="hero-song-title">{track_.name}</h2>
           </li>
         ))}
       </ul>
