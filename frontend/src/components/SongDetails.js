@@ -1,13 +1,22 @@
 import React from "react";
 import { useSongsContext } from "../hooks/useSongContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 // returns the details of the current song for the favorite songs list
 const SongDetails = ({ song }) => {
   const { dispatch } = useSongsContext();
+  const { user } = useAuthContext();
 
   const handleDelete = async () => {
+    if (!user) {
+      return;
+    }
+
     const response = await fetch("/api/songs/" + song._id, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
     });
     const json = await response.json();
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useSongsContext } from "../hooks/useSongContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 import "../styles/songForm.css";
 
 const SongForm = () => {
@@ -10,9 +11,16 @@ const SongForm = () => {
   // const [plays, setPlays] = useState("");
   const [error, setError] = useState(null);
 
+  const { user } = useAuthContext();
+
   // form gets submitted
   const handleSubmit = async (e) => {
     e.preventDefault(); // prevent page refresh
+
+    if (!user) {
+      setError("You must be logged in");
+      return;
+    }
 
     const song = { title, artist };
 
@@ -22,6 +30,7 @@ const SongForm = () => {
       body: JSON.stringify(song),
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
       },
     });
     const json = await response.json();

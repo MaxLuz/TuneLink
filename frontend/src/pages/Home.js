@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSongsContext } from "../hooks/useSongContext";
 import { SpotifyAuth, SpotifyAuthListener } from "react-spotify-auth";
 import "react-spotify-auth/dist/index.css"; // Import the styles for the Spotify login button
+import { useAuthContext } from "../hooks/useAuthContext";
 // components
 import SongDetails from "../components/SongDetails";
 import SongForm from "../components/SongForm";
@@ -18,11 +19,16 @@ const Home = () => {
   const [timeframe, setTimeframe] = useState("short_term");
 
   const { songs, dispatch } = useSongsContext();
+  const { user } = useAuthContext();
 
   // fetches all of the current favorite songs
   useEffect(() => {
     const fetchSongs = async () => {
-      const response = await fetch("/api/songs");
+      const response = await fetch("/api/songs", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const json = await response.json();
 
       if (response.ok) {
@@ -30,9 +36,10 @@ const Home = () => {
         dispatch({ type: "SET_SONGS", payload: json });
       }
     };
-
-    fetchSongs();
-  }, []);
+    if (user) {
+      fetchSongs();
+    }
+  }, [dispatch, user]);
   return (
     <div className="home">
       <div className="main-content">
