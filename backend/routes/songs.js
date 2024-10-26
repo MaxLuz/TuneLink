@@ -9,7 +9,12 @@ const {
   deleteSong,
   updateSong,
 } = require("../controllers/songController");
+
+const requireAuth = require("../middleware/requireAuth");
 const router = express.Router();
+
+// requires authorization for any API actions
+router.use(requireAuth);
 
 // GET all songs
 router.get("/", getSongs);
