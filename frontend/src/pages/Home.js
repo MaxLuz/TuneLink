@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSongsContext } from "../hooks/useSongContext";
 import { SpotifyAuth, SpotifyAuthListener } from "react-spotify-auth";
 import "react-spotify-auth/dist/index.css"; // Import the styles for the Spotify login button
+import { useAuthContext } from "../hooks/useAuthContext";
 // components
 import SongDetails from "../components/SongDetails";
 import SongForm from "../components/SongForm";
@@ -13,16 +14,23 @@ import Buttons from "../components/Buttons";
 import Hero from "../components/Hero";
 
 const Home = () => {
-  const [token, setToken] = useState(localStorage.getItem("spotifyAuthToken"));
+  const [spotifytoken, setToken] = useState(
+    localStorage.getItem("spotifyAuthToken")
+  );
   const [spotuser, setSpotuser] = useState("not-logged-in");
   const [timeframe, setTimeframe] = useState("short_term");
 
   const { songs, dispatch } = useSongsContext();
+  const { user } = useAuthContext();
 
   // fetches all of the current favorite songs
   useEffect(() => {
     const fetchSongs = async () => {
-      const response = await fetch("/api/songs");
+      const response = await fetch("/api/songs", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const json = await response.json();
 
       if (response.ok) {
@@ -30,16 +38,19 @@ const Home = () => {
         dispatch({ type: "SET_SONGS", payload: json });
       }
     };
-
-    fetchSongs();
-  }, []);
+    if (user) {
+      fetchSongs();
+    }
+  }, [dispatch, user]);
   return (
     <div className="home">
       <div className="main-content">
         {/* Listener to automatically store the token in localStorage */}
-        <SpotifyAuthListener onAccessToken={(token) => setToken(token)} />
+        <SpotifyAuthListener
+          onAccessToken={(spotifytoken) => setToken(spotifytoken)}
+        />
 
-        {!token ? (
+        {!spotifytoken ? (
           // Spotify login button
           <SpotifyAuth
             redirectUri="http://localhost:3000/" // Redirect after Spotify authentication
@@ -50,18 +61,17 @@ const Home = () => {
           // data displays when user is authenticated
           <div className="isAuthenticated">
             <Welcome
-              token={token}
+              token={spotifytoken}
               spotuser={spotuser}
               setSpotuser={setSpotuser}
             />
-            <Hero token={token} />
+            <Hero token={spotifytoken} />
             <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />
             <div className="data-components-wrapper">
               <div className="data-components">
-                <TopArtists token={token} timeframe={timeframe} />
-                <TopSongs token={token} timeframe={timeframe} />
+                <TopArtists token={spotifytoken} timeframe={timeframe} />
+                <TopSongs token={spotifytoken} timeframe={timeframe} />
               </div>
-
               <div className="favorite-songs">
                 <SongForm />
                 <div className="songs">

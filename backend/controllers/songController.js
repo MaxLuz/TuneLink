@@ -5,7 +5,9 @@ const mongoose = require("mongoose");
 
 // get all songs
 const getSongs = async (req, res) => {
-  const songs = await Song.find({}).sort({ createdAt: -1 });
+  const user_id = req.user._id;
+
+  const songs = await Song.find({ user_id }).sort({ createdAt: -1 });
 
   res.status(200).json(songs);
 };
@@ -33,7 +35,8 @@ const createSong = async (req, res) => {
 
   // add doc to database
   try {
-    const song = await Song.create({ title, artist, plays });
+    const user_id = req.user._id;
+    const song = await Song.create({ title, artist, plays, user_id });
     res.status(200).json(song);
   } catch (error) {
     res.status(400).json({ error: error.message });
