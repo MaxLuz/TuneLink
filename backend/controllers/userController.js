@@ -39,8 +39,14 @@ const signupUser = async (req, res) => {
   }
 };
 
-// spotify authentication
+const spotifyRedirect = async (req, res) => {
+  console.log("makes it to redirect logic");
+  res.redirect(
+    `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}`
+  );
+};
 
+// spotify authentication
 const spotifyCallback = async (req, res) => {
   const code = req.query.code; // get authorization code from query
 
@@ -59,7 +65,7 @@ const spotifyCallback = async (req, res) => {
         body: new URLSearchParams({
           grant_type: "authorization_code",
           code: code,
-          redirect_uri: process.env.REDIRECT_URI,
+          redirect_uri: process.env.SPOTIFY_REDIRECT_URI,
         }),
       }
     );
@@ -91,4 +97,4 @@ const spotifyCallback = async (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser, spotifyCallback };
+module.exports = { signupUser, loginUser, spotifyRedirect, spotifyCallback };
