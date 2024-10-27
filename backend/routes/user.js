@@ -4,7 +4,11 @@ const express = require("express");
 
 // controller functions
 
-const { loginUser, signupUser } = require("../controllers/userController");
+const {
+  loginUser,
+  signupUser,
+  spotifyCallback,
+} = require("../controllers/userController");
 
 const router = express.Router();
 
@@ -15,5 +19,8 @@ router.post("/login", loginUser);
 // signup route
 
 router.post("/signup", signupUser);
+
+// spotify callback
+router.get("/auth/spotify-callback", spotifyCallback);
 
 module.exports = router;
