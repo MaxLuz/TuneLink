@@ -19,15 +19,15 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={user ? <Home /> : <Navigate to="/login" />}
+              element={<Home />} // add redirect  user ? <Home /> : <Navigate to="/login" />
             />
             <Route
               path="/login"
-              element={!user ? <Login /> : <Navigate to="/" />}
+              element={<Login />} // add redirect !user ? <Login /> : <Navigate to="/" />
             />
             <Route
               path="/signup"
-              element={!user ? <Signup /> : <Navigate to="/" />}
+              element={<Signup />} // add redirect !user ? <Signup /> : <Navigate to="/" />
             />
           </Routes>
         </div>

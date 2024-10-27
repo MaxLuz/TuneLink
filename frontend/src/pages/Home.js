@@ -45,13 +45,6 @@ const Home = () => {
   return (
     <div className="home">
       <div className="main-content">
-        <div className="favorite-songs">
-          <SongForm />
-          <div className="songs">
-            {songs &&
-              songs.map((song) => <SongDetails key={song._id} song={song} />)}
-          </div>
-        </div>
         {/* Listener to automatically store the token in localStorage */}
         <SpotifyAuthListener
           onAccessToken={(spotifytoken) => setToken(spotifytoken)}
@@ -78,6 +71,15 @@ const Home = () => {
               <div className="data-components">
                 <TopArtists token={spotifytoken} timeframe={timeframe} />
                 <TopSongs token={spotifytoken} timeframe={timeframe} />
+              </div>
+              <div className="favorite-songs">
+                <SongForm />
+                <div className="songs">
+                  {songs &&
+                    songs.map((song) => (
+                      <SongDetails key={song._id} song={song} />
+                    ))}
+                </div>
               </div>
             </div>
           </div>

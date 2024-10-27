@@ -13,10 +13,10 @@ const songSchema = new Schema(
       type: String,
       required: true,
     },
-    // plays: {
-    //   type: Number,
-    //   required: true,
-    // },
+    user_id: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true } // adds created and last updated information
 );
