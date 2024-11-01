@@ -30,7 +30,7 @@ const Home = () => {
       localStorage.setItem("spotify_refresh_token", refreshToken);
     }
 
-    // Optionally, clear the URL parameters
+    // clear the URL parameters
     window.history.replaceState({}, document.title, window.location.pathname);
   };
 
@@ -57,7 +57,7 @@ const Home = () => {
   useEffect(() => {
     checkForTokens();
     console.log("spotify token: ", spotifytoken);
-  }, []);
+  }, [user]);
 
   return (
     <div className="home">
