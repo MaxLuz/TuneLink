@@ -33,23 +33,29 @@ const signupUser = async (req, res) => {
     // create token
     const token = createToken(user._id);
 
-    res.status(200).json({ email, token }); // returns token to the browser
+    res.status(200).json({ email, token, userId: user._id }); // returns token to the browser, and userId to be used in the callback function for spotify auth
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
 const spotifyRedirect = async (req, res) => {
-  console.log("makes it to redirect logic");
+  const { userId } = req.query;
+
+  if (!userId) {
+    return res.status(400).json({ error: "User ID is required" });
+  }
+
+  console.log("Redirecting to Spotify authorization page");
   res.redirect(
-    `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}`
+    `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}&state=${userId}`
   );
 };
 
 // spotify authentication
 const spotifyCallback = async (req, res) => {
-  const code = req.query.code; // get authorization code from query
-
+  const { code, state: userId } = req.query; // state now contains userId
+  console.log("userId: ", userId);
   try {
     // Exchange the authorization code for access and refresh tokens
     const tokenResponse = await fetch(
@@ -69,6 +75,7 @@ const spotifyCallback = async (req, res) => {
         }),
       }
     );
+    console.log("makes it past token post");
 
     const tokenData = await tokenResponse.json();
 
@@ -79,7 +86,6 @@ const spotifyCallback = async (req, res) => {
     const { access_token, refresh_token } = tokenData;
 
     // identifies the user
-    const userId = req.user._id;
     const user = await User.findById(userId); // Fetch the user from the database
 
     if (user) {
@@ -90,7 +96,7 @@ const spotifyCallback = async (req, res) => {
     }
 
     // Redirect the user to your front-end application (home page or dashboard)
-    res.redirect("/"); // Change to the appropriate frontend route
+    res.redirect("http://localhost:3000/"); // Change to the appropriate frontend route
   } catch (error) {
     console.error("Error during Spotify authentication:", error);
     res.status(500).send("Authentication error");

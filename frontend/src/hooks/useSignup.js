@@ -32,7 +32,7 @@ export const useSignup = () => {
       setIsLoading(false);
 
       // authenticate with spotify
-      window.location.href = `http://localhost:4000/api/user/auth/spotify`;
+      window.location.href = `http://localhost:4000/api/user/auth/spotify?userId=${json.userId}`;
     }
   };
   return { signup, isLoading, error };
