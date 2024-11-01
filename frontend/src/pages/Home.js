@@ -1,8 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useSongsContext } from "../hooks/useSongContext";
-import { SpotifyAuth, SpotifyAuthListener } from "react-spotify-auth";
-import "react-spotify-auth/dist/index.css"; // Import the styles for the Spotify login button
 import { useAuthContext } from "../hooks/useAuthContext";
 // components
 import SongDetails from "../components/SongDetails";
@@ -45,45 +43,30 @@ const Home = () => {
   return (
     <div className="home">
       <div className="main-content">
-        {/* Listener to automatically store the token in localStorage */}
-        <SpotifyAuthListener
-          onAccessToken={(spotifytoken) => setToken(spotifytoken)}
-        />
-
-        {!spotifytoken ? (
-          // Spotify login button
-          <SpotifyAuth
-            redirectUri="http://localhost:3000/" // Redirect after Spotify authentication
-            clientID="df95797d307541d79a1e2a2d3bc3e072"
-            scopes={["user-top-read"]} // Scopes required for your app
+        <div className="isAuthenticated">
+          <Welcome
+            token={spotifytoken}
+            spotuser={spotuser}
+            setSpotuser={setSpotuser}
           />
-        ) : (
-          // data displays when user is authenticated
-          <div className="isAuthenticated">
-            <Welcome
-              token={spotifytoken}
-              spotuser={spotuser}
-              setSpotuser={setSpotuser}
-            />
-            <Hero token={spotifytoken} />
-            <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />
-            <div className="data-components-wrapper">
-              <div className="data-components">
-                <TopArtists token={spotifytoken} timeframe={timeframe} />
-                <TopSongs token={spotifytoken} timeframe={timeframe} />
-              </div>
-              <div className="favorite-songs">
-                <SongForm />
-                <div className="songs">
-                  {songs &&
-                    songs.map((song) => (
-                      <SongDetails key={song._id} song={song} />
-                    ))}
-                </div>
+          <Hero token={spotifytoken} />
+          <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />
+          <div className="data-components-wrapper">
+            <div className="data-components">
+              <TopArtists token={spotifytoken} timeframe={timeframe} />
+              <TopSongs token={spotifytoken} timeframe={timeframe} />
+            </div>
+            <div className="favorite-songs">
+              <SongForm />
+              <div className="songs">
+                {songs &&
+                  songs.map((song) => (
+                    <SongDetails key={song._id} song={song} />
+                  ))}
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
