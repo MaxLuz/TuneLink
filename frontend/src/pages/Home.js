@@ -12,7 +12,7 @@ import Buttons from "../components/Buttons";
 import Hero from "../components/Hero";
 
 const Home = () => {
-  const spotifytoken = localStorage.getItem("spotify_refresh_token");
+  const spotifytoken = localStorage.getItem("spotify_access_token");
   const [spotuser, setSpotuser] = useState("not-logged-in");
   const [timeframe, setTimeframe] = useState("short_term");
 
@@ -23,11 +23,11 @@ const Home = () => {
   const checkForTokens = () => {
     const urlParams = new URLSearchParams(window.location.search);
 
-    const refreshToken = urlParams.get("refresh_token");
+    const refreshToken = urlParams.get("access_token");
 
     if (refreshToken) {
       // Store refresh token in local storage
-      localStorage.setItem("spotify_refresh_token", refreshToken);
+      localStorage.setItem("spotify_access_token", refreshToken);
     }
 
     // clear the URL parameters
@@ -57,7 +57,7 @@ const Home = () => {
   useEffect(() => {
     checkForTokens();
     console.log("spotify token: ", spotifytoken);
-  }, [user]);
+  });
 
   return (
     <div className="home">

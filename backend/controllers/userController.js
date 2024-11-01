@@ -96,7 +96,7 @@ const spotifyCallback = async (req, res) => {
     }
 
     // Redirect the user to your front-end application (home page or dashboard)
-    res.redirect(`http://localhost:3000/?refresh_token=${refresh_token}`); // Change to the appropriate frontend route, include refresh token to be stored in local storage
+    res.redirect(`http://localhost:3000/?access_token=${access_token}`); // Change to the appropriate frontend route, include access token to be stored in local storage
   } catch (error) {
     console.error("Error during Spotify authentication:", error);
     res.status(500).send("Authentication error");
