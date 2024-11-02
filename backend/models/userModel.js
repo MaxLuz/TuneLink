@@ -15,6 +15,12 @@ const userSchema = new Schema({
     required: true,
     unique: true,
   },
+  spotifyAccessToken: {
+    type: String,
+  },
+  spotifyRefreshToken: {
+    type: String,
+  },
 });
 
 // static signup method

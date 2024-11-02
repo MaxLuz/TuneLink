@@ -1,8 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useSongsContext } from "../hooks/useSongContext";
-import { SpotifyAuth, SpotifyAuthListener } from "react-spotify-auth";
-import "react-spotify-auth/dist/index.css"; // Import the styles for the Spotify login button
 import { useAuthContext } from "../hooks/useAuthContext";
 // components
 import SongDetails from "../components/SongDetails";
@@ -14,14 +12,27 @@ import Buttons from "../components/Buttons";
 import Hero from "../components/Hero";
 
 const Home = () => {
-  const [spotifytoken, setToken] = useState(
-    localStorage.getItem("spotifyAuthToken")
-  );
+  const spotifytoken = localStorage.getItem("spotify_access_token");
   const [spotuser, setSpotuser] = useState("not-logged-in");
   const [timeframe, setTimeframe] = useState("short_term");
 
   const { songs, dispatch } = useSongsContext();
   const { user } = useAuthContext();
+
+  // checks for spotify refresh token
+  const checkForTokens = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+
+    const accessToken = urlParams.get("access_token");
+
+    if (accessToken) {
+      // Store refresh token in local storage
+      localStorage.setItem("spotify_access_token", accessToken);
+    }
+
+    // clear the URL parameters
+    window.history.replaceState({}, document.title, window.location.pathname);
+  };
 
   // fetches all of the current favorite songs
   useEffect(() => {
@@ -42,23 +53,17 @@ const Home = () => {
       fetchSongs();
     }
   }, [dispatch, user]);
+
+  useEffect(() => {
+    checkForTokens();
+  });
+
   return (
     <div className="home">
       <div className="main-content">
-        {/* Listener to automatically store the token in localStorage */}
-        <SpotifyAuthListener
-          onAccessToken={(spotifytoken) => setToken(spotifytoken)}
-        />
-
         {!spotifytoken ? (
-          // Spotify login button
-          <SpotifyAuth
-            redirectUri="http://localhost:3000/" // Redirect after Spotify authentication
-            clientID="df95797d307541d79a1e2a2d3bc3e072"
-            scopes={["user-top-read"]} // Scopes required for your app
-          />
+          <div className="hello">Hello there</div>
         ) : (
-          // data displays when user is authenticated
           <div className="isAuthenticated">
             <Welcome
               token={spotifytoken}

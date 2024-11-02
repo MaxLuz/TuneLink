@@ -8,6 +8,7 @@ export const useLogout = () => {
   const logout = () => {
     // remove user from storage
     localStorage.removeItem("user");
+    localStorage.removeItem("spotify_access_token");
 
     dispatch({ type: "LOGOUT" });
     songsDispatch({ type: "SET_SONGS", payload: null });

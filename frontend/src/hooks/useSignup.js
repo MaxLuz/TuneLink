@@ -22,14 +22,17 @@ export const useSignup = () => {
       setIsLoading(false);
       setError(json.error);
     }
+
     if (response.ok) {
       // save the user to local storage
       localStorage.setItem("user", JSON.stringify(json));
-
       // update the auth context
       dispatch({ type: "LOGIN", payload: json });
 
       setIsLoading(false);
+
+      // authenticate with spotify
+      window.location.href = `http://localhost:4000/api/user/auth/spotify?userId=${json.userId}`;
     }
   };
   return { signup, isLoading, error };

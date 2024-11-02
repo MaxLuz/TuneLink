@@ -30,6 +30,8 @@ export const useLogin = () => {
       dispatch({ type: "LOGIN", payload: json });
 
       setIsLoading(false);
+      // authenticate with spotify
+      window.location.href = `http://localhost:4000/api/user/auth/spotify?userId=${json.userId}`;
     }
   };
   return { login, isLoading, error };
