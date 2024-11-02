@@ -23,11 +23,11 @@ const Home = () => {
   const checkForTokens = () => {
     const urlParams = new URLSearchParams(window.location.search);
 
-    const refreshToken = urlParams.get("access_token");
+    const accessToken = urlParams.get("access_token");
 
-    if (refreshToken) {
+    if (accessToken) {
       // Store refresh token in local storage
-      localStorage.setItem("spotify_access_token", refreshToken);
+      localStorage.setItem("spotify_access_token", accessToken);
     }
 
     // clear the URL parameters
@@ -56,7 +56,6 @@ const Home = () => {
 
   useEffect(() => {
     checkForTokens();
-    console.log("spotify token: ", spotifytoken);
   });
 
   return (

@@ -42,13 +42,16 @@ const signupUser = async (req, res) => {
 const spotifyRedirect = async (req, res) => {
   const { userId } = req.query;
 
+  const scopes = "user-top-read user-read-private";
   if (!userId) {
     return res.status(400).json({ error: "User ID is required" });
   }
 
   console.log("Redirecting to Spotify authorization page");
+  console.log("scopes:", scopes);
+
   res.redirect(
-    `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}&state=${userId}`
+    `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}&state=${userId}&scope=${scopes}`
   );
 };
 
@@ -83,7 +86,7 @@ const spotifyCallback = async (req, res) => {
       throw new Error(`Error fetching tokens: ${tokenData.error}`);
     }
 
-    const { access_token, refresh_token } = tokenData;
+    const { access_token, refresh_token, scope, expires_in } = tokenData;
 
     // identifies the user
     const user = await User.findById(userId); // Fetch the user from the database
@@ -94,7 +97,7 @@ const spotifyCallback = async (req, res) => {
       user.spotifyRefreshToken = refresh_token;
       await user.save(); // Save the updated user document
     }
-
+    console.log("Scope in callback function: ", scope);
     // Redirect the user to your front-end application (home page or dashboard)
     res.redirect(`http://localhost:3000/?access_token=${access_token}`); // Change to the appropriate frontend route, include access token to be stored in local storage
   } catch (error) {
