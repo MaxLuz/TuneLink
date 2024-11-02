@@ -8,8 +8,14 @@
     flex-direction: column;
     align-items: center;
     padding:12px;
-
+    gap:12px;
 }
+
+.pages{
+    width:100%;
+}
+
+
 
 
 .main-content{
@@ -17,8 +23,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top:75px;
-    width:100%;
+    border-radius: 16px;
+
+    background-color:black;
 }
 
 .data-components{
