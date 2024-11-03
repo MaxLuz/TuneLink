@@ -1,8 +1,11 @@
 .hero-container{
     max-width: 1440px;
-    width: 100%;
+    width: 50%;
     display:flex;
-    justify-content: center;
+    justify-content:center;
+    border-radius: 16px;
+    background-color: black;
+    padding-top:48px;
 }
 
 .hero-container h1{
@@ -36,4 +39,11 @@
     font-size:24px;
     color:white;
     text-align: center;
+}
+
+.top-title{
+    font-size: 16px;
+    color: #3FD6D6;
+    text-align: center;
+    margin-top:-12px;
 }

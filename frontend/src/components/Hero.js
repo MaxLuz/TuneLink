@@ -57,6 +57,7 @@ const Hero = ({ token }) => {
               alt={artist_.name}
             />
             <h2 className="hero-artist-title">{artist_.name}</h2>
+            <p className="top-title">Top Artist</p>
           </li>
         ))}
       </ul>
@@ -70,6 +71,7 @@ const Hero = ({ token }) => {
               alt={track_.name}
             />
             <h2 className="hero-song-title">{track_.name}</h2>
+            <p className="top-title">Top Track</p>
           </li>
         ))}
       </ul>
