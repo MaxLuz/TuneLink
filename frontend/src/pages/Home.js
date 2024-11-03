@@ -10,6 +10,8 @@ import TopSongs from "../components/TopSongs";
 import Welcome from "../components/Welcome";
 import Buttons from "../components/Buttons";
 import Hero from "../components/Hero";
+// styles
+import "../styles/Home.css";
 
 const Home = () => {
   const spotifytoken = localStorage.getItem("spotify_access_token");
@@ -65,12 +67,15 @@ const Home = () => {
           <div className="hello">Hello there</div>
         ) : (
           <div className="isAuthenticated">
-            <Welcome
-              token={spotifytoken}
-              spotuser={spotuser}
-              setSpotuser={setSpotuser}
-            />
-            <Hero token={spotifytoken} />
+            <div className="dashboard-top-container">
+              <Welcome
+                token={spotifytoken}
+                spotuser={spotuser}
+                setSpotuser={setSpotuser}
+              />
+              <Hero token={spotifytoken} />
+            </div>
+
             <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />
             <div className="data-components-wrapper">
               <div className="data-components">

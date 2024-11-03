@@ -1,0 +1,6 @@
+.dashboard-top-container{
+    width:100%;
+    background-color: red;
+    border-radius: 16px;
+    display:flex;
+}

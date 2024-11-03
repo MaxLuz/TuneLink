@@ -22,7 +22,16 @@ const Welcome = ({ token, spotuser, setSpotuser }) => {
     }
   }, [token]);
 
-  return <h1 className="welcome-h1">Welcome, {spotuser}! </h1>;
+  return (
+    <div className="welcome-container">
+      <h1 className="welcome-h1">Welcome, {spotuser}! </h1>
+      <p className="welcome-text">
+        Welcome to TuneLink, the best place to find new music! Add friends to
+        discover their music preferences, or navigate your dashboard to explore
+        on your own!
+      </p>
+    </div>
+  );
 };
 
 export default Welcome;

@@ -31,7 +31,7 @@
     align-items: center;
     border-radius: 16px;
 
-    background-color:black;
+    
 }
 
 .data-components{
@@ -49,6 +49,7 @@ body { margin: 0; padding: 0px; font-family: 'Roboto', sans-serif; background-co
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    width:100%;
 }
 
 .data-components-wrapper{

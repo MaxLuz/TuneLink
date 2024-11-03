@@ -1,5 +1,26 @@
+.welcome-container{
+    background-color: black;
+    border-radius: 16px;
+    width: 50%;
+    display:flex;
+    padding:24px 48px;
+    flex-direction: column;
+    align-items: start;
+}
+
+
+
+
+
 .welcome-h1{
     font-size: 48px;
     text-align: center;
+    color:#3FD6D6;
+}
+
+.welcome-text{
     color:white;
+    max-width:450px;
+    font-size: 18px;
+    margin-top:0px;
 }
