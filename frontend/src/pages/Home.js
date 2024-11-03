@@ -75,20 +75,25 @@ const Home = () => {
               />
               <Hero token={spotifytoken} />
             </div>
-
-            <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />
-            <div className="data-components-wrapper">
-              <div className="data-components">
-                <TopArtists token={spotifytoken} timeframe={timeframe} />
-                <TopSongs token={spotifytoken} timeframe={timeframe} />
+            <div className="dashboard-bottom-container">
+              <div className="bottom-fav-songs-container">
+                <div className="favorite-songs">
+                  <SongForm />
+                  <div className="songs">
+                    {songs &&
+                      songs.map((song) => (
+                        <SongDetails key={song._id} song={song} />
+                      ))}
+                  </div>
+                </div>
               </div>
-              <div className="favorite-songs">
-                <SongForm />
-                <div className="songs">
-                  {songs &&
-                    songs.map((song) => (
-                      <SongDetails key={song._id} song={song} />
-                    ))}
+              <div className="bottom-top-stats-container">
+                <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />
+                <div className="data-components-wrapper">
+                  <div className="data-components">
+                    <TopArtists token={spotifytoken} timeframe={timeframe} />
+                    <TopSongs token={spotifytoken} timeframe={timeframe} />
+                  </div>
                 </div>
               </div>
             </div>

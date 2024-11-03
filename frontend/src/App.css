@@ -37,7 +37,6 @@
 .data-components{
     display:flex;
     flex-direction: column;
-    width: 66%;
     justify-content: center;
     gap: 32px;
 }
@@ -50,6 +49,7 @@ body { margin: 0; padding: 0px; font-family: 'Roboto', sans-serif; background-co
     justify-content: start;
     align-items: center;
     width:100%;
+    gap:12px;
 }
 
 .data-components-wrapper{
