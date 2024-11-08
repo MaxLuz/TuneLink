@@ -22,10 +22,13 @@
 
 .hero-artist-image{
     width: 250px;
+    max-height:245px;
 }
 
 .hero-song-image{
     width: 250px;
+    max-height:245px;
+
 }
 
 .hero-artist-title{
