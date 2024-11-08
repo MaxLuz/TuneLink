@@ -10,6 +10,7 @@ const Buttons = ({ timeframe, setTimeframe }) => {
 
   return (
     <div className="buttons-container">
+      <p className="your-favorites">Your Favorites: </p>
       <button value="long_term" onClick={handleTimeframe}>
         Past Year
       </button>

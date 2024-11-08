@@ -31,12 +31,15 @@ const TopSongs = ({ token, timeframe }) => {
       <ul className="topSongs-ul">
         {tracks.map((track) => (
           <li className="topSongs-li" key={track.id}>
-            <img
-              className="topSongs-img"
-              src={track.album.images[0].url}
-              alt={track.name}
-              width="100"
-            />
+            <div className="image-wrapper">
+              <img
+                className="topSongs-img"
+                src={track.album.images[0].url}
+                alt={track.name}
+                width="100"
+              />
+            </div>
+
             <div className="song-info">
               <p className="topSongs-name">{track.name}</p>
               <p>{track.artists[0].name}</p>

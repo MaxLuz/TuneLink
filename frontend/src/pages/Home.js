@@ -89,11 +89,10 @@ const Home = () => {
               </div>
               <div className="bottom-top-stats-container">
                 <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />
-                <div className="data-components-wrapper">
-                  <div className="data-components">
-                    <TopArtists token={spotifytoken} timeframe={timeframe} />
-                    <TopSongs token={spotifytoken} timeframe={timeframe} />
-                  </div>
+
+                <div className="data-components">
+                  <TopArtists token={spotifytoken} timeframe={timeframe} />
+                  <TopSongs token={spotifytoken} timeframe={timeframe} />
                 </div>
               </div>
             </div>

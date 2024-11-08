@@ -32,12 +32,15 @@ const TopArtists = ({ token, timeframe }) => {
       <ul className="topArtists-ul">
         {artists.map((artist) => (
           <li className="topArtists-li" key={artist.id}>
-            <img
-              className="topArtists-img"
-              src={artist.images[0]?.url}
-              alt={artist.name}
-              width="100"
-            />
+            <div className="image-wrapper">
+              <img
+                className="topArtists-img"
+                src={artist.images[0]?.url}
+                alt={artist.name}
+                width="100"
+              />
+            </div>
+
             <p className="topArtists-name">{artist.name}</p>
           </li>
         ))}
