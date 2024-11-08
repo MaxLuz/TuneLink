@@ -52,7 +52,7 @@ const SongForm = () => {
 
   return (
     <form className="create" onSubmit={handleSubmit}>
-      <h3>Add a New Song</h3>
+      <h3 className="new-song">Add a New Song</h3>
 
       <label>Song Title:</label>
       <input

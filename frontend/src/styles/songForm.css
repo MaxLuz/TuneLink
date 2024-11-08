@@ -1,11 +1,18 @@
 form{
     display:flex;
     flex-direction:column;
+    padding-top:24px;
+    padding-left:48px;
+}
+
+.new-song{
+    color:white;
 }
 
 label{
     font-size:18px;
     padding:12px 0px;
+    color:white;
 }
 
 input{

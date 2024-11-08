@@ -1,6 +1,7 @@
 import React from "react";
 import { useSongsContext } from "../hooks/useSongContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import "../styles/songDetails.css";
 
 // returns the details of the current song for the favorite songs list
 const SongDetails = ({ song }) => {
@@ -27,10 +28,11 @@ const SongDetails = ({ song }) => {
 
   return (
     <div className="song-details">
-      <h4>{song.title}</h4>
-      <p>{song.artist}</p>
-      <p>{song.createdAt}</p>
-      <button onClick={handleDelete}>Delete</button>
+      <h4 className="song-title">{song.title}</h4>
+      <p className="song-artist">{song.artist}</p>
+      <button className="delete-song" onClick={handleDelete}>
+        Delete
+      </button>
     </div>
   );
 };

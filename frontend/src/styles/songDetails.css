@@ -1,0 +1,22 @@
+.song-details{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    color:white;
+
+    padding-left:48px;
+}
+
+.song-artist{
+    margin-top:-12px;
+    color:#3FD6D6;
+}
+
+.delete-song{
+    background-color: red;
+    width:100px;
+    border-style:none;
+    border-radius: 2px;
+    padding: 5px;
+}
