@@ -1,46 +1,41 @@
 .topSongs-wrapper{
     display:flex;
     flex-direction: column;
+    background-color: black;
     width:50%;
-    background-color: #8FBC8F;
-    padding: 20px;
-    border-radius: 12px;
-    gap:0px;
-    height:fit-content;
-    justify-content: center;
-    align-items: center;
+    border-radius: 16px;
 }
 
 .topSongs-h2{
     font-size: 32px;
+    color:white;
+    padding-left:48px;
 }
-
-
 
 .topSongs-ul{
     list-style: none;
     display:flex;
     justify-content: center;
-    gap:32px;
+    flex-direction: column;
+    gap:0px;
     flex-wrap:wrap;
-    width:auto;
 }
 
 .topSongs-li{
     display:flex;
     justify-content: start;
     align-items: center;
-    gap:12px;
+    gap:24px;
     padding:12px;
-    background-color: rgb(143, 163, 139);
+    color:white;
     border-radius:12px;
-    width:auto;
 }
 
 .topSongs-img{
     
     width:60px;
     height:60px;
+    border-radius: 50px;
 }
 
 .topSongs-name{

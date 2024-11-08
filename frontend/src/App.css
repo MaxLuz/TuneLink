@@ -49,6 +49,7 @@ body { margin: 0; padding: 0px; font-family: 'Roboto', sans-serif; background-co
     padding-top:12px;
     justify-content: center;
     gap:12px;
+    width:100%;
 }
 
 .favorite-songs{
