@@ -4,8 +4,11 @@ const mongoose = require("mongoose");
 // this controller handles the processing for friend requests
 
 const sendFriendRequest = async (req, res) => {
-  const { userId, friendId } = req.body;
-  const request = new FriendRequest({ from: userId, to: friendId });
+  const { from, to } = req.body;
+  console.log("userId: ", from + "/nfriendId: ", to);
+  const request = new FriendRequest({ from: from, to: to });
+  console.log(request.from);
+  console.log(request.to);
   await request.save();
   if (!request) {
     res.status(404).json({ message: "Error sending friend request" });
