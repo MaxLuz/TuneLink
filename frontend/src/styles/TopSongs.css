@@ -1,15 +1,15 @@
 .topSongs-wrapper{
     display:flex;
     flex-direction: column;
-    background-color: black;
+    background-color: #181818;
     width:50%;
     border-radius: 16px;
 }
 
 .topSongs-h2{
-    font-size: 32px;
+    font-size: 24px;
     color:white;
-    padding-left:48px;
+    padding-left:32px;
 }
 
 .topSongs-ul{
