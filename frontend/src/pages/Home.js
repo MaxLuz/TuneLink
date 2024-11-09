@@ -10,7 +10,7 @@ import TopSongs from "../components/TopSongs";
 import Welcome from "../components/Welcome";
 import Buttons from "../components/Buttons";
 import Hero from "../components/Hero";
-import FriendList from "../components/FriendList";
+import FriendDetails from "../components/FriendDetails";
 // styles
 import "../styles/Home.css";
 
@@ -18,6 +18,8 @@ const Home = () => {
   const spotifytoken = localStorage.getItem("spotify_access_token");
   const [spotuser, setSpotuser] = useState("not-logged-in");
   const [timeframe, setTimeframe] = useState("short_term");
+  const [friends, setFriends] = useState("");
+  const [error, setError] = useState(null);
 
   const { songs, dispatch } = useSongsContext();
   const { user } = useAuthContext();
@@ -61,6 +63,27 @@ const Home = () => {
     checkForTokens();
   });
 
+  // fetches all current friends of logged in user
+  useEffect(() => {
+    const fetchFriends = async () => {
+      const response = await fetch("/api/friends", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      const json = await response.json();
+      if (!response.ok) {
+        setError(json.error);
+      }
+      if (response.ok) {
+        setFriends(json);
+      }
+    };
+    if (user) {
+      fetchFriends();
+    }
+  }, [user]);
+
   return (
     <div className="home">
       <div className="main-content">
@@ -78,7 +101,13 @@ const Home = () => {
             </div>
             <div className="dashboard-bottom-container">
               <div className="bottom-fav-songs-container">
-                <FriendList />
+                <div className="friendlist-wrapper">
+                  <h3>Friends List</h3>
+                  {friends &&
+                    friends.map((friend) => (
+                      <FriendDetails key={friend._id} friend={friend} />
+                    ))}
+                </div>
                 <div className="favorite-songs">
                   <SongForm />
                   <div className="songs">
