@@ -10,6 +10,7 @@ import TopSongs from "../components/TopSongs";
 import Welcome from "../components/Welcome";
 import Buttons from "../components/Buttons";
 import Hero from "../components/Hero";
+import FriendList from "../components/FriendList";
 // styles
 import "../styles/Home.css";
 
@@ -77,6 +78,7 @@ const Home = () => {
             </div>
             <div className="dashboard-bottom-container">
               <div className="bottom-fav-songs-container">
+                <FriendList />
                 <div className="favorite-songs">
                   <SongForm />
                   <div className="songs">

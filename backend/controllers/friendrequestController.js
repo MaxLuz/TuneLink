@@ -49,8 +49,19 @@ const rejectFriendRequest = async (req, res) => {
   }
 };
 
+const getFriends = async (req, res) => {
+  const user_id = req.user._id;
+  try {
+    const friends = await User.findById(user_id).populate("friends");
+    res.status(200).json(friends.friends);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   sendFriendRequest,
   acceptFriendRequest,
   rejectFriendRequest,
+  getFriends,
 };
