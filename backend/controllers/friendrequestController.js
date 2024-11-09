@@ -36,7 +36,21 @@ const acceptFriendRequest = async (req, res) => {
   }
 };
 
+const rejectFriendRequest = async (req, res) => {
+  const { _id } = req.body;
+  const request = await FriendRequest.findById(_id);
+
+  if (request && request.status == "pending") {
+    request.status = "rejected";
+    await request.save();
+    res.status(200).json({ message: "Friend request rejected!" });
+  } else {
+    res.status(400).json({ message: "Invalid request" });
+  }
+};
+
 module.exports = {
   sendFriendRequest,
   acceptFriendRequest,
+  rejectFriendRequest,
 };
