@@ -91,13 +91,9 @@ const Home = () => {
     <div className="home">
       <div className="main-content">
         {!spotifytoken ? (
-          <div className="hello">
-            <Navbar />
-            Hello there
-          </div>
+          <div className="hello">Hello there</div>
         ) : (
           <div className="isAuthenticated">
-            <SideNav />
             <div className="dashboard-container">
               <div className="dashboard-top-container">
                 <Welcome

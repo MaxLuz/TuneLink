@@ -13,6 +13,8 @@
     padding-bottom:100px;
     left:10px;
     top:-50px;
+    
+    z-index: 5;
 }
 
 .username{
