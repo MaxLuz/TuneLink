@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import SideNav from "./components/SideNav";
+import Friends from "./pages/Friends";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 
@@ -28,6 +29,7 @@ function App() {
               path="/signup"
               element={<Signup />} // add redirect !user ? <Signup /> : <Navigate to="/" />
             />
+            <Route path="/friends" element={<Friends />} />
           </Routes>
         </div>
       </BrowserRouter>
