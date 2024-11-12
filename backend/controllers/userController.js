@@ -16,7 +16,9 @@ const loginUser = async (req, res) => {
     // create token
     const token = createToken(user._id);
 
-    res.status(200).json({ email, token, userId: user._id }); // returns token to the browser, and userId to be used to store spotify refresh token in local storage
+    res
+      .status(200)
+      .json({ email, username: user.username, token, userId: user._id }); // returns token to the browser, and userId to be used to store spotify refresh token in local storage
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -25,15 +27,15 @@ const loginUser = async (req, res) => {
 // signup user
 
 const signupUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, username, password } = req.body;
 
   try {
-    const user = await User.signup(email, password);
+    const user = await User.signup(email, username, password);
 
     // create token
     const token = createToken(user._id);
 
-    res.status(200).json({ email, token, userId: user._id }); // returns token to the browser, and userId to be used in the callback function for spotify auth
+    res.status(200).json({ email, username, token, userId: user._id }); // returns token to the browser, and userId to be used in the callback function for spotify auth
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

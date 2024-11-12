@@ -20,7 +20,7 @@ const SideNav = () => {
         {user && (
           <div className="username">
             <div className="circle"> </div>
-            <span>{user.email}</span>
+            <span>{user.username}</span>
             <p className="version">v1.0</p>
           </div>
         )}

@@ -21,18 +21,19 @@
     color:white;
     font-size:14px;
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 12px;
     padding-bottom:32px;
     margin-left:-4px;
+    width:100%;
 }
 
 .version{
-    margin-left:20px;
+    margin-left:auto;
     font-size:12px;
     color: grey;
     margin-top:14px;
+    margin-right:50px;
 }
 
 .circle{
@@ -57,6 +58,7 @@
 .nav-top{
     margin-top:70px;
     padding-left:28px;
+    width:100%;
 }
 
 .nav-bottom{
