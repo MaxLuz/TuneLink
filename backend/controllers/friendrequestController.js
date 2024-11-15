@@ -59,6 +59,24 @@ const rejectFriendRequest = async (req, res) => {
   }
 };
 
+const getFriendRequests = async (req, res) => {
+  const user_id = req.user._id;
+  const currentuser = await User.findById(user_id).populate("username");
+  username = currentuser.username;
+  try {
+    const friendRequests = await FriendRequest.find({ to: username });
+
+    if (!friendRequests.length) {
+      console.log("No friend Requests");
+      return res.status(404).json({ message: "No friend requests" });
+    }
+    res.status(200).json(friendRequests);
+  } catch (error) {
+    console.error("Error fetching friend requests:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 const getFriends = async (req, res) => {
   const user_id = req.user._id;
   try {
@@ -74,4 +92,5 @@ module.exports = {
   acceptFriendRequest,
   rejectFriendRequest,
   getFriends,
+  getFriendRequests,
 };

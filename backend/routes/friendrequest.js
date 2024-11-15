@@ -5,6 +5,7 @@ const {
   acceptFriendRequest,
   rejectFriendRequest,
   getFriends,
+  getFriendRequests,
 } = require("../controllers/friendrequestController");
 
 const requireAuth = require("../middleware/requireAuth");
@@ -24,5 +25,8 @@ router.post("/reject", rejectFriendRequest);
 
 // get all friends
 router.get("/", getFriends);
+
+// get all friend requests
+router.get("/requests", getFriendRequests);
 
 module.exports = router;
