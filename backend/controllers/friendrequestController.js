@@ -6,15 +6,25 @@ const mongoose = require("mongoose");
 
 const sendFriendRequest = async (req, res) => {
   const { from, to } = req.body;
-  console.log("userId: ", from + "/nfriendId: ", to);
-  const request = new FriendRequest({ from: from, to: to });
-  console.log(request.from);
-  console.log(request.to);
-  await request.save();
-  if (!request) {
-    res.status(404).json({ message: "Error sending friend request" });
+
+  try {
+    // Check if the `to` username exists
+    const userTo = await User.findOne({ username: to });
+
+    if (!userTo) {
+      return res.status(404).json({ message: "User does not exist" });
+    }
+
+    // Proceed with saving the friend request
+    const request = new FriendRequest({ from, to });
+
+    await request.save();
+
+    res.status(200).json({ message: "Friend request sent!" });
+  } catch (error) {
+    console.error("Error sending friend request:", error);
+    res.status(500).json({ message: "Internal server error" });
   }
-  res.status(200).json({ message: "Friend request sent!" });
 };
 
 const acceptFriendRequest = async (req, res) => {

@@ -1,10 +1,11 @@
 import React from "react";
 import "../styles/Friends.css";
+import FriendForm from "../components/FriendForm";
 
 const Friends = () => {
   return (
     <div className="friends-wrapper">
-      This is the friends page welcome to the friends page???
+      <FriendForm />
     </div>
   );
 };

@@ -3,8 +3,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const FriendRequestSchema = new Schema({
-  from: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-  to: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  from: { type: String, ref: "User" },
+  to: { type: String, ref: "User" },
   status: {
     type: String,
     enum: ["pending", "accepted", "rejected"],
