@@ -37,6 +37,10 @@
     font-size:24px;
 }
 
+.friendlist-friendspage li{
+    list-style: none;
+}
+
 .friendrequests{
     width:33%;
     background-color: #181818;

@@ -26,7 +26,7 @@ const userSchema = new Schema({
   spotifyRefreshToken: {
     type: String,
   },
-  friends: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  friends: [{ type: String }],
 });
 
 // static signup method

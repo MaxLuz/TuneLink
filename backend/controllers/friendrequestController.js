@@ -29,15 +29,15 @@ const sendFriendRequest = async (req, res) => {
 
 const acceptFriendRequest = async (req, res) => {
   const { _id } = req.body;
+  console.log("_id: " + _id);
   const request = await FriendRequest.findById(_id);
 
   if (request && request.status == "pending") {
-    await User.findByIdAndUpdate(request.from, {
-      $push: { friends: request.to },
-    });
-    await User.findByIdAndUpdate(request.to, {
-      $push: { friends: request.from },
-    });
+    // Update the `friends` array for the user who sent the request (from)
+    await User.findOneAndUpdate(
+      { username: request.from }, // Find user by `username`
+      { $push: { friends: request.to } } // Add the recipient's username to their `friends` array
+    );
     request.status = "accepted";
     await request.save();
     res.status(200).json({ message: "Friend request accepted!" });
@@ -81,6 +81,7 @@ const getFriends = async (req, res) => {
   const user_id = req.user._id;
   try {
     const friends = await User.findById(user_id).populate("friends");
+    console.log("Friends: " + friends.friends);
     res.status(200).json(friends.friends);
   } catch (error) {
     res.status(400).json({ error: error.message });

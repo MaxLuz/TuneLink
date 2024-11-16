@@ -10,7 +10,7 @@ const Friends = () => {
   const { user } = useAuthContext();
   const [error, setError] = useState(null);
   const [friendRequests, setFriendRequests] = useState("");
-  const [friends, setFriends] = useState("");
+  const [friends, setFriends] = useState([]);
 
   // fetches all current friend requests for user
   useEffect(() => {
@@ -61,8 +61,10 @@ const Friends = () => {
         <div className="friendlist-wrapper friendlist-friendspage">
           <h2>Friends List</h2>
           {friends &&
-            friends.map((friend) => (
-              <FriendDetails key={friend._id} friend={friend} />
+            friends.map((friend, index) => (
+              <li key={index}>
+                <FriendDetails friend={friend} />
+              </li>
             ))}
         </div>
         <div className="friendrequests">
