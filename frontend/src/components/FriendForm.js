@@ -39,8 +39,8 @@ const FriendForm = () => {
   };
 
   return (
-    <div>
-      FriendForm
+    <div className="friend-form-wrapper">
+      <h2>Add a friend</h2>
       <form className="friendform" onSubmit={handleSubmit}>
         <input
           type="text"

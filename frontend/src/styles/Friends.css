@@ -1,4 +1,46 @@
 .friends-wrapper{
     display:flex;
-    justify-content: center;
+    justify-content: end;
+    width:90%;
+    margin-left: 280px;
+}
+
+.friends-thirds-container{
+    display:flex;
+    width:100%;
+    gap:12px;
+}
+
+.friendform{
+    padding:12px 0px;
+}
+
+
+
+.friend-form-wrapper{
+    display:flex;
+    flex-direction: column;
+    border-radius: 16px;
+    width:33%;
+    background-color: #181818;
+    padding:12px 24px;
+    color:white;
+}
+
+.friendlist-friendspage{
+    background-color: #181818;
+    border-radius:16px;
+    width:33%;
+    padding:12px 24px;
+}
+.friendlist-friendspage h2{
+    font-size:24px;
+}
+
+.friendrequests{
+    width:33%;
+    background-color: #181818;
+    border-radius:16px;
+    color:white;
+    padding:12px 24px;
 }
