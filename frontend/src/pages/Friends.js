@@ -5,12 +5,14 @@ import FriendForm from "../components/FriendForm";
 import { useAuthContext } from "../hooks/useAuthContext";
 import FriendRequestDetails from "../components/FriendRequestDetails";
 import FriendDetails from "../components/FriendDetails";
+import { useFriendRequestContext } from "../hooks/useFriendRequestContext";
 
 const Friends = () => {
   const { user } = useAuthContext();
   const [error, setError] = useState(null);
-  const [friendRequests, setFriendRequests] = useState("");
+  // const [friendRequests, setFriendRequests] = useState("");
   const [friends, setFriends] = useState([]);
+  const { friendrequests, dispatch } = useFriendRequestContext();
 
   // fetches all current friend requests for user
   useEffect(() => {
@@ -25,7 +27,9 @@ const Friends = () => {
         setError(json.message);
       }
       if (response.ok) {
-        setFriendRequests(json);
+        // setFriendRequests(json);
+        // dispatches context for all friend requests
+        dispatch({ type: "SET_FRIENDREQUESTS", payload: json });
       }
     };
     if (user) {
@@ -69,8 +73,8 @@ const Friends = () => {
         </div>
         <div className="friendrequests">
           <h2>Friend Requests</h2>
-          {friendRequests &&
-            friendRequests.map((request) => (
+          {friendrequests &&
+            friendrequests.map((request) => (
               <FriendRequestDetails key={request._id} request={request} />
             ))}
         </div>

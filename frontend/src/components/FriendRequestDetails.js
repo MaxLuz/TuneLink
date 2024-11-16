@@ -1,14 +1,15 @@
 import React from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useFriendRequestContext } from "../hooks/useFriendRequestContext";
 
 const FriendRequestDetails = ({ request }) => {
   const { user } = useAuthContext();
+  const { dispatch } = useFriendRequestContext();
 
   const handleAccept = async () => {
     console.log("Accept!");
     const _id = request._id;
     const requestId = { _id };
-    console.log("requestId: " + JSON.stringify(requestId));
     const response = await fetch("/api/friends/accept", {
       method: "POST",
       body: JSON.stringify(requestId),
@@ -25,12 +26,31 @@ const FriendRequestDetails = ({ request }) => {
 
     if (response.ok) {
       // handle request list refresh
-      console.log(json.message);
+      dispatch({ type: "FRIENDREQUEST_ACTION", payload: json });
     }
   };
 
   const handleReject = async () => {
     console.log("Reject!");
+    const _id = request._id;
+    const requestId = { _id };
+    const response = await fetch("/api/friends/reject", {
+      method: "POST",
+      body: JSON.stringify(requestId),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("Error handling reject: ", json.error);
+    }
+
+    if (response.ok) {
+      dispatch({ type: "FRIENDREQUEST_ACTION", payload: json });
+    }
   };
 
   return (

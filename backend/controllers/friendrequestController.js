@@ -38,9 +38,15 @@ const acceptFriendRequest = async (req, res) => {
       { username: request.from }, // Find user by `username`
       { $push: { friends: request.to } } // Add the recipient's username to their `friends` array
     );
+
+    // Update the `friends` array for the user who received the request (to)
+    await User.findOneAndUpdate(
+      { username: request.to }, // Find user by `username`
+      { $push: { friends: request.from } } // Add the sender's username to their `friends` array
+    );
     request.status = "accepted";
     await request.save();
-    res.status(200).json({ message: "Friend request accepted!" });
+    res.status(200).json(request);
   } else {
     res.status(404).json({ message: "Invalid request" });
   }
@@ -53,7 +59,7 @@ const rejectFriendRequest = async (req, res) => {
   if (request && request.status == "pending") {
     request.status = "rejected";
     await request.save();
-    res.status(200).json({ message: "Friend request rejected!" });
+    res.status(200).json(request);
   } else {
     res.status(400).json({ message: "Invalid request" });
   }
@@ -64,7 +70,10 @@ const getFriendRequests = async (req, res) => {
   const currentuser = await User.findById(user_id).populate("username");
   username = currentuser.username;
   try {
-    const friendRequests = await FriendRequest.find({ to: username });
+    const friendRequests = await FriendRequest.find({
+      to: username,
+      status: "pending",
+    });
 
     if (!friendRequests.length) {
       console.log("No friend Requests");
