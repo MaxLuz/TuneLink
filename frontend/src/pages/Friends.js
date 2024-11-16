@@ -6,13 +6,15 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import FriendRequestDetails from "../components/FriendRequestDetails";
 import FriendDetails from "../components/FriendDetails";
 import { useFriendRequestContext } from "../hooks/useFriendRequestContext";
+import { useFriendListContext } from "../hooks/useFriendListContext";
 
 const Friends = () => {
   const { user } = useAuthContext();
   const [error, setError] = useState(null);
   // const [friendRequests, setFriendRequests] = useState("");
-  const [friends, setFriends] = useState([]);
+  // const [friends, setFriends] = useState([]);
   const { friendrequests, dispatch } = useFriendRequestContext();
+  const { friends, dispatch_friends } = useFriendListContext();
 
   // fetches all current friend requests for user
   useEffect(() => {
@@ -50,7 +52,8 @@ const Friends = () => {
         setError(json.error);
       }
       if (response.ok) {
-        setFriends(json);
+        // setFriends(json);
+        dispatch_friends({ type: "SET_FRIENDS", payload: json });
       }
     };
     if (user) {
