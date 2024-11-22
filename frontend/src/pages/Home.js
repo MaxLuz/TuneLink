@@ -16,6 +16,7 @@ import SideNav from "../components/SideNav";
 // styles
 import "../styles/Home.css";
 import "../styles/Navbar.css";
+import DiscoveryList from "../components/DiscoveryList";
 
 const Home = () => {
   const spotifytoken = localStorage.getItem("spotify_access_token");
@@ -105,7 +106,7 @@ const Home = () => {
               </div>
               <div className="dashboard-bottom-container">
                 <div className="bottom-fav-songs-container">
-                  <div className="friendlist-wrapper">
+                  {/* <div className="friendlist-wrapper">
                     <h3>Friends List</h3>
                     {friends &&
                       friends.map((friend) => (
@@ -120,7 +121,8 @@ const Home = () => {
                           <SongDetails key={song._id} song={song} />
                         ))}
                     </div>
-                  </div>
+                  </div> */}
+                  <DiscoveryList token={spotifytoken} />
                 </div>
                 <div className="bottom-top-stats-container">
                   <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />

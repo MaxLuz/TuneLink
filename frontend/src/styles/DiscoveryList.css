@@ -1,0 +1,69 @@
+.discovery-list{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+}
+
+.discovery-title{
+    margin-right:auto;
+}
+.underline{
+    width:95%;
+    border-bottom:1px solid rgba(255, 255, 255, 0.412);
+    display:flex;
+    justify-content: center;
+    color:rgba(255, 255, 255, 0.412);
+}
+
+
+.song-name{
+    margin-right:auto;
+}
+
+.album{
+    margin-left:auto;
+}
+
+.popularity{
+    margin-left:auto;
+}
+
+
+.discovery-ul{
+    margin-right:auto;
+    width: 100%;
+    display:flex;
+    justify-content: center;
+    padding-left: 0px !important;
+    margin-left:0px;
+}
+
+.popularity-metric{
+   margin-left:auto;
+   margin-right:28px;
+}
+
+.discovery-li{
+    background-color:#181818;
+}
+
+
+.discovery-li:hover{
+    background-color:#2a2a2a;
+}
+
+.discovery-image{
+    
+}
+
+.index{
+    margin-left:24px;
+}
+
+.pound{
+    padding-right:22px;
+}
+
+

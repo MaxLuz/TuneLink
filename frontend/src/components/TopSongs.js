@@ -14,7 +14,7 @@ const TopSongs = ({ token, timeframe }) => {
             Authorization: `Bearer ${token}`,
           },
           params: {
-            limit: 10, // Get top 10 tracks
+            limit: 20, // Get top 10 tracks
             time_range: `${timeframe}`,
           },
         })
