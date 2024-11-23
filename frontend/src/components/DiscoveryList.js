@@ -5,32 +5,73 @@ import axios from "axios";
 
 const DiscoveryList = ({ token }) => {
   const [tracks, setTracks] = useState([]);
+  const [toptrackids, setToptrackids] = useState([]);
+  const [topartistids, setTopartistids] = useState([]);
 
   useEffect(() => {
-    if (token) {
-      axios
-        .get("https://api.spotify.com/v1/recommendations", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          params: {
-            limit: 20, // Get top 20 tracks
-            seed_artists: "0Y4inQK6OespitzD6ijMwb,165ZgPlLkK7bf5bDoFc6Sb", // Comma-separated artist IDs
-            seed_tracks:
-              "60a0Rd6pjrkxjPbaKzXjfq,22JoVWZlY49vSLzssk8RL7,1TEZWG1FdjzDdercCguTwj", // Comma-separated track IDs
-          },
-        })
-        .then((response) => {
-          console.log("API response: " + response.data.tracks);
-          setTracks(response.data.tracks);
-        })
-        .catch((error) => {
-          console.error(
-            "Error fetching recommendations: ",
-            error.response ? error.response.data : error
-          );
-        });
-    }
+    const fetchData = async () => {
+      if (!token) return;
+
+      try {
+        // Fetch top tracks
+        const tracksResponse = await axios.get(
+          "https://api.spotify.com/v1/me/top/tracks",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            params: {
+              limit: 2,
+              time_range: "short_term",
+            },
+          }
+        );
+
+        const trackIds = tracksResponse.data.items.map((track) => track.id);
+        setToptrackids(trackIds);
+
+        // Fetch top artists
+        const artistsResponse = await axios.get(
+          "https://api.spotify.com/v1/me/top/artists",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            params: {
+              limit: 3,
+              time_range: "short_term",
+            },
+          }
+        );
+
+        const artistIds = artistsResponse.data.items.map((artist) => artist.id);
+        setTopartistids(artistIds);
+
+        // Fetch recommendations
+        const recommendationsResponse = await axios.get(
+          "https://api.spotify.com/v1/recommendations",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            params: {
+              limit: 20,
+              seed_artists: artistIds.join(","),
+              seed_tracks: trackIds.join(","),
+            },
+          }
+        );
+
+        setTracks(recommendationsResponse.data.tracks);
+      } catch (error) {
+        console.error(
+          "Error fetching data:",
+          error.response ? error.response.data : error
+        );
+      }
+    };
+
+    fetchData();
   }, [token]);
 
   return (
