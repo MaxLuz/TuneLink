@@ -54,9 +54,6 @@
     background-color:#2a2a2a;
 }
 
-.discovery-image{
-    
-}
 
 .index{
     margin-left:24px;
@@ -66,4 +63,32 @@
     padding-right:22px;
 }
 
+.play-button-link{
+    display:none;
+}
 
+.play{
+    fill:rgba(255, 255, 255, 0.453);
+    width:14px;
+    height:auto;
+    margin-left:24px;
+}
+
+.discovery-li:hover .play-button-link{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor:pointer;
+}
+
+.discovery-li:hover .index{
+    display:none;
+}
+
+
+.player-error{
+    position:absolute;
+    margin-left:380px;
+    margin-bottom:25px;
+    background-color: red;
+}

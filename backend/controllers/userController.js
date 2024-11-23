@@ -44,7 +44,8 @@ const signupUser = async (req, res) => {
 const spotifyRedirect = async (req, res) => {
   const { userId } = req.query;
 
-  const scopes = "user-top-read user-read-private";
+  const scopes =
+    "user-top-read user-read-private user-modify-playback-state user-read-playback-state";
   if (!userId) {
     return res.status(400).json({ error: "User ID is required" });
   }
