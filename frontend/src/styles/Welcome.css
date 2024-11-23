@@ -47,6 +47,10 @@
     
 }
 
+.friends-link{
+    all:unset;
+}
+
 .welcome-button:hover{
     width:170px;
 }

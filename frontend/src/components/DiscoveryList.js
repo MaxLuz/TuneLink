@@ -74,55 +74,74 @@ const DiscoveryList = ({ token }) => {
   const handlePlay = async (trackId) => {
     console.log("handlePlay: " + trackId);
 
-    if (token) {
-      try {
-        // Check the playback state
-        const playerStateResponse = await axios.get(
-          "https://api.spotify.com/v1/me/player",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-
-        const playerState = playerStateResponse.data;
-        console.log("Player State:", playerState);
-
-        if (!playerState || !playerState.is_playing) {
-          console.error("No active device currently playing music.");
-          setError(
-            "Please start playing music on your Spotify app and try again!"
-          );
-          return;
-        }
-
-        // Play the selected track
-        await axios.put(
-          "https://api.spotify.com/v1/me/player/play",
-          {
-            uris: [`spotify:track:${trackId}`], // Play a specific track by its URI
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        console.log("Playback started for track:", trackId);
-        setError("");
-      } catch (error) {
-        // Handle errors from the player state or play request
-        if (error.response?.status === 404) {
-          setError(
-            "No active Spotify device found. Please open Spotify and try again."
-          );
-        } else {
-          console.error("Error playing track:", error.response?.data || error);
-        }
-      }
-    } else {
+    if (!token) {
       console.error("No token available for authentication.");
+      return;
+    }
+
+    try {
+      // Step 1: Check for available devices
+      const devicesResponse = await axios.get(
+        "https://api.spotify.com/v1/me/player/devices",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const devices = devicesResponse.data.devices;
+      console.log("Available devices:", devices);
+
+      if (devices.length === 0) {
+        setError(
+          "No available Spotify devices. Please open Spotify on one of your devices!"
+        );
+        return;
+      }
+
+      // Step 2: Find an active device or select the first available device
+      const activeDevice = devices.find((device) => device.is_active);
+      const deviceId = activeDevice ? activeDevice.id : devices[0].id;
+
+      if (!activeDevice) {
+        // Transfer playback to the selected device if none is active
+        await axios.put(
+          "https://api.spotify.com/v1/me/player",
+          { device_ids: [deviceId] },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(`Playback transferred to device: ${deviceId}`);
+      }
+
+      // Step 3: Start playback of the selected track
+      await axios.put(
+        "https://api.spotify.com/v1/me/player/play",
+        {
+          uris: [`spotify:track:${trackId}`],
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      console.log("Playback started for track:", trackId);
+    } catch (error) {
+      // Handle errors
+      console.error("Error handling playback:", error.response?.data || error);
+
+      if (error.response?.status === 404) {
+        setError(
+          "No active Spotify device found. Please open Spotify and try again."
+        );
+      } else {
+        setError("Error playing track. Please try again.");
+      }
     }
   };
 
