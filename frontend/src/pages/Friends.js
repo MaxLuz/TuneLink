@@ -7,6 +7,7 @@ import FriendRequestDetails from "../components/FriendRequestDetails";
 import FriendDetails from "../components/FriendDetails";
 import { useFriendRequestContext } from "../hooks/useFriendRequestContext";
 import { useFriendListContext } from "../hooks/useFriendListContext";
+import { useCurrentFriendDataContext } from "../hooks/useCurrentFriendDataContext";
 import axios from "axios";
 
 const Friends = () => {
@@ -16,6 +17,7 @@ const Friends = () => {
   // const [friends, setFriends] = useState([]);
   const { friendrequests, dispatch } = useFriendRequestContext();
   const { friends, dispatch_friends } = useFriendListContext();
+  const { friendData } = useCurrentFriendDataContext();
   const [artists, setArtists] = useState([]);
   const [tracks, setTracks] = useState([]);
   const spotifytoken = localStorage.getItem("spotify_access_token");
@@ -138,7 +140,7 @@ const Friends = () => {
           <h2>Friend Activity</h2>
           <p className="current-friend">bellabenedetti</p>
           <div className="friend-data">
-            <div className="topArtists-wrapper">
+            <div className="topArtists-wrapper friends-activity-dash">
               <h2 className="topArtists-h2">Top Artists</h2>
 
               <ul className="topArtists-ul">
@@ -158,7 +160,7 @@ const Friends = () => {
                 ))}
               </ul>
             </div>
-            <div className="topSongs-wrapper">
+            <div className="topSongs-wrapper friends-activity-dash">
               <h2 className="topSongs-h2">Top Tracks</h2>
               <ul className="topSongs-ul">
                 {tracks.map((track) => (
