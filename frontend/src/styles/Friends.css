@@ -1,8 +1,10 @@
 .friends-wrapper{
     display:flex;
-    justify-content: end;
+    flex-direction: column;
+    align-items: end;
     width:90%;
     margin-left: 280px;
+    gap:12px;
 }
 
 .friends-thirds-container{
@@ -11,8 +13,45 @@
     gap:12px;
 }
 
+.friends-bottom-container{
+    display:flex;
+    width:100%;
+    gap:12px;
+}
+
 .friendform{
     padding:12px 0px;
+}
+
+.friends-inbox{
+    display:flex;
+    flex-direction: column;
+    border-radius: 16px;
+    width: calc(33% - 24px);
+    background-color: #181818;
+    padding:12px 24px;
+    color:white;
+}
+
+.friends-activity{
+    display:flex;
+    flex-direction: column;
+    border-radius: 16px;
+    width: calc(66% + 12px);
+    background-color: #181818;
+    padding:12px 24px;
+    color:white;
+}
+
+.current-friend{
+    color: #3FD6D6;
+    font-weight:bold;
+    font-size:18px;
+    margin-top:0px;
+}
+
+.friend-data{
+    display:flex;
 }
 
 
