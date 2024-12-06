@@ -44,6 +44,7 @@ const DiscoveryList = ({ token }) => {
 
         const artistIds = artistsResponse.data.items.map((artist) => artist.id);
 
+        console.log("spotify token: " + token);
         // Fetch recommendations
         const recommendationsResponse = await axios.get(
           "https://api.spotify.com/v1/recommendations",

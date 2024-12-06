@@ -67,21 +67,26 @@ const Friends = () => {
         <FriendForm />
         <div className="friendlist-wrapper friendlist-friendspage">
           <h2>Friends List</h2>
-          {friends &&
-            friends.map((friend, index) => (
-              <li key={index}>
-                <FriendDetails friend={friend} />
-              </li>
-            ))}
+          <div className="friendslist-scroll">
+            {friends &&
+              friends.map((friend, index) => (
+                <li key={index}>
+                  <FriendDetails friend={friend} />
+                </li>
+              ))}
+          </div>
         </div>
         <div className="friendrequests">
           <h2>Friend Requests</h2>
-          {friendrequests &&
-            friendrequests.map((request) => (
-              <FriendRequestDetails key={request._id} request={request} />
-            ))}
+          <div className="friendslist-scroll">
+            {friendrequests &&
+              friendrequests.map((request) => (
+                <FriendRequestDetails key={request._id} request={request} />
+              ))}
+          </div>
         </div>
       </div>
+      .
     </div>
   );
 };

@@ -122,7 +122,6 @@ const Home = () => {
                         ))}
                     </div>
                   </div> */}
-                  <DiscoveryList token={spotifytoken} />
                 </div>
                 <div className="bottom-top-stats-container">
                   <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />

@@ -33,6 +33,13 @@
     width:33%;
     padding:12px 24px;
 }
+
+.friendslist-scroll{
+    overflow-y:scroll;
+    max-height:150px;
+    scrollbar-width: none; /* Firefox: Hide scrollbar */
+  -ms-overflow-style: none; /* IE and Edge: Hide scrollbar */
+}
 .friendlist-friendspage h2{
     font-size:24px;
 }
@@ -96,3 +103,7 @@
     height:16px;
 }
 
+
+.friend-request-object{
+    margin: 18px 0px;
+}
