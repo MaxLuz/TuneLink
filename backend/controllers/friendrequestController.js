@@ -90,7 +90,6 @@ const getFriends = async (req, res) => {
   const user_id = req.user._id;
   try {
     const friends = await User.findById(user_id).populate("friends");
-    console.log("Friends: " + friends.friends);
     res.status(200).json(friends.friends);
   } catch (error) {
     res.status(400).json({ error: error.message });

@@ -51,7 +51,6 @@ const spotifyRedirect = async (req, res) => {
   }
 
   console.log("Redirecting to Spotify authorization page");
-  console.log("scopes:", scopes);
 
   res.redirect(
     `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}&state=${userId}&scope=${scopes}`
@@ -81,7 +80,6 @@ const spotifyCallback = async (req, res) => {
         }),
       }
     );
-    console.log("makes it past token post");
 
     const tokenData = await tokenResponse.json();
 
@@ -111,9 +109,11 @@ const spotifyCallback = async (req, res) => {
 
 const spotifytoken = async (req, res) => {
   try {
-    const { username } = req.params;
+    const { username } = req.query.username;
 
-    const user = await User.findOne({ username });
+    console.log("Username: " + req.query.username);
+
+    const user = await User.findOne(username);
 
     if (!user) {
       return res.status(400).json({ message: "User not found." });

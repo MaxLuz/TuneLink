@@ -30,6 +30,6 @@ router.get("/auth/spotify", spotifyRedirect);
 router.get("/auth/spotify-callback", spotifyCallback);
 
 // grab a user's spotify token (only for friends)
-router.get("/auth/spotifytoken", spotifytoken);
+router.get("/spotifytoken", spotifytoken);
 
 module.exports = router;

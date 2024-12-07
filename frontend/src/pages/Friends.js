@@ -20,6 +20,7 @@ const Friends = () => {
   const { friendData } = useCurrentFriendDataContext();
   const [artists, setArtists] = useState([]);
   const [tracks, setTracks] = useState([]);
+  const [spotToken, setSpotToken] = useState();
   const spotifytoken = localStorage.getItem("spotify_access_token");
 
   // fetches all current friend requests for user
@@ -87,6 +88,35 @@ const Friends = () => {
     }
   }, [spotifytoken]);
 
+  useEffect(() => {
+    const getSpotifyToken = async () => {
+      console.log("Username: " + friendData);
+      try {
+        // Send a GET request to the backend
+        const response = await axios.get("/api/user/spotifytoken", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+          params: {
+            username: `${friendData}`,
+          },
+        });
+
+        // Extract and return the Spotify token
+        setSpotToken(response.data.spotifyAccessToken);
+      } catch (error) {
+        console.error(
+          "Error fetching Spotify token:",
+          error.response?.data || error.message
+        );
+        throw error;
+      }
+    };
+    if (user) {
+      getSpotifyToken();
+    }
+  }, [friendData, user]);
+
   // fetch top songs when component mounts
   useEffect(() => {
     if (spotifytoken) {
@@ -138,7 +168,7 @@ const Friends = () => {
         </div>
         <div className="friends-activity">
           <h2>Friend Activity</h2>
-          <p className="current-friend">bellabenedetti</p>
+          <p className="current-friend">{friendData}</p>
           <div className="friend-data">
             <div className="topArtists-wrapper friends-activity-dash">
               <h2 className="topArtists-h2">Top Artists</h2>
