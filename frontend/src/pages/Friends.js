@@ -20,8 +20,8 @@ const Friends = () => {
   const { friendData } = useCurrentFriendDataContext();
   const [artists, setArtists] = useState([]);
   const [tracks, setTracks] = useState([]);
-  const [spotToken, setSpotToken] = useState();
-  const spotifytoken = localStorage.getItem("spotify_access_token");
+  const [spotifytoken, setSpotToken] = useState();
+  // const spotifytoken = localStorage.getItem("spotify_access_token");
 
   // fetches all current friend requests for user
   useEffect(() => {
@@ -103,7 +103,7 @@ const Friends = () => {
         });
 
         // Extract and return the Spotify token
-        setSpotToken(response.data.spotifyAccessToken);
+        setSpotToken(response.data);
       } catch (error) {
         console.error(
           "Error fetching Spotify token:",

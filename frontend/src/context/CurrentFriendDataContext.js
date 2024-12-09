@@ -33,7 +33,7 @@ export const CurrentFriendDataContextProvider = ({ children }) => {
         payload: user.username,
       });
     }
-  }, [friends]);
+  }, [user]);
 
   return (
     <CurrentFriendDataContext.Provider
