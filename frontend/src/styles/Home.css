@@ -13,13 +13,22 @@
 }
 
 .bottom-fav-songs-container{
+    display:flex;
     width:50%;
-    background-color: black;
+    background-color: #181818;
     border-radius: 16px;
 }
 .bottom-top-stats-container{
     width:50%;
     display:flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.hello{
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }

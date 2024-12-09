@@ -1,15 +1,15 @@
 .topSongs-wrapper{
     display:flex;
     flex-direction: column;
-    background-color: black;
+    background-color: #181818;
     width:50%;
     border-radius: 16px;
 }
 
 .topSongs-h2{
-    font-size: 32px;
+    font-size: 24px;
     color:white;
-    padding-left:48px;
+    padding-left:32px;
 }
 
 .topSongs-ul{
@@ -19,6 +19,8 @@
     flex-direction: column;
     gap:0px;
     flex-wrap:wrap;
+    margin-left:-10px;
+    margin-top:0px;
 }
 
 .topSongs-li{
@@ -26,15 +28,15 @@
     justify-content: start;
     align-items: center;
     gap:24px;
-    padding:12px;
+    padding:0px;
     color:white;
     border-radius:12px;
 }
 
 .topSongs-img{
     
-    width:60px;
-    height:60px;
+    width:40px;
+    height:40px;
     border-radius: 50px;
 }
 
@@ -45,7 +47,7 @@
 }
 
 .song-info{
-    max-width:200px;
+    
     display:flex;
     flex-direction:column;
 }

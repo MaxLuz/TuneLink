@@ -5,12 +5,13 @@ import "../styles/login_signup.css";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
   const { signup, error, isLoading } = useSignup();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await signup(email, password);
+    await signup(email, username, password);
   };
 
   return (
@@ -21,10 +22,16 @@ const Signup = () => {
           Let's get started with your free account
         </p>
         <input
+          type="text"
+          placeholder="Username"
+          onChange={(e) => setUsername(e.target.value)}
+          value={username}
+        />
+        <input
           type="email"
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
-          calue={email}
+          value={email}
         />
 
         <input

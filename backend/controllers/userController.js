@@ -16,7 +16,9 @@ const loginUser = async (req, res) => {
     // create token
     const token = createToken(user._id);
 
-    res.status(200).json({ email, token, userId: user._id }); // returns token to the browser, and userId to be used to store spotify refresh token in local storage
+    res
+      .status(200)
+      .json({ email, username: user.username, token, userId: user._id }); // returns token to the browser, and userId to be used to store spotify refresh token in local storage
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -25,15 +27,15 @@ const loginUser = async (req, res) => {
 // signup user
 
 const signupUser = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, username, password } = req.body;
 
   try {
-    const user = await User.signup(email, password);
+    const user = await User.signup(email, username, password);
 
     // create token
     const token = createToken(user._id);
 
-    res.status(200).json({ email, token, userId: user._id }); // returns token to the browser, and userId to be used in the callback function for spotify auth
+    res.status(200).json({ email, username, token, userId: user._id }); // returns token to the browser, and userId to be used in the callback function for spotify auth
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -42,13 +44,13 @@ const signupUser = async (req, res) => {
 const spotifyRedirect = async (req, res) => {
   const { userId } = req.query;
 
-  const scopes = "user-top-read user-read-private";
+  const scopes =
+    "user-top-read user-read-private user-modify-playback-state user-read-playback-state";
   if (!userId) {
     return res.status(400).json({ error: "User ID is required" });
   }
 
   console.log("Redirecting to Spotify authorization page");
-  console.log("scopes:", scopes);
 
   res.redirect(
     `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}&state=${userId}&scope=${scopes}`
@@ -78,7 +80,6 @@ const spotifyCallback = async (req, res) => {
         }),
       }
     );
-    console.log("makes it past token post");
 
     const tokenData = await tokenResponse.json();
 
@@ -106,4 +107,27 @@ const spotifyCallback = async (req, res) => {
   }
 };
 
-module.exports = { signupUser, loginUser, spotifyRedirect, spotifyCallback };
+const spotifytoken = async (req, res) => {
+  try {
+    const { username } = req.query.username;
+
+    console.log("Username: " + req.query.username);
+
+    const user = await User.findOne(username);
+
+    if (!user) {
+      return res.status(400).json({ message: "User not found." });
+    }
+    return res.status(200).json(user.spotifyAccessToken);
+  } catch (error) {
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+module.exports = {
+  signupUser,
+  loginUser,
+  spotifyRedirect,
+  spotifyCallback,
+  spotifytoken,
+};

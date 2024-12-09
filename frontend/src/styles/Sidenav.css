@@ -1,0 +1,81 @@
+.sidenav{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    height:100%;
+    position:fixed;
+    width:280px; /* Probably need to change this */
+    background-color: #181818;
+    margin-top: -12px;
+    margin-left: -12px;
+    padding-top:12px;
+    padding-bottom:100px;
+    left:10px;
+    top:-50px;
+    
+    z-index: 5;
+}
+
+.username{
+    color:white;
+    font-size:14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom:32px;
+    margin-left:-4px;
+    width:100%;
+}
+
+.version{
+    margin-left:auto;
+    font-size:12px;
+    color: grey;
+    margin-top:14px;
+    margin-right:50px;
+}
+
+.circle{
+    height:32px;
+    width:32px;
+    background-color: white;
+    border-radius: 100px;
+}
+
+.logout-btn{
+    all:unset;
+    cursor:pointer;
+    color:white;
+    display:flex;
+    gap:12px;
+}
+
+.logout-btn svg{
+    width:20px;
+}
+
+.nav-top{
+    margin-top:70px;
+    padding-left:28px;
+    width:100%;
+}
+
+.nav-bottom{
+    padding-left:28px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.sidenavlink{
+    display:flex;
+    align-items: center;
+    gap:12px;
+    text-decoration: none;
+    color:white;
+}
+
+.sidenavlink svg{
+    width:20px;
+}

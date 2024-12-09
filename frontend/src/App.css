@@ -37,11 +37,20 @@ body { margin: 0; padding: 0px; font-family: 'Roboto', sans-serif; background-co
 
 .isAuthenticated{
     display:flex;
+    justify-content: start;
+    width:100%;
+    height:auto;
+    gap:12px;
+    position:relative;
+}
+.dashboard-container{
+    display:flex;
     flex-direction: column;
     justify-content: start;
-    align-items: center;
-    width:100%;
+    align-items: end;
+    width:90%;
     gap:12px;
+    margin-left:280px;
 }
 
 .data-components{

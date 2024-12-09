@@ -1,5 +1,5 @@
 .welcome-container{
-    background-color: black;
+    background-color: #181818;
     border-radius: 16px;
     width: 50%;
     display:flex;
@@ -13,7 +13,7 @@
 
 
 .welcome-h1{
-    font-size: 48px;
+    font-size: 36px;
     text-align: center;
     color:#3FD6D6;
     padding-top: 24px;
@@ -37,7 +37,7 @@
     border-radius: 4px;
     color:white;
     border: 2px #3FD6D6 solid;
-    background-color: black;
+    background-color: #181818;
     display:flex;
     align-items: center;
     gap:12px;
@@ -45,6 +45,10 @@
     transition: width 100ms ease;
     cursor:pointer;
     
+}
+
+.friends-link{
+    all:unset;
 }
 
 .welcome-button:hover{

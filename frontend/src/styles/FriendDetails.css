@@ -1,0 +1,20 @@
+.friendlist-wrapper{
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    padding-top:24px;
+    padding-left:48px;
+}
+
+.friend-details{
+    all:unset;
+    color:#3FD6D6;
+    cursor:pointer;
+    margin:0px;
+    margin-bottom:12px;
+}
+
+.friend-details:hover{
+    color:#2d9999;
+
+}

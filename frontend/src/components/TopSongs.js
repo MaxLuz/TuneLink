@@ -14,7 +14,7 @@ const TopSongs = ({ token, timeframe }) => {
             Authorization: `Bearer ${token}`,
           },
           params: {
-            limit: 10, // Get top 10 tracks
+            limit: 20, // Get top 10 tracks
             time_range: `${timeframe}`,
           },
         })
@@ -27,7 +27,7 @@ const TopSongs = ({ token, timeframe }) => {
 
   return (
     <div className="topSongs-wrapper">
-      <h2 className="topSongs-h2">Your Top 10 Songs</h2>
+      <h2 className="topSongs-h2">Your Top Tracks</h2>
       <ul className="topSongs-ul">
         {tracks.map((track) => (
           <li className="topSongs-li" key={track.id}>
