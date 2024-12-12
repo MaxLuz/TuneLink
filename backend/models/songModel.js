@@ -13,7 +13,11 @@ const songSchema = new Schema(
       type: String,
       required: true,
     },
-    user_id: {
+    username_to: {
+      type: String,
+      required: true,
+    },
+    username_from: {
       type: String,
       required: true,
     },

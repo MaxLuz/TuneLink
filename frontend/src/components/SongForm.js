@@ -8,6 +8,7 @@ const SongForm = () => {
   const { dispatch } = useSongsContext();
   const [title, setTitle] = useState("");
   const [artist, setArtist] = useState("");
+  const [username_to, setUsername_to] = useState("");
   // const [plays, setPlays] = useState("");
   const [error, setError] = useState(null);
 
@@ -21,8 +22,8 @@ const SongForm = () => {
       setError("You must be logged in");
       return;
     }
-
-    const song = { title, artist };
+    const username_from = user.username;
+    const song = { title, artist, username_to, username_from };
 
     // adds a song to the database
     const response = await fetch("/api/songs", {
@@ -43,6 +44,7 @@ const SongForm = () => {
     if (response.ok) {
       setTitle("");
       setArtist("");
+      setUsername_to("");
       // setPlays("");
       setError(null);
       console.log("New Song added!", json);
@@ -52,20 +54,25 @@ const SongForm = () => {
 
   return (
     <form className="create" onSubmit={handleSubmit}>
-      <h3 className="new-song">Add a New Song</h3>
-
-      <label>Song Title:</label>
       <input
         type="text"
+        placeholder="Song Title"
         onChange={(e) => setTitle(e.target.value)}
         value={title}
       />
 
-      <label>Song Artist:</label>
       <input
         type="text"
+        placeholder="Song Artist"
         onChange={(e) => setArtist(e.target.value)}
         value={artist}
+      />
+
+      <input
+        type="text"
+        placeholder="Username"
+        onChange={(e) => setUsername_to(e.target.value)}
+        value={username_to}
       />
 
       {/* <label>Song Plays:</label>
@@ -74,7 +81,7 @@ const SongForm = () => {
         onChange={(e) => setPlays(e.target.value)}
         value={plays}
       /> */}
-      <button>Add Song</button>
+      <button>Send Song</button>
       {error && <div className="error">{error}</div>}
     </form>
   );
