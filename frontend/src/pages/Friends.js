@@ -163,9 +163,15 @@ const Friends = () => {
         </div>
       </div>
       <div className="friends-bottom-container">
-        <div className="friends-inbox">
-          <h2>Inbox</h2>
+        <div className="friends-bottom-left-container">
+          <div className="send-song-container">
+            <h2>Send A Song</h2>
+          </div>
+          <div className="friends-inbox">
+            <h2>Inbox</h2>
+          </div>
         </div>
+
         <div className="friends-activity">
           <h2>Friend Activity</h2>
           <p className="current-friend">{friendData}</p>
