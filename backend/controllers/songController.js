@@ -5,11 +5,15 @@ const mongoose = require("mongoose");
 
 // get all songs
 const getSongs = async (req, res) => {
-  const user_id = req.user._id;
+  try {
+    const { username_to } = req.query;
 
-  const songs = await Song.find({ user_id }).sort({ createdAt: -1 });
-
-  res.status(200).json(songs);
+    const songs = await Song.find({ username_to }).sort({ createdAt: -1 });
+    console.log("songs: " + songs);
+    res.status(200).json(songs);
+  } catch (error) {
+    res.status(500).json(error);
+  }
 };
 
 // get a single song
@@ -31,12 +35,16 @@ const getSong = async (req, res) => {
 
 // create a new song entry
 const createSong = async (req, res) => {
-  const { title, artist, plays } = req.body;
+  const { title, artist, username_to, username_from } = req.body;
 
   // add doc to database
   try {
-    const user_id = req.user._id;
-    const song = await Song.create({ title, artist, plays, user_id });
+    const song = await Song.create({
+      title,
+      artist,
+      username_to,
+      username_from,
+    });
     res.status(200).json(song);
   } catch (error) {
     res.status(400).json({ error: error.message });

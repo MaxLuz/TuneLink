@@ -23,11 +23,56 @@
     padding:12px 0px;
 }
 
+.friendform input{
+    border-radius: 4px;
+    border: 1px solid rgb(202, 202, 202);
+    outline:none;
+    font-weight:500;
+    font-size:16px;
+    background-color:#181818;
+    padding: 4px 8px;
+    color:white;
+}
+
+.friendform input:focus{
+    border-color: #3FD6D6 !important;
+}
+
+.friendform button{
+    font-family: var(--font-family-text);
+    background-color: #222222;
+    border-style:none;
+    color:white;
+    border-radius:4px;
+}
+
+.friendform button:hover{
+    background-color:#4b4b4b;
+}
+
+.error{
+    width:97%;
+}
+
+.friends-bottom-left-container{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    width: calc(33% + 24px);
+}
+
+.send-song-container{
+    background-color: #181818;
+    border-radius:16px;
+    color:white;
+    padding:12px 24px;
+
+}
+
 .friends-inbox{
     display:flex;
     flex-direction: column;
     border-radius: 16px;
-    width: calc(33% - 24px);
     background-color: #181818;
     padding:12px 24px;
     color:white;

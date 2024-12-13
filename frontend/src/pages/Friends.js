@@ -8,6 +8,8 @@ import FriendDetails from "../components/FriendDetails";
 import { useFriendRequestContext } from "../hooks/useFriendRequestContext";
 import { useFriendListContext } from "../hooks/useFriendListContext";
 import { useCurrentFriendDataContext } from "../hooks/useCurrentFriendDataContext";
+import Inbox from "../components/Inbox";
+import SongForm from "../components/SongForm";
 import axios from "axios";
 
 const Friends = () => {
@@ -163,9 +165,16 @@ const Friends = () => {
         </div>
       </div>
       <div className="friends-bottom-container">
-        <div className="friends-inbox">
-          <h2>Inbox</h2>
+        <div className="friends-bottom-left-container">
+          <div className="send-song-container">
+            <h2>Send A Song</h2>
+            <SongForm />
+          </div>
+          <div className="friends-inbox">
+            <Inbox />
+          </div>
         </div>
+
         <div className="friends-activity">
           <h2>Friend Activity</h2>
           <p className="current-friend">{friendData}</p>
