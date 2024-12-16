@@ -6,7 +6,6 @@ import axios from "axios";
 const Inbox = () => {
   const [tracks, setTracks] = useState([]);
   const [spotifyTracks, setSpotifyTracks] = useState([]);
-  const [loading, setLoading] = useState(false);
   const { user } = useAuthContext();
   const [error, setError] = useState("");
   const spotifytoken = localStorage.getItem("spotify_access_token");

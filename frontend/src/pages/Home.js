@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useSongsContext } from "../hooks/useSongContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { Link } from "react-router-dom";
 // components
 import Navbar from "../components/Navbar";
 import SongDetails from "../components/SongDetails";
@@ -90,51 +91,38 @@ const Home = () => {
 
   return (
     <div className="home">
-      <div className="main-content">
-        {!spotifytoken ? (
-          <div className="hello">Hello there</div>
-        ) : (
-          <div className="isAuthenticated">
-            <div className="dashboard-container">
-              <div className="dashboard-top-container">
-                <Welcome
-                  token={spotifytoken}
-                  spotuser={spotuser}
-                  setSpotuser={setSpotuser}
-                />
-                <Hero token={spotifytoken} />
-              </div>
-              <div className="dashboard-bottom-container">
-                <div className="bottom-fav-songs-container">
-                  {/* <div className="friendlist-wrapper">
-                    <h3>Friends List</h3>
-                    {friends &&
-                      friends.map((friend) => (
-                        <FriendDetails key={friend._id} friend={friend} />
-                      ))}
-                  </div>
-                  <div className="favorite-songs">
-                    <SongForm />
-                    <div className="songs">
-                      {songs &&
-                        songs.map((song) => (
-                          <SongDetails key={song._id} song={song} />
-                        ))}
-                    </div>
-                  </div> */}
-                </div>
-                <div className="bottom-top-stats-container">
-                  <Buttons timeframe={timeframe} setTimeframe={setTimeframe} />
-
-                  <div className="data-components">
-                    <TopArtists token={spotifytoken} timeframe={timeframe} />
-                    <TopSongs token={spotifytoken} timeframe={timeframe} />
-                  </div>
-                </div>
-              </div>
-            </div>
+      <div className="dashboard-container">
+        <div className="dashboard-welcome">
+          <div className="welcome-top">
+            <h2>Dashboard</h2>
+            <p className="welcome-text">Welcome to your TuneLink dashboard!</p>
           </div>
-        )}
+          <div className="welcome-bottom">
+            <div className="welcome-bottom-text">
+              <h1 className="total-time">
+                1,239 <span className="smaller-size">min</span>
+              </h1>
+              <p className="welcome-text">
+                Total time spent listening since signing up on 12/16/24
+              </p>
+            </div>
+            <Link className="add-friends" to="/Friends">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+                <path
+                  class="fa-secondary"
+                  opacity=".4"
+                  d="M0 512l448 0L384 304 64 304 0 512zM96 128a128 128 0 1 0 256 0A128 128 0 1 0 96 128z"
+                />
+                <path
+                  class="fa-primary"
+                  d="M504 312l0 24 48 0 0-24 0-64 64 0 24 0 0-48-24 0-64 0 0-64 0-24-48 0 0 24 0 64-64 0-24 0 0 48 24 0 64 0 0 64z"
+                />
+              </svg>
+              Add friends
+            </Link>
+          </div>
+        </div>
+        <div className="dashboard-content"></div>
       </div>
     </div>
   );

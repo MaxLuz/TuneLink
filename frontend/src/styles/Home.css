@@ -1,34 +1,60 @@
-.dashboard-top-container{
-    width:100%;
-    border-radius: 16px;
+.home{
+    padding-left:292px;
+    color:white;
+    padding-right:24px;
+}
+
+.welcome-text{
+    color: #C7C7C7;
+    font-size:12px;
+    font-weight:400;
+    padding:0px;
+    margin:0px;
+    margin-top:-12px;
+}
+
+.total-time{
+    font-size: 40px;
+    font-weight:bold;
+}
+
+.smaller-size{
+    font-size:24px;
+}
+
+.dashboard-welcome{
     display:flex;
+    flex-direction: column;
     gap:12px;
 }
 
-.dashboard-bottom-container{
-    width:100%;
-    border-radius:16px;
+.welcome-bottom{
     display:flex;
-    gap:12px;
+    justify-content: space-between;
+    align-items: end;
 }
 
-.bottom-fav-songs-container{
+.add-friends{
+    all:unset;
+    color:#C7C7C7;
+    border: 1px solid #3E3E3E;
+    border-radius: 4px;
     display:flex;
-    width:50%;
-    background-color: #181818;
-    border-radius: 16px;
-}
-.bottom-top-stats-container{
-    width:50%;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.hello{
-    width:100%;
-    display:flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap:8px;
+    font-size:12px;
+    background-color: #181818;
+    width:120px;
+    height:35px;
+    cursor:pointer;
+}
+
+.add-friends:hover{
+    background-color: #131313
+}
+
+.add-friends svg{
+    width:20px;
+    fill: #C7C7C7;
 }

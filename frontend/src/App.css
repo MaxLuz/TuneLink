@@ -33,37 +33,5 @@
 }
 
 
-body { margin: 0; padding: 0px; font-family: 'Roboto', sans-serif; background-color: #cccccc;  }
+body { margin: 0; padding: 0px; font-family: 'Roboto', sans-serif; background-color: #181818;  }
 
-.isAuthenticated{
-    display:flex;
-    justify-content: start;
-    width:100%;
-    height:auto;
-    gap:12px;
-    position:relative;
-}
-.dashboard-container{
-    display:flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: end;
-    width:90%;
-    gap:12px;
-    margin-left:280px;
-}
-
-.data-components{
-    display:flex;
-    padding-top:12px;
-    justify-content: center;
-    gap:12px;
-    width:100%;
-}
-
-.favorite-songs{
-    display:flex;
-    flex-direction:column;
-    width:33%;
-    
-}
