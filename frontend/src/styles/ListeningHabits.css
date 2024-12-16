@@ -16,14 +16,15 @@
 }
 
 .lh-title{
-    font-size:16px;
+    font-size:22px;
     font-weight:bold;
 }
 
 .lh-text{
     color: #C7C7C7;
-    font-size:12px;
+    font-size:14px;
     font-weight:400;
+    margin-top:-10px;
 }
 
 .time-period{
@@ -40,9 +41,9 @@
     justify-content: center;
     align-items: center;
     gap:8px;
-    font-size:12px;
+    font-size:14px;
     background-color: #181818;
-    width:100px;
+    width:105px;
     height:35px;
     cursor:pointer;
 }

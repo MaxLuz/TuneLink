@@ -9,10 +9,15 @@
     flex-direction:column;
     gap:25px;
 }
+.dashboard-content-left{
+    display:flex;
+    flex-direction: column;
+    gap:24px;
+}
 
 .welcome-text{
     color: #C7C7C7;
-    font-size:12px;
+    font-size:14px;
     font-weight:400;
     padding:0px;
     margin:0px;
@@ -32,6 +37,7 @@
     display:flex;
     flex-direction: column;
     gap:12px;
+    margin-left:8px;
 }
 
 .welcome-bottom{
@@ -63,4 +69,35 @@
 .add-friends svg{
     width:20px;
     fill: #C7C7C7;
+}
+
+.home-dash-friends{
+    display:flex;
+    gap:16px;
+}
+
+.share-a-song{
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    padding: 24px;
+    min-width:400px;
+}
+
+.sas_title{
+    font-size: 22px;
+    margin-bottom:0px;
+}
+
+.friends-list{
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    padding:24px;
+    min-width:250px;
+}
+
+.friend-requests{
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    padding:24px;
+    min-width:300px;
 }

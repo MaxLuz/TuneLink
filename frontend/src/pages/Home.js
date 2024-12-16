@@ -15,6 +15,8 @@ import Hero from "../components/Hero";
 import FriendDetails from "../components/FriendDetails";
 import SideNav from "../components/SideNav";
 import ListeningHabits from "../components/ListeningHabits";
+import FriendsList from "../components/FriendsList";
+import FriendRequestsList from "../components/FriendRequestsList";
 // styles
 import "../styles/Home.css";
 import "../styles/Navbar.css";
@@ -120,12 +122,19 @@ const Home = () => {
           </div>
         </div>
         <div className="dashboard-content">
-          <div className="dashboard-content-right">
+          <div className="dashboard-content-left">
             <ListeningHabits timeframe={timeframe} />
             <div className="home-dash-friends">
-              <div className="share-a-song"></div>
-              <div className="friends-list"></div>
-              <div className="friend-requests"></div>
+              <div className="share-a-song">
+                <h2 className="sas_title">Share a Song</h2>
+                <SongForm />
+              </div>
+              <div className="friends-list">
+                <FriendsList friends={friends} />
+              </div>
+              <div className="friend-requests">
+                <FriendRequestsList />
+              </div>
             </div>
           </div>
           <div className="dashboard-content-left"></div>

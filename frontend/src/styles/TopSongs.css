@@ -9,7 +9,7 @@
 }
 
 .topSongs-h2{
-    font-size: 14px;
+    font-size: 16px;
     color:white;
     padding-left:32px;
 }
@@ -59,12 +59,12 @@
 }
 
 .topSongs-name{
-    font-size:12px;
+    font-size:14px;
     font-weight:bold;
 }
 
 .topSongs-artist{
-    font-size:12px;
+    font-size:14px;
     color: #C7C7C7;
 }
 

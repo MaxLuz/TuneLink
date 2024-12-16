@@ -1,0 +1,69 @@
+.friendrequests{
+    background-color: #181818;
+    border-radius:16px;
+    color:white;
+
+}
+
+.friend-request-object{
+    display:flex;
+    align-items: center;
+    gap:24px;
+}
+.friend-request-buttons{
+    display:flex;
+    align-items: center;
+    gap:8px;
+}
+
+.request-from{
+    margin:0px;
+}
+
+.accept{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0051FF;
+    border-style: none;
+    padding:0px 6px;
+    border-radius: 4px;
+    cursor:pointer;
+    font-size:11px;
+    color:white;
+}
+.reject{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #555555;
+    border-style: none;
+    padding:0px 6px;
+    border-radius: 4px;
+    cursor:pointer;
+    font-size:11px;
+    color:white;
+}
+
+.accept p{
+    margin:4px;
+}
+.reject p{
+    margin:4px;
+}
+
+.accept svg{
+    width:16px;
+    height:16px;
+   
+}
+
+.reject svg{
+    width:16px;
+    height:16px;
+}
+
+
+.friend-request-object{
+    margin-bottom:14px;
+}

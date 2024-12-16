@@ -18,14 +18,14 @@ label{
 
 input{
     height:24px;
-    font-size:18px;
+    font-size:14px;
 }
 
 form button{
     margin-top:8px;
     padding:12px;
     cursor:pointer;
-    font-size:16px;
+    font-size:14px;
 }
 
 .create input{
@@ -33,7 +33,7 @@ form button{
     border: 1px solid rgb(202, 202, 202);
     outline:none;
     font-weight:500;
-    font-size:16px;
+    font-size:14px;
     background-color:#181818;
     padding: 4px 8px;
     color:white;
