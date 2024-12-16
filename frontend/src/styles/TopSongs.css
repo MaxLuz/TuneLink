@@ -70,7 +70,7 @@
 
 .divider{
     display: grid; /* Enable grid layout */
-    grid-template-columns: minmax(32px,65px) minmax(100px,175px) 1fr auto; /* Custom column sizes */
+    grid-template-columns: minmax(32px,68px) minmax(100px,175px) 1fr auto; /* Custom column sizes */
     gap: 10px; /* Optional: Space between grid items */
     color: #3E3E3E;
     border-bottom: 1px solid #3E3E3E;
@@ -114,3 +114,6 @@
     width:100%;
 }
 
+.actualname{
+    margin-left:4px;
+}

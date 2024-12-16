@@ -137,7 +137,7 @@ const TopSongs = ({ token, timeframe }) => {
                 />
               </div>
 
-              <p className="topSongs-name">{track.name}</p>
+              <p className="topSongs-name actualname">{track.name}</p>
               <p className="topSongs-artist">{track.artists[0].name}</p>
               <p className="topSongs-name">{track.popularity}</p>
             </li>

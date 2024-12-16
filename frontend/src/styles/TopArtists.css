@@ -3,48 +3,64 @@
     flex-direction: column;
     background-color: #181818;
     border-radius: 16px;
-    width:50%;
-    
+    width:100%;
+    padding-top:12px;
+    min-width:200px;
 }
 
 .topArtists-h2{
-    font-size: 24px;
+    font-size: 14px;
     color:white;
     padding-left:32px;
-    
 }
 
+.divider-artists{
+    grid-template-columns: minmax(32px,77px) 1fr auto !important; /* Custom column sizes */
+
+}
 
 .topArtists-ul{
     list-style: none;
     display:flex;
     justify-content: center;
     flex-direction: column;
-    gap:8px;
+    gap:12px;
     flex-wrap:wrap;
-    margin-left:-10px;
-    margin-top:0px;
+    padding: 0px;
+    margin:0px;
+    padding-top:16px;
+}
+
+.topArtist-ul-wrapper{
+    height:405px;
+    overflow-y:scroll;
+    scrollbar-width: none; /* Firefox: Hide scrollbar */
+    -ms-overflow-style: none; 
 }
 
 .topArtists-li{
-    display:flex;
+    display:grid;
     justify-content: start;
     align-items: center;
     gap:24px;
     padding:0px;
     color:white;
-    border-radius:12px;
+    padding-right:12px;
+    padding-left:12px;
+    grid-template-columns: 14px 32px 1fr auto; /* Custom column sizes */
+
 }
 
 .topArtists-img{
     border-radius: 100px;
-    width:40px;
-    height:40px;
+    width:30px;
+    height:30px;
 }
 
 .topArtists-name{
-    font-size:18px;
+    font-size:12px;
     font-weight:bold;
+    margin-left:-6px;
 }
 
 .image-wrapper{
@@ -54,4 +70,25 @@
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+.play-button-topArtists{
+    fill:rgba(255, 255, 255, 0.453);
+    width:14px;
+    cursor:pointer;
+}
+
+.play-button-link-topArtists{
+    display:none;
+}
+
+.topArtists-li:hover .index-topArtists{
+    display:none;
+}
+
+.topArtists-li:hover .play-button-link-topArtists{
+    display:flex;
+}
+.topArtists-li:hover{
+    background-color:#2a2a2a;
 }
