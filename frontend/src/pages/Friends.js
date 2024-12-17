@@ -8,6 +8,8 @@ import FriendDetails from "../components/FriendDetails";
 import { useFriendRequestContext } from "../hooks/useFriendRequestContext";
 import { useFriendListContext } from "../hooks/useFriendListContext";
 import { useCurrentFriendDataContext } from "../hooks/useCurrentFriendDataContext";
+import FriendsList from "../components/FriendsList";
+import FriendRequestsList from "../components/FriendRequestsList";
 import Inbox from "../components/Inbox";
 import SongForm from "../components/SongForm";
 import axios from "axios";
@@ -141,87 +143,13 @@ const Friends = () => {
 
   return (
     <div className="friends-wrapper">
-      <div className="friends-thirds-container">
+      <div className="friends-page-top">
         <FriendForm />
-        <div className="friendlist-wrapper friendlist-friendspage">
-          <h2>Friends List</h2>
-          <div className="friendslist-scroll">
-            {friends &&
-              friends.map((friend, index) => (
-                <li key={index}>
-                  <FriendDetails friend={friend} />
-                </li>
-              ))}
-          </div>
+        <div className="friendslist-wrapper">
+          <FriendsList friends={friends} />
         </div>
-        <div className="friendrequests">
-          <h2>Friend Requests</h2>
-          <div className="friendslist-scroll">
-            {friendrequests &&
-              friendrequests.map((request) => (
-                <FriendRequestDetails key={request._id} request={request} />
-              ))}
-          </div>
-        </div>
-      </div>
-      <div className="friends-bottom-container">
-        <div className="friends-bottom-left-container">
-          <div className="send-song-container">
-            <h2>Send A Song</h2>
-            <SongForm />
-          </div>
-          <div className="friends-inbox">
-            <Inbox />
-          </div>
-        </div>
-
-        <div className="friends-activity">
-          <h2>Friend Activity</h2>
-          <p className="current-friend">{friendData}</p>
-          <div className="friend-data">
-            <div className="topArtists-wrapper friends-activity-dash">
-              <h2 className="topArtists-h2">Top Artists</h2>
-
-              <ul className="topArtists-ul">
-                {artists.map((artist) => (
-                  <li className="topArtists-li" key={artist.id}>
-                    <div className="image-wrapper">
-                      <img
-                        className="topArtists-img"
-                        src={artist.images[0]?.url}
-                        alt={artist.name}
-                        width="100"
-                      />
-                    </div>
-
-                    <p className="topArtists-name">{artist.name}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="topSongs-wrapper friends-activity-dash">
-              <h2 className="topSongs-h2">Top Tracks</h2>
-              <ul className="topSongs-ul">
-                {tracks.map((track) => (
-                  <li className="topSongs-li" key={track.id}>
-                    <div className="image-wrapper">
-                      <img
-                        className="topSongs-img"
-                        src={track.album.images[0].url}
-                        alt={track.name}
-                        width="100"
-                      />
-                    </div>
-
-                    <div className="song-info">
-                      <p className="topSongs-name">{track.name}</p>
-                      <p>{track.artists[0].name}</p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        <div className="friend-requests-wrapper">
+          <FriendRequestsList />
         </div>
       </div>
     </div>

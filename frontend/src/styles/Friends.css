@@ -1,10 +1,11 @@
 .friends-wrapper{
     display:flex;
     flex-direction: column;
-    align-items: end;
+    align-items: start;
     width:90%;
-    margin-left: 280px;
+    margin-left: 292px;
     gap:12px;
+    padding-top:10px;
 }
 
 .friends-thirds-container{
@@ -113,12 +114,46 @@
     display:flex;
     flex-direction: column;
     border-radius: 16px;
-    width:33%;
-    background-color: #181818;
+    width:100%;
     padding:12px 24px;
     color:white;
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    max-width:400px;
+}
+.friend-form-wrapper h2{
+    font-size:22px;
 }
 
+.friendslist-wrapper{
+    border: 1px solid #3E3E3E;
+    width:100%;
+    padding: 12px 24px;
+    border-radius:12px;
+    max-width:250px;
+    overflow:hidden;
+}
 
+.friends-page-top{
+    display:flex;
+    gap:24px;
+    width:100%;
+}
+
+.friend-requests-wrapper{
+    border: 1px solid #3E3E3E;
+    width:100%;
+    padding: 12px 24px;
+    border-radius:12px;
+    max-width:250px;
+    overflow:hidden;
+}
+
+@media screen and (max-width:800px){
+    .friends-wrapper{
+        margin-left:0px;
+        padding-bottom:60px;
+    }
+}
 
 
