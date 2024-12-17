@@ -106,7 +106,6 @@ const TopSongs = ({ token, timeframe }) => {
       <div className="divider">
         <p>#</p>
         <p>Song</p>
-        <p>Artist</p>
         <p>Popularity</p>
       </div>
       <div className="topSong-ul-wrapper">
@@ -136,9 +135,11 @@ const TopSongs = ({ token, timeframe }) => {
                   width="100"
                 />
               </div>
+              <div className="song-info">
+                <p className="topSongs-name actualname">{track.name}</p>
+                <p className="topSongs-artist">{track.artists[0].name}</p>
+              </div>
 
-              <p className="topSongs-name actualname">{track.name}</p>
-              <p className="topSongs-artist">{track.artists[0].name}</p>
               <p className="topSongs-name">{track.popularity}</p>
             </li>
           ))}

@@ -17,7 +17,7 @@ const Friends = () => {
   const [error, setError] = useState(null);
   // const [friendRequests, setFriendRequests] = useState("");
   // const [friends, setFriends] = useState([]);
-  const { friendrequests, dispatch } = useFriendRequestContext();
+  const { friendrequests, dispatch_friendrequests } = useFriendRequestContext();
   const { friends, dispatch_friends } = useFriendListContext();
   const { friendData } = useCurrentFriendDataContext();
   const [artists, setArtists] = useState([]);
@@ -40,7 +40,7 @@ const Friends = () => {
       if (response.ok) {
         // setFriendRequests(json);
         // dispatches context for all friend requests
-        dispatch({ type: "SET_FRIENDREQUESTS", payload: json });
+        dispatch_friendrequests({ type: "SET_FRIENDREQUESTS", payload: json });
       }
     };
     if (user) {

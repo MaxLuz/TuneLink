@@ -83,11 +83,48 @@
 @media screen and (max-width:1240px) {
     .listening-habits-bottom{
         flex-direction: column;
+        
     }
     .tracks-container{
         width:100%;
     }
     .artists-container{
         width:100%;
+    }
+
+    @media screen and (max-width:500px){
+        .listening-habits{
+            width:99vw;
+            padding: 0px;
+            border-radius: 0px;
+            padding-top:12px;
+        }
+        .listening-habits-bottom{
+            gap:0px;
+        }
+        .tracks-container{
+            border-radius:0px;
+            border:none;
+        }
+
+        .artists-container{
+            border-radius:0px;
+            border-bottom:0px;
+        }
+
+        .toggle-button{
+            margin-right:12px;
+        }
+        .lh-title{
+            font-size:16px;
+        }
+        .lh-text{
+            font-size:12px;
+            margin-bottom:0px;
+        }
+        .listening-habits-text{
+            padding-left:18px;
+        }
+        
     }
 }

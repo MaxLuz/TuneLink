@@ -12,6 +12,7 @@
 .dashboard-content-left{
     display:flex;
     flex-direction: column;
+    justify-content: center;
     gap:24px;
 }
 
@@ -103,8 +104,43 @@
     min-width:300px;
 }
 
+.buttons-container-mobile{
+    display:none;
+}
+
 @media screen and (max-width:800px){
     .home{
         padding-left:0px;
+        padding-bottom:60px;
+    }
+}
+
+@media screen and (max-width:500px){
+    .welcome-text{
+        font-size:12px;
+    }
+    .dashboard-welcome h2{
+        font-size:18px;
+    }
+    .dashboard-welcome h1{
+        margin:0px;
+        margin-bottom:18px;
+        margin-top:18px;
+    }
+    .add-friends{
+        display:none;
+    }
+
+    .dashboard-welcome{
+        padding-left:18px;
+        margin:0px;
+    }
+
+    .buttons-container-mobile{
+        display:flex;
+        justify-content: center;
+        width:100%;
+        margin-top:12px;
+        margin-bottom:12px;
     }
 }
