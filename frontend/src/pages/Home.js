@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useSongsContext } from "../hooks/useSongContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useFriendRequestContext } from "../hooks/useFriendRequestContext";
 import { Link } from "react-router-dom";
 // components
 import Navbar from "../components/Navbar";
@@ -20,7 +21,6 @@ import FriendRequestsList from "../components/FriendRequestsList";
 // styles
 import "../styles/Home.css";
 import "../styles/Navbar.css";
-import DiscoveryList from "../components/DiscoveryList";
 
 const Home = () => {
   const spotifytoken = localStorage.getItem("spotify_access_token");
@@ -28,7 +28,7 @@ const Home = () => {
   const [timeframe, setTimeframe] = useState("short_term");
   const [friends, setFriends] = useState("");
   const [error, setError] = useState(null);
-
+  const { friendrequests, dispatch_friendrequests } = useFriendRequestContext();
   const { songs, dispatch } = useSongsContext();
   const { user } = useAuthContext();
 
@@ -92,6 +92,29 @@ const Home = () => {
     }
   }, [user]);
 
+  // fetches all current friend requests for user
+  useEffect(() => {
+    const fetchFriendRequests = async () => {
+      const response = await fetch("api/friends/requests", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      const json = await response.json();
+      if (!response.ok) {
+        setError(json.message);
+      }
+      if (response.ok) {
+        // setFriendRequests(json);
+        // dispatches context for all friend requests
+        dispatch_friendrequests({ type: "SET_FRIENDREQUESTS", payload: json });
+      }
+    };
+    if (user) {
+      fetchFriendRequests();
+    }
+  }, [user]);
+
   return (
     <div className="home">
       <div className="dashboard-container">
@@ -124,7 +147,7 @@ const Home = () => {
         <div className="dashboard-content">
           <div className="dashboard-content-left">
             <ListeningHabits timeframe={timeframe} />
-            <div className="home-dash-friends">
+            {/* <div className="home-dash-friends">
               <div className="share-a-song">
                 <h2 className="sas_title">Share a Song</h2>
                 <SongForm />
@@ -135,7 +158,7 @@ const Home = () => {
               <div className="friend-requests">
                 <FriendRequestsList />
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="dashboard-content-left"></div>
         </div>

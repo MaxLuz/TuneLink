@@ -38,6 +38,7 @@
     flex-direction: column;
     gap:12px;
     margin-left:8px;
+    max-width:1225px;
 }
 
 .welcome-bottom{

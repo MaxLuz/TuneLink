@@ -79,3 +79,15 @@
     border-radius: 12px;
     width:50%; 
 }
+
+@media screen and (max-width:1240px) {
+    .listening-habits-bottom{
+        flex-direction: column;
+    }
+    .tracks-container{
+        width:100%;
+    }
+    .artists-container{
+        width:100%;
+    }
+}
