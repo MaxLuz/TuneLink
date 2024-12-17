@@ -99,7 +99,8 @@
         align-items: center;
         background-color:#181818;
         height:60px;
-        border-top: 1px solid #3E3E3E;
+        border-top: 1px solid #3E3E3E;  
+        z-index:1;
     }
     .sidenav p{
         display:none;
