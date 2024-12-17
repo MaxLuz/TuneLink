@@ -102,3 +102,9 @@
     padding:24px;
     min-width:300px;
 }
+
+@media screen and (max-width:800px){
+    .home{
+        padding-left:0px;
+    }
+}

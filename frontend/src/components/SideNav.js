@@ -121,7 +121,7 @@ const SideNav = () => {
               d="M512 256L352 96l-32 0 0 96-160 0 0 128 160 0 0 96 32 0L512 256z"
             />
           </svg>
-          Log out
+          <p className="logout-label">Log out</p>
         </button>
       </div>
     </nav>
