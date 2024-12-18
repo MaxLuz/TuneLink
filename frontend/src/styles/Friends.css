@@ -119,6 +119,7 @@
     border: 1px solid #3E3E3E;
     border-radius:12px;
     max-width:200px;
+    height:calc(100% - 26px);
 }
 .friend-form-wrapper h2{
     font-size:22px;
@@ -173,6 +174,12 @@
     justify-content: end;
 }
 
+
+
+.hide_on_desktop{
+    display:none;
+}
+
 @media screen and (max-width:800px){
     .friends-wrapper{
         margin-left:0px;
@@ -192,13 +199,13 @@
 }
 
 @media screen and (max-width:1082px){
-    .friend-requests-wrapper{
+    #friend-requests-top{
         display:none;
     }
 }
 
 @media screen and (max-width:500px){
-    .friend-form-wrapper{
+    #friendform-top{
         display:none;
     }
     .friends-wrapper{
@@ -214,13 +221,39 @@
         max-width:none;
         border-radius: 0px;
         border-right:none;
+        border-bottom:none;
     }
 
     .friend-details{
         font-size:16px;
     }
+    .hide_on_desktop{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        margin-top:24px;
+        gap:24px;
+    }
 
-    /* .friends-welcome{
-        margin-right:0px;
-    } */
+    #friendform-bottom{
+      width:80vw;
+    }
+
+    .friend-form-wrapper{
+        width:100%;
+        max-width:none;
+        border:none;
+    }
+    .friend-requests-wrapper{
+        border-radius:0px;
+        width:calc(100% - 26px);
+        max-width:none;
+        border-bottom:none;
+    }
+    .friend-form-wrapper h2{
+        font-size:20px;
+    }
+    .friend-requests-wrapper h2{
+        font-size:20px;
+    }
 }

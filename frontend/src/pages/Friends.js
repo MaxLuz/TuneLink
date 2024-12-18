@@ -30,6 +30,13 @@ const Friends = () => {
   const [tracks, setTracks] = useState([]);
   const [spotifytoken, setSpotToken] = useState();
 
+  const handleScrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight, // Scroll to the bottom of the page
+      behavior: "smooth", // Smooth scroll effect
+    });
+  };
+
   // fetches all current friend requests for user
   useEffect(() => {
     const fetchFriendRequests = async () => {
@@ -163,7 +170,7 @@ const Friends = () => {
             </div>
           </div>
           <div className="buttons-container-mobile">
-            <Link className="toggle-button" to="/Friends">
+            <Link className="toggle-button" onClick={handleScrollToBottom}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
                 <path
                   opacity=".4"
@@ -199,8 +206,11 @@ const Friends = () => {
           <div className="friendslist-wrapper">
             <FriendsList friends={friends} />
           </div>
-          <FriendForm />
-          <div className="friend-requests-wrapper">
+          <div id="friendform-top" className="friendform-wrapper">
+            <FriendForm />
+          </div>
+
+          <div id="friend-requests-top" className="friend-requests-wrapper">
             <FriendRequestsList />
           </div>
         </div>
@@ -224,6 +234,14 @@ const Friends = () => {
               <TopArtists token={spotifytoken} timeframe={"short_term"} />
             </div>
           </div>
+        </div>
+      </div>
+      <div className="hide_on_desktop">
+        <div id="friendform-bottom">
+          <FriendForm />
+        </div>
+        <div className="friend-requests-wrapper">
+          <FriendRequestsList />
         </div>
       </div>
     </div>
