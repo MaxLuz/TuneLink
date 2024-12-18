@@ -87,6 +87,10 @@
     padding:0px;
 }
 
+.nodisplayondesktop{
+    display:none;
+}
+
 
 @media screen and (max-width: 800px) {
     .sidenav{
@@ -124,6 +128,14 @@
 
     .sidenavlink svg{
         width:25px;
+    }
+    
+    .nodisplayondesktop{
+        display:flex;
+    }
+
+    .logout-btn svg{
+        width:23px;
     }
     
 }

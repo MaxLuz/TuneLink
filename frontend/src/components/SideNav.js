@@ -64,22 +64,22 @@ const SideNav = () => {
 
           <p>Inbox</p>
         </Link>
-        <Link className="sidenavlink" to="/">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+        <button className="logout-btn nodisplayondesktop" onClick={handleClick}>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path
               className="fa-secondary"
               opacity=".4"
               fill="#ffffff"
-              d="M160 32l128 0 0 448-128 0 0-448z"
+              d="M0 32L0 64 0 448l0 32 32 0 128 0 32 0 0-64-32 0-96 0L64 96l96 0 32 0 0-64-32 0L32 32 0 32z"
             />
             <path
               className="fa-primary"
               fill="#ffffff"
-              d="M448 96L320 96l0 384 128 0 0-384zM128 224L0 224 0 480l128 0 0-256z"
+              d="M512 256L352 96l-32 0 0 96-160 0 0 128 160 0 0 96 32 0L512 256z"
             />
           </svg>
-          <p>Stats & Insights</p>
-        </Link>
+          <p className="logout-label">Log out</p>
+        </button>
       </div>
       <div className="nav-bottom">
         <Link className="sidenavlink" to="/">
