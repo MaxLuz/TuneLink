@@ -58,20 +58,11 @@ const SideNav = () => {
         </Link>
         <Link className="sidenavlink" to="/">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            <path
-              className="fa-secondary"
-              opacity=".4"
-              fill="#ffffff"
-              d="M0 208a208 208 0 1 0 416 0A208 208 0 1 0 0 208zm352 0A144 144 0 1 1 64 208a144 144 0 1 1 288 0z"
-            />
-            <path
-              className="fa-primary"
-              fill="#ffffff"
-              d="M330.7 376L441.4 486.6 464 509.3 509.3 464l-22.6-22.6L376 330.7C363.3 348 348 363.3 330.7 376z"
-            />
+            <path opacity=".4" d="M0 144L0 448l512 0 0-304L256 320 0 144z" />
+            <path d="M0 144V64H512v80L256 320 0 144z" />
           </svg>
 
-          <p>Explore</p>
+          <p>Inbox</p>
         </Link>
         <Link className="sidenavlink" to="/">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

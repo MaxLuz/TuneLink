@@ -5,7 +5,7 @@ import { useFriendListContext } from "../hooks/useFriendListContext";
 
 const FriendRequestDetails = ({ request }) => {
   const { user } = useAuthContext();
-  const { dispatch } = useFriendRequestContext();
+  const { dispatch_friendrequests } = useFriendRequestContext();
   const { dispatch_friends } = useFriendListContext();
 
   const handleAccept = async () => {
@@ -28,7 +28,7 @@ const FriendRequestDetails = ({ request }) => {
 
     if (response.ok) {
       // handle request list refresh
-      dispatch({ type: "FRIENDREQUEST_ACTION", payload: json });
+      dispatch_friendrequests({ type: "FRIENDREQUEST_ACTION", payload: json });
       dispatch_friends({ type: "ADDED_FRIEND", payload: json.from });
     }
   };
@@ -52,7 +52,7 @@ const FriendRequestDetails = ({ request }) => {
     }
 
     if (response.ok) {
-      dispatch({ type: "FRIENDREQUEST_ACTION", payload: json });
+      dispatch_friendrequests({ type: "FRIENDREQUEST_ACTION", payload: json });
     }
   };
 

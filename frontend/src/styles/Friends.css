@@ -2,10 +2,9 @@
     display:flex;
     flex-direction: column;
     align-items: start;
-    width:90%;
+    width:100%;
     margin-left: 292px;
-    gap:12px;
-    padding-top:10px;
+    gap:24px;
 }
 
 .friends-thirds-container{
@@ -119,7 +118,7 @@
     color:white;
     border: 1px solid #3E3E3E;
     border-radius:12px;
-    max-width:400px;
+    max-width:200px;
 }
 .friend-form-wrapper h2{
     font-size:22px;
@@ -132,21 +131,46 @@
     border-radius:12px;
     max-width:250px;
     overflow:hidden;
+    height:200px;
 }
 
 .friends-page-top{
     display:flex;
-    gap:24px;
     width:100%;
+    margin-top:12px;
+    justify-content: end;
+    max-width:1234px;
 }
 
 .friend-requests-wrapper{
     border: 1px solid #3E3E3E;
     width:100%;
     padding: 12px 24px;
+    
     border-radius:12px;
     max-width:250px;
+    min-width:250px;
     overflow:hidden;
+}
+
+.friends-page-bottom{
+    width:100%;
+}
+
+.friend-text-under{
+    margin-top:-18px;
+}
+
+.friends-welcome{
+    margin-right:auto;
+    min-width:250px;
+}
+
+.friends-features-wrapper{
+    display:flex;
+    gap:24px;
+    width:100%;
+    justify-content: end;
 }
 
 @media screen and (max-width:800px){
@@ -156,4 +180,43 @@
     }
 }
 
+@media screen and (max-width:1300px){
+    .friends-page-top{
+        flex-direction:column;
+        gap:24px;
+    }
 
+    .friends-features-wrapper{
+        justify-content: start;
+    }
+}
+
+@media screen and (max-width:1082px){
+    .friend-requests-wrapper{
+        display:none;
+    }
+}
+
+@media screen and (max-width:500px){
+    .friend-form-wrapper{
+        display:none;
+    }
+    .friends-wrapper{
+        margin-left:-24px;
+        margin-top:-12px;
+        gap:0px;
+    }
+
+    .friends-features-wrapper{
+        width:99vw;
+    }
+    .friendslist-wrapper{
+        max-width:none;
+        border-radius: 0px;
+        border-right:none;
+    }
+
+    .friend-details{
+        font-size:16px;
+    }
+}

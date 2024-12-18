@@ -18,6 +18,7 @@
 .lh-title{
     font-size:22px;
     font-weight:bold;
+    color:white;
 }
 
 .lh-text{
@@ -80,6 +81,10 @@
     width:50%; 
 }
 
+.blue-text{
+    color: #3FD6D6;
+}
+
 @media screen and (max-width:1240px) {
     .listening-habits-bottom{
         flex-direction: column;
@@ -121,6 +126,7 @@
         .lh-text{
             font-size:12px;
             margin-bottom:0px;
+            margin-top:-6px;
         }
         .listening-habits-text{
             padding-left:18px;
