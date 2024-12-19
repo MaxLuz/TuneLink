@@ -180,7 +180,7 @@ const Friends = () => {
               </svg>
               Add
             </Link>
-            <Link className="toggle-button" to="/Friends">
+            <Link className="toggle-button" to="/inbox">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path
                   opacity=".4"
@@ -190,7 +190,11 @@ const Friends = () => {
               </svg>
               Inbox
             </Link>
-            <Link className="toggle-button" to="/Friends">
+            <Link
+              className="toggle-button"
+              to="/inbox"
+              onClick={handleScrollToBottom}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path
                   opacity=".4"

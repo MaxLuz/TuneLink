@@ -3,6 +3,8 @@
     width:100%;
     padding-left:292px;
     flex-direction: column;
+    gap:24px;
+    padding-bottom:60px;
     
 }
 
@@ -10,11 +12,22 @@
     max-width:1234px;
     border: 1px solid #3E3E3E;
     border-radius:12px;
-    margin-top:24px;
 }
 
 .inbox-container{
     padding-top:24px;
+}
+
+.share-h2{
+    color:white;
+    font-size:18px;
+}
+
+.send-song-wrapper{
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    padding:24px;
+    max-width:400px;
 }
 
 @media screen and (max-width:800px){
@@ -32,5 +45,12 @@
         border-radius: 0px;
         width:99vw;
         border-right:none;
+    }
+
+    .send-song-wrapper{
+        border:none;
+    }
+    .share-h2{
+        font-size:22px;
     }
 }

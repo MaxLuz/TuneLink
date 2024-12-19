@@ -2,8 +2,15 @@ import React from "react";
 import "../styles/Inbox.css";
 import { Link } from "react-router-dom";
 import Inbox from "../components/Inbox";
+import SongForm from "../components/SongForm";
 
 const Inbox_Page = () => {
+  const handleScrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight, // Scroll to the bottom of the page
+      behavior: "smooth", // Smooth scroll effect
+    });
+  };
   return (
     <div class="inbox-page-wrapper">
       <div className="dashboard-welcome">
@@ -45,7 +52,7 @@ const Inbox_Page = () => {
             </svg>
             Inbox
           </Link>
-          <Link className="toggle-button" to="/Friends">
+          <Link className="toggle-button" onClick={handleScrollToBottom}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
               <path
                 opacity=".4"
@@ -59,6 +66,10 @@ const Inbox_Page = () => {
       </div>
       <div className="inbox-component-wrapper">
         <Inbox />
+      </div>
+      <div className="send-song-wrapper">
+        <h2 className="share-h2">Share a Song</h2>
+        <SongForm />
       </div>
     </div>
   );

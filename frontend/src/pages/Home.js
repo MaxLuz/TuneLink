@@ -47,6 +47,13 @@ const Home = () => {
     window.history.replaceState({}, document.title, window.location.pathname);
   };
 
+  const handleScrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight, // Scroll to the bottom of the page
+      behavior: "smooth", // Smooth scroll effect
+    });
+  };
+
   // fetches all of the current favorite songs
   useEffect(() => {
     const fetchSongs = async () => {
@@ -160,7 +167,11 @@ const Home = () => {
               </svg>
               Friends
             </Link>
-            <Link className="toggle-button" to="/Friends">
+            <Link
+              className="toggle-button"
+              to="/inbox"
+              onClick={handleScrollToBottom}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path
                   opacity=".4"
