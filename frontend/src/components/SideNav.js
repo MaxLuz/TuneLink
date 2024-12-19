@@ -21,7 +21,7 @@ const SideNav = () => {
           <div className="username">
             <div className="circle"> </div>
             <span>{user.username}</span>
-            <p className="version">v1.0</p>
+            <p className="version">v1.3</p>
           </div>
         )}
         <Link className="sidenavlink" to="/dashboard">
