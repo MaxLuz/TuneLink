@@ -22,9 +22,22 @@ function App() {
           <div className="pages">
             <Routes>
               <Route
-                path="/"
+                path="/dashboard"
                 element={<Home />} // add redirect  user ? <Home /> : <Navigate to="/login" />
               />
+
+              <Route
+                path="/friends"
+                element={user ? <Friends /> : <Navigate to="/dashboard" />}
+              />
+              <Route path="/inbox" element={<Inbox_Page />} />
+            </Routes>
+          </div>
+        )}
+        {!user && (
+          <div className="not-logged-in">
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
               <Route
                 path="/login"
                 element={<Login />} // add redirect !user ? <Login /> : <Navigate to="/" />
@@ -33,15 +46,9 @@ function App() {
                 path="/signup"
                 element={<Signup />} // add redirect !user ? <Signup /> : <Navigate to="/" />
               />
-              <Route
-                path="/friends"
-                element={user ? <Friends /> : <Navigate to="/" />}
-              />
-              <Route path="/inbox" element={<Inbox_Page />} />
             </Routes>
           </div>
         )}
-        {!user && <LandingPage />}
       </BrowserRouter>
     </div>
   );

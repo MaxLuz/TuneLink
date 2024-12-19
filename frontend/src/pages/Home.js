@@ -12,7 +12,6 @@ import TopArtists from "../components/TopArtists";
 import TopSongs from "../components/TopSongs";
 import Welcome from "../components/Welcome";
 import Buttons from "../components/Buttons";
-import Hero from "../components/Hero";
 import FriendDetails from "../components/FriendDetails";
 import SideNav from "../components/SideNav";
 import ListeningHabits from "../components/ListeningHabits";
@@ -167,11 +166,7 @@ const Home = () => {
               </svg>
               Friends
             </Link>
-            <Link
-              className="toggle-button"
-              to="/inbox"
-              onClick={handleScrollToBottom}
-            >
+            <Link className="toggle-button" to="/inbox">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path
                   opacity=".4"
@@ -181,7 +176,11 @@ const Home = () => {
               </svg>
               Inbox
             </Link>
-            <Link className="toggle-button" to="/Friends">
+            <Link
+              className="toggle-button"
+              to="/inbox"
+              onClick={handleScrollToBottom}
+            >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path
                   opacity=".4"

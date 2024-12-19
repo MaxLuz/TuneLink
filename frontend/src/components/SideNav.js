@@ -24,7 +24,7 @@ const SideNav = () => {
             <p className="version">v1.0</p>
           </div>
         )}
-        <Link className="sidenavlink" to="/">
+        <Link className="sidenavlink" to="/dashboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
             <path
               className="fa-secondary"

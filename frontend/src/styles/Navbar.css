@@ -2,16 +2,24 @@
     width:100%;
     display:flex;
     justify-content: center;
+    background-color: #ffffff; 
+    border-bottom: 1px solid black;
+    /* margin-top: -12px; */
+}
+
+.nav-inside-container{
+    width:100%;
+    display:flex;
+    justify-content: center;
     align-items: center;
     background-color: #ffffff; 
     height:75px;
-    border-radius: 16px;
     padding: 14px 0px;
+    max-width:1440px;
 }
 
 .nav{
     width:100%;
-
     padding-right:20px;
     padding-left:20px;
     display: flex;
@@ -111,9 +119,6 @@
         font-size:12px;
     }
 
-    .get-started{
-    }
-
     .login-text{
         font-size:14px;
     }
@@ -128,6 +133,14 @@
     }
 
     .nav-container{
-        height:50px;
+        height:42px;
+    }
+
+    .nav-container{
+        margin-top:0px;
+    }
+
+    .hero-container{
+        padding-left:0px;
     }
 }

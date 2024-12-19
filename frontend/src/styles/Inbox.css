@@ -1,7 +1,7 @@
 .inbox-page-wrapper{
     display:flex;
     width:100%;
-    padding-left:292px;
+    padding-left:304px;
     flex-direction: column;
     gap:24px;
     padding-bottom:60px;
@@ -37,9 +37,7 @@
 }
 
 @media screen and (max-width:500px){
-    .inbox-page-wrapper{
-        margin-left:-24px;
-    }
+    
 
     .inbox-component-wrapper{
         border-radius: 0px;
