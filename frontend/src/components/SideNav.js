@@ -56,7 +56,7 @@ const SideNav = () => {
           </svg>
           <p>Friends</p>
         </Link>
-        <Link className="sidenavlink" to="/">
+        <Link className="sidenavlink" to="/inbox">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path opacity=".4" d="M0 144L0 448l512 0 0-304L256 320 0 144z" />
             <path d="M0 144V64H512v80L256 320 0 144z" />

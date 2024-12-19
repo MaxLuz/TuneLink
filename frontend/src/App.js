@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import Navbar from "./components/Navbar";
 import SideNav from "./components/SideNav";
 import Friends from "./pages/Friends";
+import Inbox_Page from "./pages/Inbox";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 import { Navigate } from "react-router-dom";
@@ -34,6 +35,7 @@ function App() {
               path="/friends"
               element={user ? <Friends /> : <Navigate to="/" />}
             />
+            <Route path="/inbox" element={<Inbox_Page />} />
           </Routes>
         </div>
       </BrowserRouter>

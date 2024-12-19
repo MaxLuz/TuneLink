@@ -1,0 +1,36 @@
+.inbox-page-wrapper{
+    display:flex;
+    width:100%;
+    padding-left:292px;
+    flex-direction: column;
+    
+}
+
+.inbox-component-wrapper{
+    max-width:1234px;
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    margin-top:24px;
+}
+
+.inbox-container{
+    padding-top:24px;
+}
+
+@media screen and (max-width:800px){
+    .inbox-page-wrapper{
+        padding-left:0px;
+    }
+}
+
+@media screen and (max-width:500px){
+    .inbox-page-wrapper{
+        margin-left:-24px;
+    }
+
+    .inbox-component-wrapper{
+        border-radius: 0px;
+        width:99vw;
+        border-right:none;
+    }
+}
