@@ -15,6 +15,7 @@
     top:-50px;
     
     z-index: 5;
+    border-right: 1px solid #3E3E3E;
 }
 
 .username{
@@ -78,4 +79,63 @@
 
 .sidenavlink svg{
     width:20px;
+    fill: #C7C7C7;
+}
+
+.logout-label{
+    margin: 0px;
+    padding:0px;
+}
+
+.nodisplayondesktop{
+    display:none;
+}
+
+
+@media screen and (max-width: 800px) {
+    .sidenav{
+        all:unset;
+        position:fixed;
+        bottom:0;
+        left:0;
+        width:100%;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background-color:#181818;
+        height:60px;
+        border-top: 1px solid #3E3E3E;  
+        z-index:1;
+    }
+    .sidenav p{
+        display:none;
+    }
+
+    .username{
+        display:none;
+    }
+    .nav-bottom{
+        display:none;
+    }
+
+    .nav-top{
+        display:flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding:0px;
+        margin:0px;
+    }
+
+    .sidenavlink svg{
+        width:25px;
+    }
+    
+    .nodisplayondesktop{
+        display:flex;
+    }
+
+    .logout-btn svg{
+        width:23px;
+    }
+    
 }

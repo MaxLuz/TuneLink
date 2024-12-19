@@ -14,27 +14,29 @@ const Navbar = () => {
 
   return (
     <header className="nav-container">
-      <Link className="logo" to="/">
-        <h1>TuneLink</h1>
-      </Link>
-      <nav className="nav">
-        {user && (
-          <div className="logout">
-            <span>{user.email}</span>
-            <button onClick={handleClick}>Log out</button>
-          </div>
-        )}
-        {!user && (
-          <div className="login-signup">
-            <Link className="login-btn" to="/login">
-              Login
-            </Link>
-            <Link className="get-started" to="/signup">
-              Get Started
-            </Link>
-          </div>
-        )}
-      </nav>
+      <div className="nav-inside-container">
+        <Link className="logo" to="/">
+          <h1>TuneLink</h1>
+        </Link>
+        <nav className="nav">
+          {user && (
+            <div className="logout">
+              <span>{user.email}</span>
+              <button onClick={handleClick}>Log out</button>
+            </div>
+          )}
+          {!user && (
+            <div className="login-signup">
+              <Link className="login-btn" to="/login">
+                <p className="login-text">Login</p>
+              </Link>
+              <Link className="get-started" to="/signup">
+                <p className="get-started-text">Get Started</p>
+              </Link>
+            </div>
+          )}
+        </nav>
+      </div>
     </header>
   );
 };

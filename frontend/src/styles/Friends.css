@@ -1,10 +1,10 @@
 .friends-wrapper{
     display:flex;
     flex-direction: column;
-    align-items: end;
-    width:90%;
-    margin-left: 280px;
-    gap:12px;
+    align-items: start;
+    width:100%;
+    margin-left: 304px;
+    gap:24px;
 }
 
 .friends-thirds-container{
@@ -69,14 +69,6 @@
 
 }
 
-.friends-inbox{
-    display:flex;
-    flex-direction: column;
-    border-radius: 16px;
-    background-color: #181818;
-    padding:12px 24px;
-    color:white;
-}
 
 .friends-activity{
     display:flex;
@@ -113,90 +105,146 @@
     display:flex;
     flex-direction: column;
     border-radius: 16px;
-    width:33%;
-    background-color: #181818;
+    width:100%;
     padding:12px 24px;
     color:white;
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    max-width:200px;
+    height:calc(100% - 26px);
+}
+.friend-form-wrapper h2{
+    font-size:22px;
 }
 
-.friendlist-friendspage{
-    background-color: #181818;
-    border-radius:16px;
-    width:33%;
-    padding:12px 24px;
+.friendslist-wrapper{
+    border: 1px solid #3E3E3E;
+    width:100%;
+    padding: 12px 24px;
+    border-radius:12px;
+    max-width:250px;
+    overflow:hidden;
+    height:200px;
 }
 
-.friendslist-scroll{
-    overflow-y:scroll;
-    max-height:150px;
-    scrollbar-width: none; /* Firefox: Hide scrollbar */
-    -ms-overflow-style: none; /* IE and Edge: Hide scrollbar */
-    margin-top:0px;
-}
-.friendlist-friendspage h2{
-    font-size:24px;
-}
-
-.friendlist-friendspage li{
-    list-style: none;
-}
-
-.friendrequests{
-    width:33%;
-    background-color: #181818;
-    border-radius:16px;
-    color:white;
-    padding:12px 24px;
-}
-
-.friend-request-object{
+.friends-page-top{
     display:flex;
-    align-items: center;
+    width:100%;
+    margin-top:12px;
+    justify-content: end;
+    max-width:1234px;
+}
+
+.friend-requests-wrapper{
+    border: 1px solid #3E3E3E;
+    width:100%;
+    padding: 12px 24px;
+    
+    border-radius:12px;
+    max-width:250px;
+    min-width:250px;
+    overflow:hidden;
+}
+
+.friends-page-bottom{
+    width:100%;
+}
+
+.friend-text-under{
+    margin-top:-18px;
+}
+
+.friends-welcome{
+    margin-right:auto;
+    min-width:250px;
+}
+
+.friends-features-wrapper{
+    display:flex;
     gap:24px;
-}
-.friend-request-buttons{
-    display:flex;
-    align-items: center;
-    gap:8px;
-}
-
-.request-from{
-    margin:0px;
-}
-
-.accept{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(0, 156, 0);
-    border-style: none;
-    padding:4px 6px;
-    border-radius: 4px;
-    cursor:pointer;
-}
-.reject{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(168, 5, 5);
-    border-style: none;
-    padding:4px 6px;
-    border-radius: 4px;
-    cursor:pointer;
-}
-
-.accept svg{
-    width:16px;
-    height:16px;
-   
-}
-
-.reject svg{
-    width:16px;
-    height:16px;
+    width:100%;
+    justify-content: end;
 }
 
 
-.friend-request-object{
-    margin: 18px 0px;
+
+.hide_on_desktop{
+    display:none;
+}
+
+@media screen and (max-width:800px){
+    .friends-wrapper{
+        margin-left:0px;
+        padding-bottom:60px;
+    }
+}
+
+@media screen and (max-width:1300px){
+    .friends-page-top{
+        flex-direction:column;
+        gap:24px;
+    }
+
+    .friends-features-wrapper{
+        justify-content: start;
+    }
+}
+
+@media screen and (max-width:1082px){
+    #friend-requests-top{
+        display:none;
+    }
+}
+
+@media screen and (max-width:500px){
+    #friendform-top{
+        display:none;
+    }
+    .friends-wrapper{
+        margin-top:-12px;
+        gap:0px;
+    }
+
+    .friends-features-wrapper{
+        width:99vw;
+    }
+    .friendslist-wrapper{
+        max-width:none;
+        border-radius: 0px;
+        border-right:none;
+        border-bottom:none;
+    }
+
+    .friend-details{
+        font-size:16px;
+    }
+    .hide_on_desktop{
+        display:flex;
+        flex-direction:column;
+        width:100%;
+        margin-top:24px;
+        gap:24px;
+    }
+
+    #friendform-bottom{
+      width:80vw;
+    }
+
+    .friend-form-wrapper{
+        width:100%;
+        max-width:none;
+        border:none;
+    }
+    .friend-requests-wrapper{
+        border-radius:0px;
+        width:calc(100% - 26px);
+        max-width:none;
+        border-bottom:none;
+    }
+    .friend-form-wrapper h2{
+        font-size:20px;
+    }
+    .friend-requests-wrapper h2{
+        font-size:20px;
+    }
 }

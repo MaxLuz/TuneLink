@@ -85,10 +85,3 @@
     display:none;
 }
 
-
-.player-error{
-    position:absolute;
-    margin-left:380px;
-    margin-bottom:25px;
-    background-color: red;
-}

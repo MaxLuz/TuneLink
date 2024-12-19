@@ -21,10 +21,10 @@ const SideNav = () => {
           <div className="username">
             <div className="circle"> </div>
             <span>{user.username}</span>
-            <p className="version">v1.0</p>
+            <p className="version">v1.3</p>
           </div>
         )}
-        <Link className="sidenavlink" to="/">
+        <Link className="sidenavlink" to="/dashboard">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
             <path
               className="fa-secondary"
@@ -56,39 +56,30 @@ const SideNav = () => {
           </svg>
           <p>Friends</p>
         </Link>
-        <Link className="sidenavlink" to="/">
+        <Link className="sidenavlink" to="/inbox">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            <path opacity=".4" d="M0 144L0 448l512 0 0-304L256 320 0 144z" />
+            <path d="M0 144V64H512v80L256 320 0 144z" />
+          </svg>
+
+          <p>Inbox</p>
+        </Link>
+        <button className="logout-btn nodisplayondesktop" onClick={handleClick}>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
             <path
               className="fa-secondary"
               opacity=".4"
               fill="#ffffff"
-              d="M0 208a208 208 0 1 0 416 0A208 208 0 1 0 0 208zm352 0A144 144 0 1 1 64 208a144 144 0 1 1 288 0z"
+              d="M0 32L0 64 0 448l0 32 32 0 128 0 32 0 0-64-32 0-96 0L64 96l96 0 32 0 0-64-32 0L32 32 0 32z"
             />
             <path
               className="fa-primary"
               fill="#ffffff"
-              d="M330.7 376L441.4 486.6 464 509.3 509.3 464l-22.6-22.6L376 330.7C363.3 348 348 363.3 330.7 376z"
+              d="M512 256L352 96l-32 0 0 96-160 0 0 128 160 0 0 96 32 0L512 256z"
             />
           </svg>
-
-          <p>Explore</p>
-        </Link>
-        <Link className="sidenavlink" to="/">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-            <path
-              className="fa-secondary"
-              opacity=".4"
-              fill="#ffffff"
-              d="M160 32l128 0 0 448-128 0 0-448z"
-            />
-            <path
-              className="fa-primary"
-              fill="#ffffff"
-              d="M448 96L320 96l0 384 128 0 0-384zM128 224L0 224 0 480l128 0 0-256z"
-            />
-          </svg>
-          <p>Stats & Insights</p>
-        </Link>
+          <p className="logout-label">Log out</p>
+        </button>
       </div>
       <div className="nav-bottom">
         <Link className="sidenavlink" to="/">
@@ -121,7 +112,7 @@ const SideNav = () => {
               d="M512 256L352 96l-32 0 0 96-160 0 0 128 160 0 0 96 32 0L512 256z"
             />
           </svg>
-          Log out
+          <p className="logout-label">Log out</p>
         </button>
       </div>
     </nav>

@@ -1,34 +1,147 @@
-.dashboard-top-container{
-    width:100%;
-    border-radius: 16px;
-    display:flex;
-    gap:12px;
+.home{
+    padding-left:304px;
+    color:white;
+    padding-right:24px;
 }
 
-.dashboard-bottom-container{
-    width:100%;
-    border-radius:16px;
+.dashboard-container{
     display:flex;
-    gap:12px;
+    flex-direction:column;
+    gap:25px;
 }
-
-.bottom-fav-songs-container{
-    display:flex;
-    width:50%;
-    background-color: #181818;
-    border-radius: 16px;
-}
-.bottom-top-stats-container{
-    width:50%;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.hello{
-    width:100%;
+.dashboard-content-left{
     display:flex;
     flex-direction: column;
     justify-content: center;
+    gap:24px;
+}
+
+.welcome-text{
+    color: #C7C7C7;
+    font-size:14px;
+    font-weight:400;
+    padding:0px;
+    margin:0px;
+    margin-top:-12px;
+}
+
+.total-time{
+    font-size: 40px;
+    font-weight:bold;
+}
+
+.smaller-size{
+    font-size:24px;
+}
+
+.dashboard-welcome{
+    display:flex;
+    flex-direction: column;
+    gap:12px;
+    margin-left:8px;
+    max-width:1225px;
+    color:white;
+}
+
+.welcome-bottom{
+    display:flex;
+    justify-content: space-between;
+    align-items: end;
+}
+
+.add-friends{
+    all:unset;
+    color:#C7C7C7;
+    border: 1px solid #3E3E3E;
+    border-radius: 4px;
+    display:flex;
+    justify-content: center;
     align-items: center;
+    gap:8px;
+    font-size:12px;
+    background-color: #181818;
+    width:120px;
+    height:35px;
+    cursor:pointer;
+}
+
+.add-friends:hover{
+    background-color: #131313
+}
+
+.add-friends svg{
+    width:20px;
+    fill: #C7C7C7;
+}
+
+.home-dash-friends{
+    display:flex;
+    gap:16px;
+}
+
+.share-a-song{
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    padding: 24px;
+    min-width:400px;
+}
+
+.sas_title{
+    font-size: 22px;
+    margin-bottom:0px;
+}
+
+.friends-list{
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    padding:24px;
+    min-width:250px;
+}
+
+.friend-requests{
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    padding:24px;
+    min-width:300px;
+}
+
+.buttons-container-mobile{
+    display:none;
+}
+
+@media screen and (max-width:800px){
+    .home{
+        padding-left:0px;
+        padding-bottom:60px;
+    }
+}
+
+@media screen and (max-width:500px){
+    .welcome-text{
+        font-size:12px;
+    }
+    .dashboard-welcome h2{
+        font-size:18px;
+    }
+    .dashboard-welcome h1{
+        margin:0px;
+        margin-bottom:18px;
+        margin-top:18px;
+    }
+    .add-friends{
+        display:none;
+    }
+
+    .dashboard-welcome{
+        padding-left:18px;
+        margin:0px;
+    }
+
+    .buttons-container-mobile{
+        display:flex;
+        justify-content: center;
+        width:100%;
+        margin-top:12px;
+        margin-bottom:12px;
+    }
 }

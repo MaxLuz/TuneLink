@@ -1,9 +1,9 @@
 .form-container{
     width: 100vw;
-    height:50vh;
+    height:100vh;
     display:flex;
     justify-content: center;
-    align-items: center;
+    align-items:start;
     padding-top:100px;
 }
 
@@ -94,4 +94,11 @@
 
 .login{
     padding-bottom: 48px;
+}
+
+@media screen and (max-width:500px){
+    .signup{
+        padding:12px 0px;
+    }
+
 }

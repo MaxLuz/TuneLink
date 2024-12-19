@@ -1,0 +1,47 @@
+.landing-page-container{
+    color:white;
+    width:100%;
+    margin-top:-12px;
+    background-color: #ffffff;
+    display:flex;
+    justify-content: center;
+    align-items: start;
+    height: 100vh;
+}
+
+.hero-container{
+    all:unset;
+    display:flex;
+    flex-direction: column;
+    color:black;
+    max-width:1440px;
+    width:100%;
+    padding-left:48px;
+    margin-top:200px;
+}
+
+.hero-container h1{
+    font-size:64px;
+}
+
+.hero-container p{
+    font-size:18px;
+    margin-top:-24px;
+}
+
+
+
+
+@media screen and (max-width:672px){
+    .landing-page-container{
+        margin-top:50px;
+    }
+
+    .hero-container{
+        margin-top:100px;
+    }
+
+    .hero-container h1{
+        font-size:54px;
+    }
+}

@@ -20,12 +20,14 @@ export const friendrequestReducer = (state, action) => {
 };
 
 export const FriendRequestContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(friendrequestReducer, {
+  const [state, dispatch_friendrequests] = useReducer(friendrequestReducer, {
     friendrequests: null,
   });
 
   return (
-    <FriendRequestContext.Provider value={{ ...state, dispatch }}>
+    <FriendRequestContext.Provider
+      value={{ ...state, dispatch_friendrequests }}
+    >
       {children}
     </FriendRequestContext.Provider>
   );

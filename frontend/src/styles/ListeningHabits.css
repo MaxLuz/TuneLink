@@ -1,0 +1,136 @@
+.listening-habits{
+    border: 1px solid #3E3E3E;
+    border-radius:12px;
+    padding-left:16px;
+    padding-top:30px;
+    padding-right:16px;
+    max-width:1200px; /* IMPORTANT NEED TO REMOVE THIS LATER */
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    padding-bottom:16px;
+}
+
+.listening-habits-text{
+    padding-left:8px;
+}
+
+.lh-title{
+    font-size:22px;
+    font-weight:bold;
+    color:white;
+}
+
+.lh-text{
+    color: #C7C7C7;
+    font-size:14px;
+    font-weight:400;
+    margin-top:-10px;
+}
+
+.time-period{
+    color:white;
+    font-weight:bold;
+}
+
+.toggle-button{
+    all:unset;
+    color:#C7C7C7;
+    border: 1px solid #3E3E3E;
+    border-radius: 4px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap:8px;
+    font-size:14px;
+    background-color: #181818;
+    width:105px;
+    height:35px;
+    cursor:pointer;
+}
+.toggle-button:hover{
+    background-color: #131313
+}
+.toggle-button svg{
+    width:20px;
+    fill: #C7C7C7;
+}
+
+.listening-habits-top{
+    display:flex;
+    justify-content: space-between;
+    align-items:end;
+}
+
+.listening-habits-bottom{
+    display:flex;
+    justify-content: center;
+    gap:16px;
+}
+
+.tracks-container{
+    border: 1px solid #3E3E3E;
+    border-radius: 12px;
+    width:50%;
+    height:auto;
+}
+
+.artists-container{
+    border: 1px solid #3E3E3E;
+    border-radius: 12px;
+    width:50%; 
+}
+
+.blue-text{
+    color: #3FD6D6;
+}
+
+@media screen and (max-width:1240px) {
+    .listening-habits-bottom{
+        flex-direction: column;
+        
+    }
+    .tracks-container{
+        width:100%;
+    }
+    .artists-container{
+        width:100%;
+    }
+
+    @media screen and (max-width:500px){
+        .listening-habits{
+            width:99vw;
+            padding: 0px;
+            border-radius: 0px;
+            padding-top:12px;
+        }
+        .listening-habits-bottom{
+            gap:0px;
+        }
+        .tracks-container{
+            border-radius:0px;
+            border:none;
+        }
+
+        .artists-container{
+            border-radius:0px;
+            border-bottom:0px;
+        }
+
+        .toggle-button{
+            margin-right:12px;
+        }
+        .lh-title{
+            font-size:16px;
+        }
+        .lh-text{
+            font-size:12px;
+            margin-bottom:0px;
+            margin-top:-6px;
+        }
+        .listening-habits-text{
+            padding-left:18px;
+        }
+        
+    }
+}

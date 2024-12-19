@@ -40,7 +40,7 @@ const FriendForm = () => {
 
   return (
     <div className="friend-form-wrapper">
-      <h2>Add a friend</h2>
+      <h2>Add a Friend</h2>
       <form className="friendform" onSubmit={handleSubmit}>
         <input
           type="text"

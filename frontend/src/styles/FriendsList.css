@@ -1,0 +1,27 @@
+.friendlist-friendspage{
+    background-color: #181818;
+    border-radius:16px;
+    padding:0px;
+}
+
+.friendslist-scroll{
+    overflow-y:scroll;
+    max-height:200px;
+    scrollbar-width: none; /* Firefox: Hide scrollbar */
+    -ms-overflow-style: none; /* IE and Edge: Hide scrollbar */
+    margin-top:22px;
+}
+
+.friendlist-friendspage h2{
+    font-size:22px;
+}
+
+.friendlist-friendspage li{
+    list-style: none;
+}
+
+@media screen and (max-width:500px){
+    .friendlist-friendspage h2{
+        font-size: 16px;
+    }
+}

@@ -6,7 +6,6 @@ import axios from "axios";
 const Inbox = () => {
   const [tracks, setTracks] = useState([]);
   const [spotifyTracks, setSpotifyTracks] = useState([]);
-  const [loading, setLoading] = useState(false);
   const { user } = useAuthContext();
   const [error, setError] = useState("");
   const spotifytoken = localStorage.getItem("spotify_access_token");
@@ -155,51 +154,49 @@ const Inbox = () => {
 
   return (
     <div className="inbox-container">
-      <h2>Inbox</h2>
-      <div className="underline">
-        <p className="pound">#</p>
-        <p className="song-name">Song name</p>
-        <p className="popularity">From</p>
+      <h2 className="topSongs-h2">Tracks</h2>
+      <div className="divider">
+        <p>#</p>
+        <p>Song</p>
+        <p>From</p>
       </div>
-      {error && <p>Error: {error}</p>}
-      <ul className="topSongs-ul discovery-ul">
-        {spotifyTracks.map((track, index) => (
-          <li className="topSongs-li discovery-li" key={track.id}>
-            <a
-              className="play-button-link"
-              onClick={() => handlePlay(track.id)}
-            >
-              {error && <div className="error player-error">{error}</div>}
-              <svg
-                className="play"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 384 512"
+      <div className="topSong-ul-wrapper">
+        <ul className="topSongs-ul">
+          {spotifyTracks.map((track, index) => (
+            <li className="topSongs-li" key={track.id}>
+              <a
+                className="play-button-link-topSongs"
+                onClick={() => handlePlay(track.id)}
               >
-                <path opacity=".4" d="M48 80l0 352L336 256 48 80z" />
-                <path d="M48 432L336 256 48 80l0 352zM24.5 38.1C39.7 29.6 58.2 30 73 39L361 215c14.3 8.7 23 24.2 23 41s-8.7 32.2-23 41L73 473c-14.8 9.1-33.4 9.4-48.5 .9S0 449.4 0 432L0 80C0 62.6 9.4 46.6 24.5 38.1z" />
-              </svg>
-            </a>
-            <p className="index">{index + 1}</p>
-            <div className="image-wrapper discovery-image">
-              <img
-                className="topSongs-img"
-                src={track.image}
-                alt={track.name}
-                width="100"
-              />
-            </div>
+                {error && <div className="error player-error">{error}</div>}
+                <svg
+                  className="play-button-topSongs"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 384 512"
+                >
+                  <path opacity=".4" d="M48 80l0 352L336 256 48 80z" />
+                  <path d="M48 432L336 256 48 80l0 352zM24.5 38.1C39.7 29.6 58.2 30 73 39L361 215c14.3 8.7 23 24.2 23 41s-8.7 32.2-23 41L73 473c-14.8 9.1-33.4 9.4-48.5 .9S0 449.4 0 432L0 80C0 62.6 9.4 46.6 24.5 38.1z" />
+                </svg>
+              </a>
+              <p className="topSongs-name index-topSongs">{index + 1}</p>
+              <div className="image-wrapper-songs">
+                <img
+                  className="topSongs-img"
+                  src={track.image}
+                  alt={track.name}
+                  width="100"
+                />
+              </div>
+              <div className="song-info">
+                <p className="topSongs-name actualname">{track.name}</p>
+                <p className="topSongs-artist">{track.artist.name}</p>
+              </div>
 
-            <div className="song-info discovery-song-info">
-              <p className="topSongs-name">{track.name}</p>
-              <p>{track.artist.name}</p>
-            </div>
-
-            <div className="popularity-metric">
-              {tracks[index].username_from}
-            </div>
-          </li>
-        ))}
-      </ul>
+              <p className="topSongs-name">{tracks[index].username_from}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
