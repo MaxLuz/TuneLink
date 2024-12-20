@@ -16,10 +16,8 @@
 .topSongs-ul{
     list-style: none;
     display:flex;
-    justify-content: center;
     flex-direction: column;
     gap:12px;
-    flex-wrap:wrap;
     margin-top:0px;
     padding-left:0px;
     padding-top:16px;
@@ -28,7 +26,7 @@
 .topSong-ul-wrapper{
     height:405px;
     overflow-y:scroll;
-    scrollbar-width: none; /* Firefox: Hide scrollbar */
+    scrollbar-width: none;
     -ms-overflow-style: none; 
 }
 
@@ -126,8 +124,16 @@
     justify-content: center;
 }
 
+/* @media screen and (max-width:800px){
+    .topSongs-li{
+        background-color:#181818;
+    }
+} */
+
 @media screen and (max-width:500px){
     .topSongs-h2{
         padding-left:18px;
     }
+
+
 }

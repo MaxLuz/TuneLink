@@ -1,5 +1,5 @@
 {
-  "proxy": "http://localhost:4000",
+  "proxy": "https://xlhq7t2v-4000.use.devtunnels.ms",
   "name": "tunelink",
   "version": "0.1.0",
   "private": true,

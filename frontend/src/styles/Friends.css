@@ -213,6 +213,7 @@
         border-radius: 0px;
         border-right:none;
         border-bottom:none;
+        border-left:none;
     }
 
     .friend-details{
@@ -240,6 +241,8 @@
         width:calc(100% - 26px);
         max-width:none;
         border-bottom:none;
+        border-left:none;
+        border-right:none;
     }
     .friend-form-wrapper h2{
         font-size:20px;

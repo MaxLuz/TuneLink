@@ -101,7 +101,7 @@ const spotifyCallback = async (req, res) => {
     console.log("Scope in callback function: ", scope);
     // Redirect the user to your front-end application (home page or dashboard)
     res.redirect(
-      `http://localhost:3000/dashboard/?access_token=${access_token}`
+      `https://xlhq7t2v-3000.use.devtunnels.ms/dashboard/?access_token=${access_token}`
     ); // Change to the appropriate frontend route, include access token to be stored in local storage
   } catch (error) {
     console.error("Error during Spotify authentication:", error);

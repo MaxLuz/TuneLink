@@ -103,6 +103,9 @@
             padding: 0px;
             border-radius: 0px;
             padding-top:12px;
+            border-right:none;
+            border-left:none;
+            border-bottom:none;
         }
         .listening-habits-bottom{
             gap:0px;
@@ -115,6 +118,8 @@
         .artists-container{
             border-radius:0px;
             border-bottom:0px;
+            border-right:none;
+            border-left:none;
         }
 
         .toggle-button{
