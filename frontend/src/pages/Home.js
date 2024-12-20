@@ -98,29 +98,6 @@ const Home = () => {
     }
   }, [user]);
 
-  // fetches all current friend requests for user
-  useEffect(() => {
-    const fetchFriendRequests = async () => {
-      const response = await fetch("api/friends/requests", {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-      const json = await response.json();
-      if (!response.ok) {
-        setError(json.message);
-      }
-      if (response.ok) {
-        // setFriendRequests(json);
-        // dispatches context for all friend requests
-        dispatch_friendrequests({ type: "SET_FRIENDREQUESTS", payload: json });
-      }
-    };
-    if (user) {
-      fetchFriendRequests();
-    }
-  }, [user]);
-
   return (
     <div className="home">
       <div className="dashboard-container">
