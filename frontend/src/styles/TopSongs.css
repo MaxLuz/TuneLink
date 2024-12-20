@@ -30,6 +30,7 @@
     overflow-y:scroll;
     scrollbar-width: none; /* Firefox: Hide scrollbar */
     -ms-overflow-style: none; 
+    -webkit-overflow-scrolling: touch;
 }
 
 .topSongs-li{
@@ -129,5 +130,9 @@
 @media screen and (max-width:500px){
     .topSongs-h2{
         padding-left:18px;
+    }
+
+    .topSongs-li:hover{
+        
     }
 }
