@@ -131,9 +131,14 @@
 } */
 
 @media screen and (max-width:500px){
-    .topSongs-h2{
-        padding-left:18px;
+    
+
+    .topSong-ul-wrapper{
+        overflow-y:visible;
+        height:auto;
     }
 
-
+    .topSongs-h2{
+        display:none;
+    }
 }

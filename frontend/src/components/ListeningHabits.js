@@ -14,6 +14,27 @@ const ListeningHabits = () => {
     setCurrentIndex((currentIndex + 1) % values.length);
     setTimeframe(values[currentIndex]);
   };
+
+  const handleOption = (event) => {
+    const option = event.target.value;
+
+    const tracksContainer = document.getElementById("tracks-container");
+    const artistsContainer = document.getElementById("artists-container");
+    const tracksbtn = document.getElementById("tracks-btn");
+    const artistsbtn = document.getElementById("artists-btn");
+
+    if (option === "tracks") {
+      tracksContainer.style.display = "flex";
+      artistsContainer.style.display = "none";
+      tracksbtn.style.color = "white";
+      artistsbtn.style.color = "gray";
+    } else if (option === "artists") {
+      tracksContainer.style.display = "none";
+      artistsContainer.style.display = "flex";
+      artistsbtn.style.color = "white";
+      tracksbtn.style.color = "gray";
+    }
+  };
   return (
     <div className="listening-habits">
       <div className="listening-habits-top">
@@ -42,10 +63,29 @@ const ListeningHabits = () => {
         </button>
       </div>
       <div className="listening-habits-bottom">
-        <div className="tracks-container">
+        <div className="options">
+          <button
+            id="tracks-btn"
+            className="listening-habits-option"
+            value="tracks"
+            onClick={handleOption}
+          >
+            Tracks
+          </button>
+          <button
+            id="artists-btn"
+            className="listening-habits-option"
+            value="artists"
+            onClick={handleOption}
+          >
+            Artists
+          </button>
+        </div>
+
+        <div id="tracks-container" className="tracks-container">
           <TopSongs token={spotifytoken} timeframe={timeframe} />
         </div>
-        <div className="artists-container">
+        <div id="artists-container" className="artists-container">
           <TopArtists token={spotifytoken} timeframe={timeframe} />
         </div>
       </div>

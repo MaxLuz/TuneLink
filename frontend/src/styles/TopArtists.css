@@ -95,5 +95,11 @@
 @media screen and (max-width:500px){
     .topArtists-h2{
         padding-left:18px;
+        display:none;
+    }
+
+    .topArtist-ul-wrapper{
+        overflow-y:visible;
+        height:auto;
     }
 }
