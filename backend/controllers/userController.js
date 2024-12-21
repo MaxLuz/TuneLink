@@ -50,8 +50,6 @@ const spotifyRedirect = async (req, res) => {
     return res.status(400).json({ error: "User ID is required" });
   }
 
-  console.log("Redirecting to Spotify authorization page");
-
   res.redirect(
     `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}&state=${userId}&scope=${scopes}`
   );
@@ -60,7 +58,6 @@ const spotifyRedirect = async (req, res) => {
 // spotify authentication
 const spotifyCallback = async (req, res) => {
   const { code, state: userId } = req.query; // state now contains userId
-  console.log("userId: ", userId);
   try {
     // Exchange the authorization code for access and refresh tokens
     const tokenResponse = await fetch(
@@ -98,7 +95,6 @@ const spotifyCallback = async (req, res) => {
       user.spotifyRefreshToken = refresh_token;
       await user.save(); // Save the updated user document
     }
-    console.log("Scope in callback function: ", scope);
     // Redirect the user to your front-end application (home page or dashboard)
     res.redirect(
       `https://xlhq7t2v-3000.use.devtunnels.ms/dashboard/?access_token=${access_token}`
@@ -113,10 +109,6 @@ const spotifytoken = async (req, res) => {
   try {
     const username = req.query.username;
     const isRefresh = req.query.refresh;
-
-    console.log("Username: " + req.query.username);
-
-    console.log("username variable:" + username);
 
     const user = await User.findOne({ username });
 

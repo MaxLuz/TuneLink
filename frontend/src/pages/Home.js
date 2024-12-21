@@ -5,18 +5,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useFriendRequestContext } from "../hooks/useFriendRequestContext";
 import { Link } from "react-router-dom";
 // components
-import Navbar from "../components/Navbar";
-import SongDetails from "../components/SongDetails";
-import SongForm from "../components/SongForm";
-import TopArtists from "../components/TopArtists";
-import TopSongs from "../components/TopSongs";
-import Welcome from "../components/Welcome";
-import Buttons from "../components/Buttons";
-import FriendDetails from "../components/FriendDetails";
-import SideNav from "../components/SideNav";
 import ListeningHabits from "../components/ListeningHabits";
-import FriendsList from "../components/FriendsList";
-import FriendRequestsList from "../components/FriendRequestsList";
 import axios from "axios";
 // styles
 import "../styles/Home.css";
@@ -90,11 +79,6 @@ const Home = () => {
       fetchSongs();
     }
   }, [dispatch, user]);
-
-  // useEffect(() => {
-  //   checkForTokens();
-  //   console.log("access token: " + spotifytoken);
-  // });
 
   // fetches all current friends of logged in user
   useEffect(() => {
