@@ -113,6 +113,7 @@ const Friends = () => {
           },
           params: {
             username: `${friendData}`,
+            refresh: "false",
           },
         });
 

@@ -17,11 +17,13 @@ import SideNav from "../components/SideNav";
 import ListeningHabits from "../components/ListeningHabits";
 import FriendsList from "../components/FriendsList";
 import FriendRequestsList from "../components/FriendRequestsList";
+import axios from "axios";
 // styles
 import "../styles/Home.css";
 import "../styles/Navbar.css";
 
 const Home = () => {
+  // const [spotifytoken, setSpotToken] = useState();
   const spotifytoken = localStorage.getItem("spotify_access_token");
   const [spotuser, setSpotuser] = useState("not-logged-in");
   const [timeframe, setTimeframe] = useState("short_term");
@@ -31,20 +33,36 @@ const Home = () => {
   const { songs, dispatch } = useSongsContext();
   const { user } = useAuthContext();
 
-  // checks for spotify refresh token
-  const checkForTokens = () => {
-    const urlParams = new URLSearchParams(window.location.search);
+  useEffect(() => {
+    const getSpotifyToken = async () => {
+      // console.log("Username: " + user.username);
+      try {
+        // Send a GET request to the backend
+        const response = await axios.get("/api/user/spotifytoken", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+          params: {
+            username: `${user.username}`,
+            refresh: "false",
+          },
+        });
 
-    const accessToken = urlParams.get("access_token");
-
-    if (accessToken) {
-      // Store refresh token in local storage
-      localStorage.setItem("spotify_access_token", accessToken);
+        // Extract and return the Spotify token
+        localStorage.setItem("spotify_access_token", response.data);
+        console.log("response:" + response.data);
+      } catch (error) {
+        console.error(
+          "Error fetching Spotify token:",
+          error.response?.data || error.message
+        );
+        throw error;
+      }
+    };
+    if (user) {
+      getSpotifyToken();
     }
-
-    // clear the URL parameters
-    window.history.replaceState({}, document.title, window.location.pathname);
-  };
+  }, [user]);
 
   const handleScrollToBottom = () => {
     window.scrollTo({
@@ -73,9 +91,10 @@ const Home = () => {
     }
   }, [dispatch, user]);
 
-  useEffect(() => {
-    checkForTokens();
-  });
+  // useEffect(() => {
+  //   checkForTokens();
+  //   console.log("access token: " + spotifytoken);
+  // });
 
   // fetches all current friends of logged in user
   useEffect(() => {
@@ -171,7 +190,10 @@ const Home = () => {
         </div>
         <div className="dashboard-content">
           <div className="dashboard-content-left">
-            <ListeningHabits timeframe={timeframe} />
+            <ListeningHabits
+              spotifytoken={spotifytoken}
+              timeframe={timeframe}
+            />
             {/* <div className="home-dash-friends">
               <div className="share-a-song">
                 <h2 className="sas_title">Share a Song</h2>

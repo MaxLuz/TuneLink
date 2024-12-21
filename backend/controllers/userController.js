@@ -111,19 +111,50 @@ const spotifyCallback = async (req, res) => {
 
 const spotifytoken = async (req, res) => {
   try {
-    const { username } = req.query.username;
+    const username = req.query.username;
+    const isRefresh = req.query.refresh;
 
     console.log("Username: " + req.query.username);
 
-    const user = await User.findOne(username);
+    console.log("username variable:" + username);
+
+    const user = await User.findOne({ username });
+
+    console.log("Token for " + username + ": " + user.spotifyAccessToken);
 
     if (!user) {
       return res.status(400).json({ message: "User not found." });
     }
-    return res.status(200).json(user.spotifyAccessToken);
+    if (isRefresh == "false") {
+      console.log("sending access token");
+      return res.status(200).json(user.spotifyAccessToken);
+    }
+    if (isRefresh == "true") {
+      console.log("sending refresh token");
+      return res.status(200).json(user.spotifyRefreshToken);
+    }
   } catch (error) {
     return res.status(500).json({ message: "Server error" });
   }
+};
+
+const spotifyRefresh = async (req, res) => {
+  const { accessToken, refreshToken, username } = req.body;
+  console.log("Username for updating tokens: " + username);
+
+  const updatedUser = await User.findOneAndUpdate(
+    { username: username },
+    { spotifyAccessToken: accessToken, spotifyRefreshToken: refreshToken },
+    { new: true }
+  );
+
+  if (!updatedUser) {
+    console.log("user not found");
+    return res
+      .status(401)
+      .json({ message: "Error updating tokens, user not found" });
+  }
+  return res.status(200).json({ message: "Successfully updated tokens" });
 };
 
 module.exports = {
@@ -132,4 +163,5 @@ module.exports = {
   spotifyRedirect,
   spotifyCallback,
   spotifytoken,
+  spotifyRefresh,
 };

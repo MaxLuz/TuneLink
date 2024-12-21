@@ -10,6 +10,7 @@ const {
   spotifyRedirect,
   spotifyCallback,
   spotifytoken,
+  spotifyRefresh,
 } = require("../controllers/userController");
 
 const requireAuth = require("../middleware/requireAuth");
@@ -31,5 +32,7 @@ router.get("/auth/spotify-callback", spotifyCallback);
 
 // grab a user's spotify token (only for friends)
 router.get("/spotifytoken", spotifytoken);
+
+router.post("/spotify-refresh", spotifyRefresh);
 
 module.exports = router;
