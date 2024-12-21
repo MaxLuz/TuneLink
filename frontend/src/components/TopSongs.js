@@ -28,8 +28,9 @@ const TopSongs = ({ token, timeframe }) => {
 
   const handlePlay = async (trackId) => {
     console.log("handlePlay: " + trackId);
+    const localtoken = localStorage.getItem("spotify_access_token");
 
-    if (!token) {
+    if (!localtoken) {
       console.error("No token available for authentication.");
       return;
     }
@@ -40,7 +41,7 @@ const TopSongs = ({ token, timeframe }) => {
         "https://api.spotify.com/v1/me/player/devices",
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localtoken}`,
           },
         }
       );
@@ -66,7 +67,7 @@ const TopSongs = ({ token, timeframe }) => {
           { device_ids: [deviceId] },
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${localtoken}`,
             },
           }
         );
@@ -81,7 +82,7 @@ const TopSongs = ({ token, timeframe }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localtoken}`,
           },
         }
       );
