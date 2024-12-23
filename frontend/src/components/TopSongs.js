@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/TopSongs.css";
+import { useTokenRefresh } from "../hooks/useTokenRefresh";
 
-const TopSongs = ({ token, timeframe }) => {
+const TopSongs = ({ token, timeframe, username }) => {
   const [tracks, setTracks] = useState([]);
   const [error, setError] = useState("");
+  const { tokenRefresh } = useTokenRefresh();
 
   // fetch top songs when component mounts
   useEffect(() => {
+    tokenRefresh(token, username);
     if (token) {
       axios
         .get("https://api.spotify.com/v1/me/top/tracks", {

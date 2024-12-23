@@ -131,12 +131,12 @@ const spotifytoken = async (req, res) => {
 };
 
 const spotifyRefresh = async (req, res) => {
-  const { accessToken, refreshToken, username } = req.body;
+  const { accessToken, username } = req.body;
   console.log("Username for updating tokens: " + username);
 
   const updatedUser = await User.findOneAndUpdate(
     { username: username },
-    { spotifyAccessToken: accessToken, spotifyRefreshToken: refreshToken },
+    { spotifyAccessToken: accessToken },
     { new: true }
   );
 

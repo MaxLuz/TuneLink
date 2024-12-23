@@ -12,7 +12,7 @@ const Inbox_Page = () => {
     });
   };
   return (
-    <div class="inbox-page-wrapper">
+    <div className="inbox-page-wrapper">
       <div className="dashboard-welcome">
         <div className="welcome-top">
           <h2>Inbox</h2>

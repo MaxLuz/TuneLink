@@ -39,7 +39,7 @@ const Home = () => {
 
         // Extract and return the Spotify token
         localStorage.setItem("spotify_access_token", response.data);
-        console.log("response:" + response.data);
+        // console.log("response:" + response.data);
       } catch (error) {
         console.error(
           "Error fetching Spotify token:",

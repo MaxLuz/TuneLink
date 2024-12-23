@@ -3,12 +3,14 @@ import TopArtists from "./TopArtists";
 import TopSongs from "./TopSongs";
 import "../styles/ListeningHabits.css";
 import { useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const ListeningHabits = () => {
   const spotifytoken = localStorage.getItem("spotify_access_token");
   const values = ["short_term", "medium_term", "long_term"];
   const [currentIndex, setCurrentIndex] = useState(1);
   const [timeframe, setTimeframe] = useState("short_term");
+  const { user } = useAuthContext();
 
   const handleToggle = () => {
     setCurrentIndex((currentIndex + 1) % values.length);
@@ -83,7 +85,11 @@ const ListeningHabits = () => {
         </div>
 
         <div id="tracks-container" className="tracks-container">
-          <TopSongs token={spotifytoken} timeframe={timeframe} />
+          <TopSongs
+            token={spotifytoken}
+            timeframe={timeframe}
+            username={user.username}
+          />
         </div>
         <div id="artists-container" className="artists-container">
           <TopArtists token={spotifytoken} timeframe={timeframe} />
