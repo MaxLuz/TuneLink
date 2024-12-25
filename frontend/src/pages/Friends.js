@@ -136,32 +136,29 @@ const Friends = () => {
 
   useEffect(() => {
     const getSpotifyToken = async () => {
-      console.log("Username: " + friendData);
+      // Only proceed if we have both user and friendData
+      if (!user || !friendData) return;
+
       try {
-        // Send a GET request to the backend
         const response = await axios.get("/api/user/spotifytoken", {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
           params: {
-            username: `${friendData}`,
+            username: friendData,
             refresh: "false",
           },
         });
-
-        // Extract and return the Spotify token
         setSpotToken(response.data);
       } catch (error) {
         console.error(
           "Error fetching Spotify token:",
           error.response?.data || error.message
         );
-        throw error;
       }
     };
-    if (user) {
-      getSpotifyToken();
-    }
+
+    getSpotifyToken();
   }, [friendData, user]);
 
   // fetch top songs when component mounts
