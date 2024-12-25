@@ -29,6 +29,17 @@ const Friends = () => {
   const [artists, setArtists] = useState([]);
   const [tracks, setTracks] = useState([]);
   const [spotifytoken, setSpotToken] = useState();
+  const [friendCount, setFriendCount] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get("/api/user/friend-count", {
+        params: { username: user.username },
+      })
+      .then((response) => {
+        setFriendCount(response.data.friendCount);
+      });
+  }, [user]);
 
   const handleScrollToBottom = () => {
     window.scrollTo({
@@ -184,7 +195,7 @@ const Friends = () => {
           <div className="welcome-bottom">
             <div className="welcome-bottom-text">
               <h1 className="total-time">
-                5 <span className="smaller-size">friends</span>
+                {friendCount} <span className="smaller-size">friends</span>
               </h1>
               <p className="welcome-text friend-text-under">
                 To see data, select from friends list!

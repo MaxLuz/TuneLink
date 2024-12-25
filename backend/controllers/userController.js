@@ -149,6 +149,25 @@ const spotifyRefresh = async (req, res) => {
   return res.status(200).json({ message: "Successfully updated tokens" });
 };
 
+const getFriendCount = async (req, res) => {
+  try {
+    const username = req.query.username;
+
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const friendCount = user.friends ? user.friends.length : 0;
+
+    return res.status(200).json({ friendCount });
+  } catch (error) {
+    console.error("Error getting friend count:", error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
 module.exports = {
   signupUser,
   loginUser,
@@ -156,4 +175,5 @@ module.exports = {
   spotifyCallback,
   spotifytoken,
   spotifyRefresh,
+  getFriendCount,
 };
