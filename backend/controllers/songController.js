@@ -90,6 +90,18 @@ const updateSong = async (req, res) => {
   res.status(200).json({ song });
 };
 
+// get total count of songs sent to a specific username
+const getSongCountByUsername = async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    const count = await Song.countDocuments({ username_to: username });
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 // update a song
 module.exports = {
   createSong,
@@ -97,4 +109,5 @@ module.exports = {
   getSong,
   deleteSong,
   updateSong,
+  getSongCountByUsername,
 };

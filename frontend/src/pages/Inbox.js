@@ -3,8 +3,27 @@ import "../styles/Inbox.css";
 import { Link } from "react-router-dom";
 import Inbox from "../components/Inbox";
 import SongForm from "../components/SongForm";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const Inbox_Page = () => {
+  const [songCount, setSongCount] = useState(0);
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+    const fetchSongCount = async () => {
+      const username = user.username;
+      const response = await axios.get(`/api/songs/count/${username}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      setSongCount(response.data.count);
+    };
+    fetchSongCount();
+  }, [user.username, user.token]);
+
   const handleScrollToBottom = () => {
     window.scrollTo({
       top: document.documentElement.scrollHeight, // Scroll to the bottom of the page
@@ -21,7 +40,7 @@ const Inbox_Page = () => {
         <div className="welcome-bottom">
           <div className="welcome-bottom-text">
             <h1 className="total-time">
-              41 <span className="smaller-size">tracks</span>
+              {songCount} <span className="smaller-size">tracks</span>
             </h1>
             <p className="welcome-text">
               Total tracks sent to you from friends!
