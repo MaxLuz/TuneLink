@@ -70,8 +70,9 @@ export const useTokenRefresh = () => {
             }
           );
 
-          if (storeResponse.ok) {
+          if (storeResponse.status === 200) {
             console.log("successfully stored new tokens");
+            window.location.reload();
           }
         } catch (error) {
           console.error(

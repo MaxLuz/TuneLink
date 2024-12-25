@@ -152,6 +152,28 @@ const Inbox = () => {
     }
   };
 
+  const handleDelete = async (trackIndex) => {
+    try {
+      await axios.delete(`/api/songs/${tracks[trackIndex]._id}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      // Remove the track from both arrays
+      const newTracks = tracks.filter((_, index) => index !== trackIndex);
+      const newSpotifyTracks = spotifyTracks.filter(
+        (_, index) => index !== trackIndex
+      );
+
+      setTracks(newTracks);
+      setSpotifyTracks(newSpotifyTracks);
+    } catch (error) {
+      console.error("Error deleting track:", error);
+      setError("Failed to delete track");
+    }
+  };
+
   return (
     <div className="inbox-container">
       <h2 className="topSongs-h2">Tracks</h2>
@@ -192,7 +214,15 @@ const Inbox = () => {
                 <p className="topSongs-name actualname">{track.name}</p>
                 <p className="topSongs-artist">{track.artist.name}</p>
               </div>
-
+              <button
+                className="delete-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(index);
+                }}
+              >
+                ×
+              </button>
               <p className="topSongs-name">{tracks[index].username_from}</p>
             </li>
           ))}
