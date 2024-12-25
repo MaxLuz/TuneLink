@@ -81,3 +81,10 @@
 .delete-button:hover {
   background-color: #cc0000;
 }
+
+@media screen and (max-width:500px){
+    .delete-button{
+        justify-self: end;
+        margin-left:100px;
+    }
+}
