@@ -21,6 +21,25 @@ const Home = () => {
   const { friendrequests, dispatch_friendrequests } = useFriendRequestContext();
   const { songs, dispatch } = useSongsContext();
   const { user } = useAuthContext();
+  const [discoveredTracks, setDiscoveredTracks] = useState(0);
+
+  useEffect(() => {
+    const fetchDiscoveredTracks = async () => {
+      const response = await axios.get(
+        `/api/user/discovered/${user.username}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      setDiscoveredTracks(response.data.count);
+      console.log(response.data.count);
+    };
+    if (user) {
+      fetchDiscoveredTracks();
+    }
+  }, [user]);
 
   useEffect(() => {
     const getSpotifyToken = async () => {
@@ -112,10 +131,10 @@ const Home = () => {
           <div className="welcome-bottom">
             <div className="welcome-bottom-text">
               <h1 className="total-time">
-                1,239 <span className="smaller-size">min</span>
+                {discoveredTracks} <span className="smaller-size">tracks</span>
               </h1>
               <p className="welcome-text">
-                Total time spent listening since signing up on 12/16/24
+                Tracks discovered since signing up on 12/16/24
               </p>
             </div>
             <Link className="add-friends" to="/Friends">

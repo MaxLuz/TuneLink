@@ -168,6 +168,49 @@ const getFriendCount = async (req, res) => {
   }
 };
 
+// get total count of discovered tracks for a user
+const getDiscoveredTracksCount = async (req, res) => {
+  console.log("makes it to getDiscoveredTracksCount");
+  const { username } = req.params;
+  console.log("username: " + username);
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    const count = user.discoveredTracks || 0;
+    console.log("count: " + count);
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// increment discovered tracks for a user
+const incrementDiscoveredTracks = async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Increment the discovered tracks count
+    if (!user.discoveredTracks) {
+      user.discoveredTracks = 1;
+    } else {
+      user.discoveredTracks += 1;
+    }
+    await user.save();
+
+    res.status(200).json({ discoveredTracks: user.discoveredTracks });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 module.exports = {
   signupUser,
   loginUser,
@@ -176,4 +219,6 @@ module.exports = {
   spotifytoken,
   spotifyRefresh,
   getFriendCount,
+  getDiscoveredTracksCount,
+  incrementDiscoveredTracks,
 };

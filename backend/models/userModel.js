@@ -27,6 +27,7 @@ const userSchema = new Schema({
     type: String,
   },
   friends: [{ type: String }],
+  discoveredTracks: [{ type: String }],
 });
 
 // static signup method
