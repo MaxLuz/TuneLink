@@ -284,10 +284,15 @@ const Friends = () => {
                 token={spotifytoken}
                 timeframe={"short_term"}
                 username={friendData}
+                isFriend={true}
               />
             </div>
             <div id="artists-container" className="artists-container">
-              <TopArtists token={spotifytoken} timeframe={"short_term"} />
+              <TopArtists
+                token={spotifytoken}
+                timeframe={"short_term"}
+                isFriend={true}
+              />
             </div>
           </div>
         </div>

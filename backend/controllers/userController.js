@@ -189,7 +189,6 @@ const getDiscoveredTracksCount = async (req, res) => {
 // increment discovered tracks for a user
 const incrementDiscoveredTracks = async (req, res) => {
   const { username } = req.params;
-
   try {
     const user = await User.findOne({ username });
 
@@ -197,12 +196,8 @@ const incrementDiscoveredTracks = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    // Increment the discovered tracks count
-    if (!user.discoveredTracks) {
-      user.discoveredTracks = 1;
-    } else {
-      user.discoveredTracks += 1;
-    }
+    // Ensure we're working with numbers
+    user.discoveredTracks = Number(user.discoveredTracks || 0) + 1;
     await user.save();
 
     res.status(200).json({ discoveredTracks: user.discoveredTracks });

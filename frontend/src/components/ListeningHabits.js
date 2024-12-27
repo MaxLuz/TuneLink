@@ -89,10 +89,15 @@ const ListeningHabits = () => {
             token={spotifytoken}
             timeframe={timeframe}
             username={user.username}
+            isFriend={false}
           />
         </div>
         <div id="artists-container" className="artists-container">
-          <TopArtists token={spotifytoken} timeframe={timeframe} />
+          <TopArtists
+            token={spotifytoken}
+            timeframe={timeframe}
+            isFriend={false}
+          />
         </div>
       </div>
     </div>

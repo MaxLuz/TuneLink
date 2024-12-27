@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/TopArtists.css";
 
-const TopArtists = ({ token, timeframe }) => {
+const TopArtists = ({ token, timeframe, isFriend }) => {
   const [artists, setArtists] = useState([]);
   const [error, setError] = useState("");
 
