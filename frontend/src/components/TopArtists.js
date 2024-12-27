@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/TopArtists.css";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const TopArtists = ({ token, timeframe, isFriend }) => {
   const [artists, setArtists] = useState([]);
   const [error, setError] = useState("");
+  const { user } = useAuthContext();
 
   // Fetch top artists when component mounts
   useEffect(() => {
@@ -71,6 +73,15 @@ const TopArtists = ({ token, timeframe, isFriend }) => {
           }
         );
         console.log(`Playback transferred to device: ${deviceId}`);
+      }
+
+      // If viewing a friend's profile, increment their discovered tracks
+      if (isFriend && user) {
+        try {
+          await axios.post(`/api/user/increment-discovered/${user.username}`);
+        } catch (error) {
+          console.error("Error incrementing discovered tracks:", error);
+        }
       }
 
       // Step 3: Start playback of the selected track
