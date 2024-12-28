@@ -87,6 +87,13 @@ const Inbox = () => {
     }
 
     try {
+      await axios.post(`/api/user/increment-discovered/${user.username}`);
+      console.log("Incremented discovered tracks for user:", user.username);
+    } catch (error) {
+      console.error("Error incrementing discovered tracks:", error);
+    }
+
+    try {
       // Step 1: Check for available devices
       const devicesResponse = await axios.get(
         "https://api.spotify.com/v1/me/player/devices",
