@@ -14,6 +14,7 @@ const {
   getFriendCount,
   getDiscoveredTracksCount,
   incrementDiscoveredTracks,
+  createdAt,
 } = require("../controllers/userController");
 
 const requireAuth = require("../middleware/requireAuth");
@@ -45,5 +46,8 @@ router.get("/discovered/:username", getDiscoveredTracksCount);
 
 // increment discovered tracks for a user
 router.post("/increment-discovered/:username", incrementDiscoveredTracks);
+
+// get createdAt for a user
+router.get("/created-at/:username", createdAt);
 
 module.exports = router;

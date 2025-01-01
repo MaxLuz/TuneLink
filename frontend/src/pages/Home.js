@@ -22,6 +22,29 @@ const Home = () => {
   const { songs, dispatch } = useSongsContext();
   const { user } = useAuthContext();
   const [discoveredTracks, setDiscoveredTracks] = useState(0);
+  const [createdAt, setCreatedAt] = useState(0);
+
+  useEffect(() => {
+    const fetchCreatedAt = async () => {
+      const response = await axios.get(
+        `/api/user/created-at/${user.username}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      console.log(response.data.createdAt);
+      const createdAtDate = new Date(response.data.createdAt);
+      const formattedDate = `${
+        createdAtDate.getMonth() + 1
+      }/${createdAtDate.getDate()}/${createdAtDate.getFullYear()}`;
+      setCreatedAt(formattedDate);
+    };
+    if (user) {
+      fetchCreatedAt();
+    }
+  }, [user]);
 
   useEffect(() => {
     const fetchDiscoveredTracks = async () => {
@@ -134,7 +157,7 @@ const Home = () => {
                 {discoveredTracks} <span className="smaller-size">tracks</span>
               </h1>
               <p className="welcome-text">
-                Tracks discovered since signing up on 12/16/24
+                Tracks discovered since signing up on {createdAt}
               </p>
             </div>
             <Link className="add-friends" to="/Friends">

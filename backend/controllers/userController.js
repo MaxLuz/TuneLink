@@ -206,6 +206,12 @@ const incrementDiscoveredTracks = async (req, res) => {
   }
 };
 
+const createdAt = async (req, res) => {
+  const { username } = req.params;
+  const user = await User.findOne({ username });
+  res.status(200).json({ createdAt: user.createdAt });
+};
+
 module.exports = {
   signupUser,
   loginUser,
@@ -216,4 +222,5 @@ module.exports = {
   getFriendCount,
   getDiscoveredTracksCount,
   incrementDiscoveredTracks,
+  createdAt,
 };
