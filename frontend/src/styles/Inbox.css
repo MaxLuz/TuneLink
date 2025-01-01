@@ -53,3 +53,38 @@
         font-size:22px;
     }
 }
+
+.delete-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ff4444;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.topSongs-li:hover .delete-button {
+  opacity: 1;
+}
+
+.delete-button:hover {
+  background-color: #cc0000;
+}
+
+@media screen and (max-width:500px){
+    .delete-button{
+        justify-self: end;
+        margin-left:100px;
+    }
+}

@@ -5,23 +5,14 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useFriendRequestContext } from "../hooks/useFriendRequestContext";
 import { Link } from "react-router-dom";
 // components
-import Navbar from "../components/Navbar";
-import SongDetails from "../components/SongDetails";
-import SongForm from "../components/SongForm";
-import TopArtists from "../components/TopArtists";
-import TopSongs from "../components/TopSongs";
-import Welcome from "../components/Welcome";
-import Buttons from "../components/Buttons";
-import FriendDetails from "../components/FriendDetails";
-import SideNav from "../components/SideNav";
 import ListeningHabits from "../components/ListeningHabits";
-import FriendsList from "../components/FriendsList";
-import FriendRequestsList from "../components/FriendRequestsList";
+import axios from "axios";
 // styles
 import "../styles/Home.css";
 import "../styles/Navbar.css";
 
 const Home = () => {
+  // const [spotifytoken, setSpotToken] = useState();
   const spotifytoken = localStorage.getItem("spotify_access_token");
   const [spotuser, setSpotuser] = useState("not-logged-in");
   const [timeframe, setTimeframe] = useState("short_term");
@@ -30,21 +21,79 @@ const Home = () => {
   const { friendrequests, dispatch_friendrequests } = useFriendRequestContext();
   const { songs, dispatch } = useSongsContext();
   const { user } = useAuthContext();
+  const [discoveredTracks, setDiscoveredTracks] = useState(0);
+  const [createdAt, setCreatedAt] = useState(0);
 
-  // checks for spotify refresh token
-  const checkForTokens = () => {
-    const urlParams = new URLSearchParams(window.location.search);
-
-    const accessToken = urlParams.get("access_token");
-
-    if (accessToken) {
-      // Store refresh token in local storage
-      localStorage.setItem("spotify_access_token", accessToken);
+  useEffect(() => {
+    const fetchCreatedAt = async () => {
+      const response = await axios.get(
+        `/api/user/created-at/${user.username}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      console.log(response.data.createdAt);
+      const createdAtDate = new Date(response.data.createdAt);
+      const formattedDate = `${
+        createdAtDate.getMonth() + 1
+      }/${createdAtDate.getDate()}/${createdAtDate.getFullYear()}`;
+      setCreatedAt(formattedDate);
+    };
+    if (user) {
+      fetchCreatedAt();
     }
+  }, [user]);
 
-    // clear the URL parameters
-    window.history.replaceState({}, document.title, window.location.pathname);
-  };
+  useEffect(() => {
+    const fetchDiscoveredTracks = async () => {
+      const response = await axios.get(
+        `/api/user/discovered/${user.username}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      setDiscoveredTracks(response.data.count);
+      console.log(response.data.count);
+    };
+    if (user) {
+      fetchDiscoveredTracks();
+    }
+  }, [user]);
+
+  useEffect(() => {
+    const getSpotifyToken = async () => {
+      // console.log("Username: " + user.username);
+      try {
+        // Send a GET request to the backend
+        const response = await axios.get("/api/user/spotifytoken", {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+          params: {
+            username: `${user.username}`,
+            refresh: "false",
+          },
+        });
+
+        // Extract and return the Spotify token
+        localStorage.setItem("spotify_access_token", response.data);
+        // console.log("response:" + response.data);
+      } catch (error) {
+        console.error(
+          "Error fetching Spotify token:",
+          error.response?.data || error.message
+        );
+        throw error;
+      }
+    };
+    if (user) {
+      getSpotifyToken();
+    }
+  }, [user]);
 
   const handleScrollToBottom = () => {
     window.scrollTo({
@@ -73,10 +122,6 @@ const Home = () => {
     }
   }, [dispatch, user]);
 
-  useEffect(() => {
-    checkForTokens();
-  });
-
   // fetches all current friends of logged in user
   useEffect(() => {
     const fetchFriends = async () => {
@@ -98,29 +143,6 @@ const Home = () => {
     }
   }, [user]);
 
-  // fetches all current friend requests for user
-  useEffect(() => {
-    const fetchFriendRequests = async () => {
-      const response = await fetch("api/friends/requests", {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
-      const json = await response.json();
-      if (!response.ok) {
-        setError(json.message);
-      }
-      if (response.ok) {
-        // setFriendRequests(json);
-        // dispatches context for all friend requests
-        dispatch_friendrequests({ type: "SET_FRIENDREQUESTS", payload: json });
-      }
-    };
-    if (user) {
-      fetchFriendRequests();
-    }
-  }, [user]);
-
   return (
     <div className="home">
       <div className="dashboard-container">
@@ -132,10 +154,10 @@ const Home = () => {
           <div className="welcome-bottom">
             <div className="welcome-bottom-text">
               <h1 className="total-time">
-                1,239 <span className="smaller-size">min</span>
+                {discoveredTracks} <span className="smaller-size">tracks</span>
               </h1>
               <p className="welcome-text">
-                Total time spent listening since signing up on 12/16/24
+                Tracks discovered since signing up on {createdAt}
               </p>
             </div>
             <Link className="add-friends" to="/Friends">
@@ -194,7 +216,10 @@ const Home = () => {
         </div>
         <div className="dashboard-content">
           <div className="dashboard-content-left">
-            <ListeningHabits timeframe={timeframe} />
+            <ListeningHabits
+              spotifytoken={spotifytoken}
+              timeframe={timeframe}
+            />
             {/* <div className="home-dash-friends">
               <div className="share-a-song">
                 <h2 className="sas_title">Share a Song</h2>

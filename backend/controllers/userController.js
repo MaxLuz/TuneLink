@@ -50,8 +50,6 @@ const spotifyRedirect = async (req, res) => {
     return res.status(400).json({ error: "User ID is required" });
   }
 
-  console.log("Redirecting to Spotify authorization page");
-
   res.redirect(
     `https://accounts.spotify.com/authorize?client_id=${process.env.SPOTIFY_CLIENT_ID}&response_type=code&redirect_uri=${process.env.SPOTIFY_REDIRECT_URI}&state=${userId}&scope=${scopes}`
   );
@@ -60,7 +58,6 @@ const spotifyRedirect = async (req, res) => {
 // spotify authentication
 const spotifyCallback = async (req, res) => {
   const { code, state: userId } = req.query; // state now contains userId
-  console.log("userId: ", userId);
   try {
     // Exchange the authorization code for access and refresh tokens
     const tokenResponse = await fetch(
@@ -98,7 +95,6 @@ const spotifyCallback = async (req, res) => {
       user.spotifyRefreshToken = refresh_token;
       await user.save(); // Save the updated user document
     }
-    console.log("Scope in callback function: ", scope);
     // Redirect the user to your front-end application (home page or dashboard)
     res.redirect(
       `https://xlhq7t2v-3000.use.devtunnels.ms/dashboard/?access_token=${access_token}`
@@ -111,19 +107,109 @@ const spotifyCallback = async (req, res) => {
 
 const spotifytoken = async (req, res) => {
   try {
-    const { username } = req.query.username;
+    const username = req.query.username;
+    const isRefresh = req.query.refresh;
 
-    console.log("Username: " + req.query.username);
+    const user = await User.findOne({ username });
 
-    const user = await User.findOne(username);
+    console.log("Token for " + username + ": " + user.spotifyAccessToken);
 
     if (!user) {
       return res.status(400).json({ message: "User not found." });
     }
-    return res.status(200).json(user.spotifyAccessToken);
+    if (isRefresh == "false") {
+      console.log("sending access token");
+      return res.status(200).json(user.spotifyAccessToken);
+    }
+    if (isRefresh == "true") {
+      console.log("sending refresh token");
+      return res.status(200).json(user.spotifyRefreshToken);
+    }
   } catch (error) {
     return res.status(500).json({ message: "Server error" });
   }
+};
+
+const spotifyRefresh = async (req, res) => {
+  const { accessToken, username } = req.body;
+  console.log("Username for updating tokens: " + username);
+
+  const updatedUser = await User.findOneAndUpdate(
+    { username: username },
+    { spotifyAccessToken: accessToken },
+    { new: true }
+  );
+
+  if (!updatedUser) {
+    console.log("user not found");
+    return res
+      .status(401)
+      .json({ message: "Error updating tokens, user not found" });
+  }
+  return res.status(200).json({ message: "Successfully updated tokens" });
+};
+
+const getFriendCount = async (req, res) => {
+  try {
+    const username = req.query.username;
+
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const friendCount = user.friends ? user.friends.length : 0;
+
+    return res.status(200).json({ friendCount });
+  } catch (error) {
+    console.error("Error getting friend count:", error);
+    return res.status(500).json({ message: "Server error" });
+  }
+};
+
+// get total count of discovered tracks for a user
+const getDiscoveredTracksCount = async (req, res) => {
+  console.log("makes it to getDiscoveredTracksCount");
+  const { username } = req.params;
+  console.log("username: " + username);
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    const count = user.discoveredTracks || 0;
+    console.log("count: " + count);
+    res.status(200).json({ count });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+// increment discovered tracks for a user
+const incrementDiscoveredTracks = async (req, res) => {
+  const { username } = req.params;
+  try {
+    const user = await User.findOne({ username });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    // Ensure we're working with numbers
+    user.discoveredTracks = Number(user.discoveredTracks || 0) + 1;
+    await user.save();
+
+    res.status(200).json({ discoveredTracks: user.discoveredTracks });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+const createdAt = async (req, res) => {
+  const { username } = req.params;
+  const user = await User.findOne({ username });
+  res.status(200).json({ createdAt: user.createdAt });
 };
 
 module.exports = {
@@ -132,4 +218,9 @@ module.exports = {
   spotifyRedirect,
   spotifyCallback,
   spotifytoken,
+  spotifyRefresh,
+  getFriendCount,
+  getDiscoveredTracksCount,
+  incrementDiscoveredTracks,
+  createdAt,
 };

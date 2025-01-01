@@ -12,11 +12,11 @@ export const songReducer = (state, action) => {
       };
     case "CREATE_SONG":
       return {
-        songs: [action.payload, ...state.songs],
+        songs: [action.payload, ...(state.songs || [])],
       };
     case "DELETE_SONG":
       return {
-        songs: state.songs.filter((s) => s._id !== action.payload._id), // filters through songs array to display all except the deleted song
+        songs: state.songs.filter((song) => song._id !== action.payload._id),
       };
     default:
       return state;
@@ -25,7 +25,7 @@ export const songReducer = (state, action) => {
 
 export const SongContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(songReducer, {
-    songs: null,
+    songs: [],
   });
 
   return (

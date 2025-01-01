@@ -4,30 +4,34 @@ const validator = require("validator");
 
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
-    unique: true,
+const userSchema = new Schema(
+  {
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    username: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    spotifyAccessToken: {
+      type: String,
+    },
+    spotifyRefreshToken: {
+      type: String,
+    },
+    friends: [{ type: String }],
+    discoveredTracks: [{ type: Number, default: 0 }],
   },
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  spotifyAccessToken: {
-    type: String,
-  },
-  spotifyRefreshToken: {
-    type: String,
-  },
-  friends: [{ type: String }],
-});
+  { timestamps: true }
+);
 
 // static signup method
 userSchema.statics.signup = async function (email, username, password) {

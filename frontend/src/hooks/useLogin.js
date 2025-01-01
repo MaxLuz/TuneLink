@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import axios from "axios";
 
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useAuthContext();
+  const { user, dispatch } = useAuthContext();
+  // const [refreshToken, setRefreshToken] = useState("");
 
   const login = async (email, password) => {
     setIsLoading(true);
@@ -31,7 +33,10 @@ export const useLogin = () => {
 
       setIsLoading(false);
       // authenticate with spotify
-      window.location.href = `https://xlhq7t2v-4000.use.devtunnels.ms/api/user/auth/spotify?userId=${json.userId}`;
+      // window.location.href = `https://xlhq7t2v-4000.use.devtunnels.ms/api/user/auth/spotify?userId=${json.userId}`;
+
+      window.location.href =
+        "https://xlhq7t2v-3000.use.devtunnels.ms/dashboard";
     }
   };
   return { login, isLoading, error };

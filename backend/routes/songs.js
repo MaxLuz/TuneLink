@@ -8,6 +8,7 @@ const {
   getSong,
   deleteSong,
   updateSong,
+  getSongCountByUsername,
 } = require("../controllers/songController");
 
 const requireAuth = require("../middleware/requireAuth");
@@ -30,5 +31,8 @@ router.delete("/:id", deleteSong);
 
 // UPDATE a new song
 router.patch("/:id", updateSong);
+
+// GET total count of songs sent to a specific username
+router.get("/count/:username", getSongCountByUsername);
 
 module.exports = router;

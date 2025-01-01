@@ -43,6 +43,7 @@
     grid-template-columns: 24px 32px 1fr auto; /* Custom column sizes */
     gap: 10px; /* Optional: Space between grid items */
     padding-right:12px;
+    cursor:pointer;
 }
 
 .topSongs-li:hover{
@@ -131,9 +132,14 @@
 } */
 
 @media screen and (max-width:500px){
-    .topSongs-h2{
-        padding-left:18px;
+    
+
+    .topSong-ul-wrapper{
+        overflow-y:visible;
+        height:auto;
     }
 
-
+    .topSongs-h2{
+        display:none;
+    }
 }

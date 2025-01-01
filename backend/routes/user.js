@@ -10,6 +10,11 @@ const {
   spotifyRedirect,
   spotifyCallback,
   spotifytoken,
+  spotifyRefresh,
+  getFriendCount,
+  getDiscoveredTracksCount,
+  incrementDiscoveredTracks,
+  createdAt,
 } = require("../controllers/userController");
 
 const requireAuth = require("../middleware/requireAuth");
@@ -31,5 +36,18 @@ router.get("/auth/spotify-callback", spotifyCallback);
 
 // grab a user's spotify token (only for friends)
 router.get("/spotifytoken", spotifytoken);
+
+router.post("/spotify-refresh", spotifyRefresh);
+
+router.get("/friend-count", getFriendCount);
+
+// get total count of discovered tracks for a user
+router.get("/discovered/:username", getDiscoveredTracksCount);
+
+// increment discovered tracks for a user
+router.post("/increment-discovered/:username", incrementDiscoveredTracks);
+
+// get createdAt for a user
+router.get("/created-at/:username", createdAt);
 
 module.exports = router;

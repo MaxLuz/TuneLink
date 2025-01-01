@@ -29,12 +29,44 @@ const Friends = () => {
   const [artists, setArtists] = useState([]);
   const [tracks, setTracks] = useState([]);
   const [spotifytoken, setSpotToken] = useState();
+  const [friendCount, setFriendCount] = useState(0);
+
+  useEffect(() => {
+    axios
+      .get("/api/user/friend-count", {
+        params: { username: user.username },
+      })
+      .then((response) => {
+        setFriendCount(response.data.friendCount);
+      });
+  }, [user]);
 
   const handleScrollToBottom = () => {
     window.scrollTo({
       top: document.documentElement.scrollHeight, // Scroll to the bottom of the page
       behavior: "smooth", // Smooth scroll effect
     });
+  };
+
+  const handleOption = (event) => {
+    const option = event.target.value;
+
+    const tracksContainer = document.getElementById("tracks-container");
+    const artistsContainer = document.getElementById("artists-container");
+    const tracksbtn = document.getElementById("tracks-btn");
+    const artistsbtn = document.getElementById("artists-btn");
+
+    if (option === "tracks") {
+      tracksContainer.style.display = "flex";
+      artistsContainer.style.display = "none";
+      tracksbtn.style.color = "white";
+      artistsbtn.style.color = "gray";
+    } else if (option === "artists") {
+      tracksContainer.style.display = "none";
+      artistsContainer.style.display = "flex";
+      artistsbtn.style.color = "white";
+      tracksbtn.style.color = "gray";
+    }
   };
 
   // fetches all current friend requests for user
@@ -104,31 +136,29 @@ const Friends = () => {
 
   useEffect(() => {
     const getSpotifyToken = async () => {
-      console.log("Username: " + friendData);
+      // Only proceed if we have both user and friendData
+      if (!user || !friendData) return;
+
       try {
-        // Send a GET request to the backend
         const response = await axios.get("/api/user/spotifytoken", {
           headers: {
             Authorization: `Bearer ${user.token}`,
           },
           params: {
-            username: `${friendData}`,
+            username: friendData,
+            refresh: "false",
           },
         });
-
-        // Extract and return the Spotify token
         setSpotToken(response.data);
       } catch (error) {
         console.error(
           "Error fetching Spotify token:",
           error.response?.data || error.message
         );
-        throw error;
       }
     };
-    if (user) {
-      getSpotifyToken();
-    }
+
+    getSpotifyToken();
   }, [friendData, user]);
 
   // fetch top songs when component mounts
@@ -162,7 +192,7 @@ const Friends = () => {
           <div className="welcome-bottom">
             <div className="welcome-bottom-text">
               <h1 className="total-time">
-                5 <span className="smaller-size">friends</span>
+                {friendCount} <span className="smaller-size">friends</span>
               </h1>
               <p className="welcome-text friend-text-under">
                 To see data, select from friends list!
@@ -231,11 +261,38 @@ const Friends = () => {
             </div>
           </div>
           <div className="listening-habits-bottom">
-            <div className="tracks-container">
-              <TopSongs token={spotifytoken} timeframe={"short_term"} />
+            <div className="options">
+              <button
+                id="tracks-btn"
+                className="listening-habits-option"
+                value="tracks"
+                onClick={handleOption}
+              >
+                Tracks
+              </button>
+              <button
+                id="artists-btn"
+                className="listening-habits-option"
+                value="artists"
+                onClick={handleOption}
+              >
+                Artists
+              </button>
             </div>
-            <div className="artists-container">
-              <TopArtists token={spotifytoken} timeframe={"short_term"} />
+            <div id="tracks-container" className="tracks-container">
+              <TopSongs
+                token={spotifytoken}
+                timeframe={"short_term"}
+                username={friendData}
+                isFriend={true}
+              />
+            </div>
+            <div id="artists-container" className="artists-container">
+              <TopArtists
+                token={spotifytoken}
+                timeframe={"short_term"}
+                isFriend={true}
+              />
             </div>
           </div>
         </div>

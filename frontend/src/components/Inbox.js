@@ -87,6 +87,13 @@ const Inbox = () => {
     }
 
     try {
+      await axios.post(`/api/user/increment-discovered/${user.username}`);
+      console.log("Incremented discovered tracks for user:", user.username);
+    } catch (error) {
+      console.error("Error incrementing discovered tracks:", error);
+    }
+
+    try {
       // Step 1: Check for available devices
       const devicesResponse = await axios.get(
         "https://api.spotify.com/v1/me/player/devices",
@@ -152,6 +159,28 @@ const Inbox = () => {
     }
   };
 
+  const handleDelete = async (trackIndex) => {
+    try {
+      await axios.delete(`/api/songs/${tracks[trackIndex]._id}`, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      // Remove the track from both arrays
+      const newTracks = tracks.filter((_, index) => index !== trackIndex);
+      const newSpotifyTracks = spotifyTracks.filter(
+        (_, index) => index !== trackIndex
+      );
+
+      setTracks(newTracks);
+      setSpotifyTracks(newSpotifyTracks);
+    } catch (error) {
+      console.error("Error deleting track:", error);
+      setError("Failed to delete track");
+    }
+  };
+
   return (
     <div className="inbox-container">
       <h2 className="topSongs-h2">Tracks</h2>
@@ -163,11 +192,12 @@ const Inbox = () => {
       <div className="topSong-ul-wrapper">
         <ul className="topSongs-ul">
           {spotifyTracks.map((track, index) => (
-            <li className="topSongs-li" key={track.id}>
-              <a
-                className="play-button-link-topSongs"
-                onClick={() => handlePlay(track.id)}
-              >
+            <li
+              className="topSongs-li"
+              key={track.id}
+              onClick={() => handlePlay(track.id)}
+            >
+              <div className="play-button-link-topSongs">
                 {error && <div className="error player-error">{error}</div>}
                 <svg
                   className="play-button-topSongs"
@@ -177,7 +207,7 @@ const Inbox = () => {
                   <path opacity=".4" d="M48 80l0 352L336 256 48 80z" />
                   <path d="M48 432L336 256 48 80l0 352zM24.5 38.1C39.7 29.6 58.2 30 73 39L361 215c14.3 8.7 23 24.2 23 41s-8.7 32.2-23 41L73 473c-14.8 9.1-33.4 9.4-48.5 .9S0 449.4 0 432L0 80C0 62.6 9.4 46.6 24.5 38.1z" />
                 </svg>
-              </a>
+              </div>
               <p className="topSongs-name index-topSongs">{index + 1}</p>
               <div className="image-wrapper-songs">
                 <img
@@ -191,7 +221,15 @@ const Inbox = () => {
                 <p className="topSongs-name actualname">{track.name}</p>
                 <p className="topSongs-artist">{track.artist.name}</p>
               </div>
-
+              <button
+                className="delete-button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDelete(index);
+                }}
+              >
+                ×
+              </button>
               <p className="topSongs-name">{tracks[index].username_from}</p>
             </li>
           ))}

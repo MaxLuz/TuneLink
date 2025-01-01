@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/TopSongs.css";
+import { useTokenRefresh } from "../hooks/useTokenRefresh";
+import { useAuthContext } from "../hooks/useAuthContext";
 
-const TopSongs = ({ token, timeframe }) => {
+const TopSongs = ({ token, timeframe, username, isFriend }) => {
   const [tracks, setTracks] = useState([]);
   const [error, setError] = useState("");
+  const { tokenRefresh } = useTokenRefresh();
+  const { user } = useAuthContext();
 
   // fetch top songs when component mounts
   useEffect(() => {
+    tokenRefresh(token, username);
     if (token) {
       axios
         .get("https://api.spotify.com/v1/me/top/tracks", {
@@ -28,8 +33,9 @@ const TopSongs = ({ token, timeframe }) => {
 
   const handlePlay = async (trackId) => {
     console.log("handlePlay: " + trackId);
+    const localtoken = localStorage.getItem("spotify_access_token");
 
-    if (!token) {
+    if (!localtoken) {
       console.error("No token available for authentication.");
       return;
     }
@@ -40,7 +46,7 @@ const TopSongs = ({ token, timeframe }) => {
         "https://api.spotify.com/v1/me/player/devices",
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localtoken}`,
           },
         }
       );
@@ -66,11 +72,20 @@ const TopSongs = ({ token, timeframe }) => {
           { device_ids: [deviceId] },
           {
             headers: {
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${localtoken}`,
             },
           }
         );
         console.log(`Playback transferred to device: ${deviceId}`);
+      }
+
+      // If viewing a friend's profile, increment their discovered tracks
+      if (isFriend && user) {
+        try {
+          await axios.post(`/api/user/increment-discovered/${user.username}`);
+        } catch (error) {
+          console.error("Error incrementing discovered tracks:", error);
+        }
       }
 
       // Step 3: Start playback of the selected track
@@ -81,7 +96,7 @@ const TopSongs = ({ token, timeframe }) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${localtoken}`,
           },
         }
       );
@@ -111,11 +126,12 @@ const TopSongs = ({ token, timeframe }) => {
       <div className="topSong-ul-wrapper">
         <ul className="topSongs-ul">
           {tracks.map((track, index) => (
-            <li className="topSongs-li" key={track.id}>
-              <a
-                className="play-button-link-topSongs"
-                onClick={() => handlePlay(track.id)}
-              >
+            <li
+              className="topSongs-li"
+              key={track.id}
+              onClick={() => handlePlay(track.id)}
+            >
+              <div className="play-button-link-topSongs">
                 {error && <div className="error player-error">{error}</div>}
                 <svg
                   className="play-button-topSongs"
@@ -125,7 +141,7 @@ const TopSongs = ({ token, timeframe }) => {
                   <path opacity=".4" d="M48 80l0 352L336 256 48 80z" />
                   <path d="M48 432L336 256 48 80l0 352zM24.5 38.1C39.7 29.6 58.2 30 73 39L361 215c14.3 8.7 23 24.2 23 41s-8.7 32.2-23 41L73 473c-14.8 9.1-33.4 9.4-48.5 .9S0 449.4 0 432L0 80C0 62.6 9.4 46.6 24.5 38.1z" />
                 </svg>
-              </a>
+              </div>
               <p className="topSongs-name index-topSongs">{index + 1}</p>
               <div className="image-wrapper-songs">
                 <img
