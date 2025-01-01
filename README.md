@@ -91,9 +91,9 @@ npm start
 
 TuneLink support desktop and mobile devices:
 
-![TuneLink Dashboard](/frontend/public/readme-images/dashboard.png)
-![TuneLink Friends](/frontend/public/readme-images/friends.png)
-![TuneLink Inbox](/frontend/public/readme-images/inbox.png)
+![TuneLink Dashboard](/frontend/public/readme-images/Dashboard.png)
+![TuneLink Friends](/frontend/public/readme-images/Friends.png)
+![TuneLink Inbox](/frontend/public/readme-images/Inbox.png)
 ![TuneLink Mobile Dashboard](/frontend/public/readme-images/mobile-dashboard.png)
 ![TuneLink Mobile Friends](/frontend/public/readme-images/friends-mobile.png)
 ![TuneLink Mobile Inbox](/frontend/public/readme-images/inbox-mobile.png)
