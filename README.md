@@ -28,7 +28,7 @@ Ensure you have the following installed on your machine:
 Clone the repository:
 
 ```bash
-git clone git@github.com:MaxLuz/TuneLink.git
+git clone https://github.com/MaxLuz/TuneLink.git
 ```
 
 Navigate to the backend directory:
