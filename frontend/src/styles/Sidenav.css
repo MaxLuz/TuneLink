@@ -42,6 +42,9 @@
     width:32px;
     background-color: white;
     border-radius: 100px;
+    background-image: url('../../public/profile-picture-default.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .logout-btn{
