@@ -106,3 +106,7 @@ TuneLink support desktop and mobile devices:
 ![TuneLink Mobile Dashboard](/frontend/public/readme-images/mobile-dashboard.png)
 ![TuneLink Mobile Friends](/frontend/public/readme-images/friends-mobile.png)
 ![TuneLink Mobile Inbox](/frontend/public/readme-images/inbox-mobile.png)
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
