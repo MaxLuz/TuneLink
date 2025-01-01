@@ -4,10 +4,13 @@ TuneLink is a music-sharing platform that connects friends through their listeni
 
 ## Features
 
-- User authentication with a secure login system.
+- User authentication with a secure login system using JWT (JSON Web Tokens).
 - Spotify account integration for personalized music data.
 - Dashboard to view top tracks, favorite artists, and listening history.
 - Add friends and explore their music tastes.
+- Inbox to send and receive tracks with friends.
+- Mobile support for a seamless experience on both desktop and mobile devices.
+- Spotify music player integration to play tracks directly from the platform.
 
 ## Getting Started
 
