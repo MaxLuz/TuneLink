@@ -66,6 +66,12 @@ SPOTIFY_CLIENT_SECRET=your_spotify_client_secret
 FRONTEND_URL=your_frontend_url
 ```
 
+Add a proxy field in the frontend package.json file:
+
+```json
+"proxy": "http://localhost:your_port_number"
+```
+
 ### Start the Development Servers
 
 Navigate to the backend directory and start the backend server:
