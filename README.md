@@ -21,6 +21,7 @@ Ensure you have the following installed on your machine:
 - Node.js
 - npm or yarn
 - MongoDB
+- React
 
 ### Installation
 
